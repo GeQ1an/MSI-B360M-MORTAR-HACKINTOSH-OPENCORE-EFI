@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BuildMachineOSBuild</key>
-	<string>19B88</string>
+	<string>18G2022</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -29,19 +29,36 @@
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
-	<string>11B500</string>
+	<string>11C29</string>
 	<key>DTPlatformVersion</key>
 	<string>GM</string>
 	<key>DTSDKBuild</key>
-	<string>19B89</string>
+	<string>19B90</string>
 	<key>DTSDKName</key>
 	<string>macosx10.15</string>
 	<key>DTXcode</key>
-	<string>1120</string>
+	<string>1130</string>
 	<key>DTXcodeBuild</key>
-	<string>11B500</string>
+	<string>11C29</string>
 	<key>IOKitPersonalities</key>
 	<dict>
+		<key>NVHDAEnabler</key>
+		<dict>
+			<key>CFBundleIdentifier</key>
+			<string>as.vit9696.WhateverGreen</string>
+			<key>IOClass</key>
+			<string>NVHDAEnabler</string>
+			<key>IOMatchCategory</key>
+			<string>IOFramebuffer</string>
+			<key>IOPCIClassMatch</key>
+			<string>0x03000000&amp;0xff000000</string>
+			<key>IOPCIMatch</key>
+			<string>0x000010de&amp;0x0000ffff</string>
+			<key>IOProbeScore</key>
+			<integer>300000</integer>
+			<key>IOProviderClass</key>
+			<string>IOPCIDevice</string>
+		</dict>
 		<key>as.vit9696.WhateverGreen</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
