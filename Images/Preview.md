@@ -1,5 +1,5 @@
 ## 截图预览
-系统版本：macOS Catalina 10.15.2，OpenCare 版本：0.5.4，EFI 更新日期：2019.12.23
+系统版本：macOS Catalina 10.15.2，OpenCare 版本：0.5.4，EFI 更新日期：2019.12.29
 
 ### 关于本机
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/About.png)
@@ -28,6 +28,10 @@
 ### iMessage
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/iMessage.png)
 
+### FaceTime
+![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/FaceTime.png)
+*使用 Mac 通过 iPhone 接打电话*
+
 ### App Store
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/App_Store.png)
 
@@ -36,6 +40,7 @@
 
 ### Apple TV Plus
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/Apple_TV_Plus.png)
+*因 DRM 版权保护，截图时视频画面变为纯黑*
 
 ### VedioProc
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/VedioProc.png)

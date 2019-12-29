@@ -53,11 +53,14 @@
 
 
 ## 更新记录
+#### 2019.12.29
+更新 WhateverGreen.kext 至最新编译版，彻底修复「不开启小憩无法进入睡眠」的问题。
+
 #### 2019.12.23
 更新 WhateverGreen.kext 至 1.3.6，修改 shikigva 代码为 80（可支持 Netflix）。
 
 #### 2019.12.20
-上传忘记添加的 SSDT-SBUS.aml（用来修复不开启小憩无法进入睡眠，但我发现好像仍然无法进入，待测试）。
+上传忘记添加的 SSDT-SBUS.aml（用来修复「不开启小憩无法进入睡眠」，但我发现好像仍然无法进入，待测试）。
 
 #### 2019.12.19
 经过三天的测试后，上传第一版。
@@ -73,6 +76,8 @@ STTINGS\高级\PCI子系统设置\Above 4G memory/Crypto Currency mining [允许
 <br>
 STTINGS\高级\内建显示配置\设置第一显卡 [PEG]<br>
 STTINGS\高级\内建显示配置\集成显卡多显示器 [允许] （如果使用拥有核显的处理器）<br>
+<br>
+STTINGS\高级\ACPI设置\Power LED [双色]（如果选择[闪烁]，睡眠时电源灯将不断闪烁）<br>
 <br>
 STTINGS\高级\USB设置\XHCI Hand-off [允许]<br>
 STTINGS\高级\USB设置\传统USB支持 [允许]<br>
