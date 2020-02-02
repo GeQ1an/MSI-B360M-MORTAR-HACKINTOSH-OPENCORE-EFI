@@ -55,13 +55,16 @@
 
 
 ## 更新记录
-####
+#### 2020.02.02
+更新支持读写硬件 NVRAM，不再需要模拟 NVRAM，请删除 EFI 目录下 nvram.plist 文件。
+
+#### 2020.01.14
 更新 OpenCore 至 0.5.4 正式版；更新 Lilu / AppleALC / CPUFriend / VitualSMC / WhateverGreen 等 Kexts 至官方最新版。<br>
 *OC 0.5.4 正式版的配置文件新增了若干条目，建议按照使用习惯重新配置，并删除`/EFI/OC/Drivers/virtualsmc.efi`文件（已被合并至 OC 中）。*
 
 #### 2020.01.05
 使用 OpenCore 官方补丁间接修复「不开启小憩无法进入睡眠」的问题，移除 SSDT-SBUS.aml 文件。<br>
-*不开启小憩的目的是睡眠后不被自动唤醒，开启 OC 的「禁用 RTC 唤醒计划」补丁后，打开小憩功能可以正常进入睡眠，且不会被自动唤醒，间接达到「不开启小憩进入睡眠」的状态，如不需要可以手动关闭该补丁（感谢 [ArchFeh](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/5)）。*<br>
+*不开启小憩的目的是睡眠后不被自动唤醒，开启 OC 的「禁用 RTC 唤醒计划」补丁后，打开小憩功能可以正常进入睡眠，且不会被自动唤醒，间接达到「不开启小憩进入睡眠」的状态，如不需要可以手动关闭该补丁（感谢 [ArchFeh](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/5) 的提醒）。*<br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_Patch.png)
 
 #### 2019.12.29
@@ -88,14 +91,14 @@ STTINGS\高级\PCI子系统设置\Above 4G memory/Crypto Currency mining [允许
 STTINGS\高级\内建显示配置\设置第一显卡 [PEG]<br>
 STTINGS\高级\内建显示配置\集成显卡多显示器 [允许] （如果使用拥有核显的处理器）<br>
 <br>
-STTINGS\高级\ACPI设置\Power LED [双色]（如果选择 [闪烁]，睡眠时电源灯将不断闪烁）<br>
+STTINGS\高级\ACPI设置\电源 LED 灯 [双色]（如果选择 [闪烁]，睡眠时电源灯将不断闪烁）<br>
 <br>
 STTINGS\高级\USB设置\XHCI Hand-off [允许]<br>
 STTINGS\高级\USB设置\传统USB支持 [允许]<br>
 <br>
 STTINGS\高级\电源管理设置\ErP Ready [允许]<br>
 <br>
-STTINGS\高级\Windows操作系统的配置\Windows 10 WHQL支持 [禁止]<br>
+STTINGS\高级\Windows操作系统的配置\Windows 10 WHQL支持 [允许]<br>
 STTINGS\高级\Windows操作系统的配置\MSI 快速开机 [禁止]<br>
 STTINGS\高级\Windows操作系统的配置\快速开机 [禁止]<br>
 <br>
@@ -137,8 +140,8 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]（必须！）<br>
 <br>
 保存后，将 EFI 文件夹放置到启动磁盘 EFI 分区，重启电脑。
 
-### 模拟 NVRAM
-无论是直接使用还是修改使用，都建议参考 [xjn 博客](https://blog.xjn819.com/?p=543) 的完善部分「3.1 模拟 NVRAM」，进行模拟 NVRAM 的操作。
+### ~~模拟 NVRAM~~（不再需要）
+~~无论是直接使用还是修改使用，都建议参考 [xjn 博客](https://blog.xjn819.com/?p=543) 的完善部分「3.1 模拟 NVRAM」，进行模拟 NVRAM 的操作。~~
 
 ### 进阶使用
 1. 参考 [xjn 博客](https://blog.xjn819.com/?p=543) 的进阶部分「4.1 CPU 的变频优化」生成`CPUFriendDataProvider.kext`HWP 变频文件，放入`/EFI/OC/Kexts/`替换同名文件，重新启用`/EFI/OC/config.plist`文件 Kernel > Add > 10 和 11。
@@ -166,10 +169,10 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]（必须！）<br>
 ## 鸣谢
 [xjn](https://blog.xjn819.com/)<br>
 [andot](https://github.com/andot/MSI-B360M-MORTAR-IMACPRO-EFI/)<br>
-[黑果小兵](https://blog.daliansky.net/)<br>
+[daliansky](https://github.com/daliansky) ([黑果小兵](https://blog.daliansky.net/))<br>
 [tonymoses](http://bbs.pcbeta.com/viewthread-1835637-1-1.html)<br>
 [cattyhouse](https://github.com/cattyhouse/oc-guide/)<br>
-[Telegram 黑苹果中文讨论群](https://t.me/osx86zh/)
+[osx86zh](https://t.me/osx86zh/) ([Telegram](https://telegram.org/) 讨论组)
 
 ## 写在最后
 作为一个黑果小白，欢迎指正错误及提出建议，我会及时更新此 EFI。另外，如果有在 iOS 使用 Quantumult X 的用户，欢迎使用我的规则 [Stick Rules](https://github.com/GeQ1an/Rules/tree/master)，也欢迎 [点击此处](https://t.me/usestick) 订阅我的 Telegram 频道及时获取规则和 EFI 相关信息。
