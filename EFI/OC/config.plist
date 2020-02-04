@@ -8,7 +8,7 @@
 		<array>
 			<dict>
 				<key>Comment</key>
-				<string>DisableAWAC</string>
+				<string>Disable AWAC</string>
 				<key>Enabled</key>
 				<true/>
 				<key>Path</key>
@@ -16,7 +16,7 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>MemoryController</string>
+				<string>Memory controller</string>
 				<key>Enabled</key>
 				<true/>
 				<key>Path</key>
@@ -24,7 +24,7 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>LoadOriginalPowerManagement</string>
+				<string>Load original power management</string>
 				<key>Enabled</key>
 				<true/>
 				<key>Path</key>
@@ -32,7 +32,7 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>AddedStartUpPowerFailure</string>
+				<string>Added start up power failure</string>
 				<key>Enabled</key>
 				<true/>
 				<key>Path</key>
@@ -40,7 +40,7 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>Intel300-seriesPMCsupport</string>
+				<string>Intel 300-series PMC support</string>
 				<key>Enabled</key>
 				<true/>
 				<key>Path</key>
@@ -526,7 +526,7 @@
 			<key>ShowPicker</key>
 			<false/>
 			<key>TakeoffDelay</key>
-			<integer>0</integer>
+			<integer>200</integer>
 			<key>Timeout</key>
 			<integer>5</integer>
 			<key>UsePicker</key>
