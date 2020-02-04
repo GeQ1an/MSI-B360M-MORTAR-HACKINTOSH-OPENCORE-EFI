@@ -31,7 +31,7 @@
 |     摄像头 + 麦克风 | 双飞燕 PK-838G 带麦克风摄像头                       |
 |               音箱 | 漫步者 R19U 2.0 迷你音箱                           |
 |               键盘 | iQunix F96 珊瑚海（有线茶轴 RGB 版）                 |
-|               鼠标 | 罗技 MX Anywhere 2（使用优联连接，以方便在 BIOS 中使用）   |
+|               鼠标 | 罗技 MX Anywhere 2（使用优联连接，以方便在 BIOS 中使用） |
 
 ### 兼容的配置
 
@@ -39,8 +39,8 @@
 |-------------------:|:------------------------------------------------------------|
 |               主板 | 微星 B360M 迫击炮（钛金版）                                    |
 |             处理器 | 英特尔第 8 代、第 9 代酷睿处理器（推荐拥有核显的版本）                |
-|               显卡 | RX 560 / RX 570 / RX 580 / RX 590 / RX VEGA⁵⁶ / RX VEGA⁶⁴ / Radeon VII / RX 5500 XT / RX 5700 / RX 5700 XT |
-|               硬盘 | 除了几个特例（如三星 PM981），基本都可以                               |
+|               显卡 | RX 560 / RX 570 / RX 580 / RX 590 / RX VEGA⁵⁶ / RX VEGA⁶⁴ / Radeon VII / RX 5500 XT / RX 5600 XT / RX 5700 / RX 5700 XT |
+|               硬盘 | 除了几个特例（如三星 PM981），基本都可以                            |
 |               内存 | 除了非常差的，基本都可以                                        |
 |        无线 + 蓝牙 | 黑苹果免驱版无线 + 蓝牙 PCI-E 网卡都可以                          |
 |     摄像头 + 麦克风 | macOS 免驱版都可以                                             |
@@ -50,13 +50,16 @@
 |           其它外设 | 根据个人喜好选配                                              |
 
 *显卡优先选择蓝宝石，其次选择迪兰恒进、华硕和微星，尽量不选择盈通和讯景，一定避开 RX 580 2048SP 版本！*<br>
-*如果选择购买新显卡，推荐 RX 5500 XT、 RX 5700 和 RX 5700 XT 这三个型号。*<br>
+*如果选择购买新显卡，推荐 RX 5500 XT、RX 5600 XT、RX 5700 和 RX 5700 XT 这四个型号。*<br>
 *个人非常不推荐使用玄冰 400 散热器（不含扣具升级款），我已经更换为利民 AS120，远离反人类设计保平安。*
 
-
 ## 更新记录
+#### 2020.02.04
+更新 OpenCore 至 0.5.5 正式版；更新 AppleALC / VitualSMC 等 Kexts 至官方最新版；添加 UEFI Shell 工具（默认未启用）。<br>
+*OC 0.5.5 正式版的配置文件新增了若干条目，建议按照使用习惯重新配置。*
+
 #### 2020.02.02
-更新支持读写硬件 NVRAM，不再需要模拟 NVRAM，请删除 EFI 目录下 nvram.plist 文件。
+更新支持读写硬件 NVRAM，不再需要模拟 NVRAM，请删除 `/EFI/nvram.plist` 文件。
 
 #### 2020.01.14
 更新 OpenCore 至 0.5.4 正式版；更新 Lilu / AppleALC / CPUFriend / VitualSMC / WhateverGreen 等 Kexts 至官方最新版。<br>
@@ -64,7 +67,7 @@
 
 #### 2020.01.05
 使用 OpenCore 官方补丁间接修复「不开启小憩无法进入睡眠」的问题，移除 SSDT-SBUS.aml 文件。<br>
-*不开启小憩的目的是睡眠后不被自动唤醒，开启 OC 的「禁用 RTC 唤醒计划」补丁后，打开小憩功能可以正常进入睡眠，且不会被自动唤醒，间接达到「不开启小憩进入睡眠」的状态，如不需要可以手动关闭该补丁（感谢 [ArchFeh](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/5) 的提醒）。*<br>
+*不开启小憩的目的是睡眠后不被自动唤醒，开启 OC 的「禁用 RTC 唤醒计划」补丁后，打开小憩功能可以正常进入睡眠，且不会被自动唤醒，间接达到「不开启小憩进入睡眠」的状态，如不需要可以手动关闭该补丁（感谢 [ArchFeh](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/5) 针对文案的提醒）。*<br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_Patch.png)
 
 #### 2019.12.29
@@ -138,7 +141,7 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]（必须！）<br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_USBPower_Info.png)
 5. 参考 [xjn 博客](https://blog.xjn819.com/?p=543) 的完善部分「3.4 加载原生电源管理」替换自己处理器对应的 SSDT-PLUG.aml 到`/EFI/OC/ACPI/`目录。
 <br>
-保存后，将 EFI 文件夹放置到启动磁盘 EFI 分区，重启电脑。
+保存后，先通过 USB 测试引导，无问题后将 EFI 文件夹放置到启动磁盘 EFI 分区，重启电脑。
 
 ### ~~模拟 NVRAM~~（不再需要）
 ~~无论是直接使用还是修改使用，都建议参考 [xjn 博客](https://blog.xjn819.com/?p=543) 的完善部分「3.1 模拟 NVRAM」，进行模拟 NVRAM 的操作。~~

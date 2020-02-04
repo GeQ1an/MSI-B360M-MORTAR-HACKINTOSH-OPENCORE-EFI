@@ -159,7 +159,7 @@
 				<key>BundlePath</key>
 				<string>Lilu.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>Patch engine</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -175,7 +175,7 @@
 				<key>BundlePath</key>
 				<string>VirtualSMC.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>SMC emulator</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -223,7 +223,7 @@
 				<key>BundlePath</key>
 				<string>WhateverGreen.kext</string>
 				<key>Comment</key>
-				<string>Video card</string>
+				<string>Video patches</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -239,7 +239,7 @@
 				<key>BundlePath</key>
 				<string>AppleALC.kext</string>
 				<key>Comment</key>
-				<string>Sound</string>
+				<string>Audio patches</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -255,7 +255,7 @@
 				<key>BundlePath</key>
 				<string>IntelMausi.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>Intel Ethernet LAN</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -482,6 +482,8 @@
 			<false/>
 			<key>DisableIoMapper</key>
 			<false/>
+			<key>DummyPowerManagement</key>
+			<false/>
 			<key>ExternalDiskIcons</key>
 			<false/>
 			<key>IncreasePciBarSize</key>
@@ -505,6 +507,8 @@
 		</array>
 		<key>Boot</key>
 		<dict>
+			<key>BuiltinTextRenderer</key>
+			<false/>
 			<key>ConsoleBehaviourOs</key>
 			<string></string>
 			<key>ConsoleBehaviourUi</key>
@@ -521,6 +525,8 @@
 			<string></string>
 			<key>ShowPicker</key>
 			<false/>
+			<key>TakeoffDelay</key>
+			<integer>0</integer>
 			<key>Timeout</key>
 			<integer>5</integer>
 			<key>UsePicker</key>
@@ -584,6 +590,18 @@
 				<string>VerifyMsrE2</string>
 				<key>Path</key>
 				<string>VerifyMsrE2.efi</string>
+			</dict>
+			<dict>
+				<key>Arguments</key>
+				<string></string>
+				<key>Comment</key>
+				<string>Not signed for security reasons</string>
+				<key>Enabled</key>
+				<false/>
+				<key>Name</key>
+				<string>UEFI Shell</string>
+				<key>Path</key>
+				<string>Shell.efi</string>
 			</dict>
 			<dict>
 				<key>Arguments</key>
