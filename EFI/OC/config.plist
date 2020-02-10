@@ -687,14 +687,14 @@
 		<true/>
 		<key>Generic</key>
 		<dict>
+			<key>AdviseWindows</key>
+			<false/>
 			<key>MLB</key>
 			<string></string>
 			<key>ROM</key>
 			<data></data>
 			<key>SpoofVendor</key>
 			<true/>
-			<key>SupportsCsm</key>
-			<false/>
 			<key>SystemProductName</key>
 			<string>iMac19,1</string>
 			<key>SystemSerialNumber</key>
