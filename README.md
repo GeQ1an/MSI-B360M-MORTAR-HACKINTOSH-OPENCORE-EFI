@@ -54,9 +54,12 @@
 *个人非常不推荐使用玄冰 400 散热器（不含扣具升级款），我已经更换为利民 AS120，远离反人类设计保平安。*
 
 ## 更新记录
+#### 2020.02.14
+移除 Slide=129 启动参数（相关 [Issue](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/7)）；删除`/EFI/OC/Drivers/AppleUsbKbDxe.efi`文件（无用，详见 [vit9696 的解释](https://applelife.ru/threads/opencore-obsuzhdenie-i-ustanovka.2944066/page-176#post-856653)）；修改`/EFI/OC/Drivers/HFSPlus.efi`文件名称为`HfsPlus.efi`，同步修改`/EFI/OC/config.plist`文件 UEFI > Drivers > 2 为 HfsPlus.efi（无实质作用，仅统一名称格式）。
+
 #### 2020.02.10
-修复 OpenCore 0.5.5 正式版将 PlatformInfo > Generic > SupportCsm 改名为 AdviseWindows，忘记更改配置文件的问题。
-*请手动更改名称，并按照官方示例文件调整顺序至 Generic 下第一位。
+修复 OpenCore 0.5.5 正式版将 SupportCsm 改名为 AdviseWindows 我却没有更改配置文件的问题。<br>
+*请手动更改该项名称（PlatformInfo > Generic），并建议按照官方示例文件调整 AdviseWindows 顺序至 Generic 第一位。*
 
 #### 2020.02.05
 设置 TakeoffDelay 参数为 200 (Misc > Boot，单位：毫秒) 以支持引导过程的原生快捷键。<br>
@@ -68,7 +71,12 @@
 *OC 0.5.5 正式版的配置文件新增了若干条目，建议按照使用习惯重新配置。*
 
 #### 2020.02.02
-更新支持读写硬件 NVRAM，不再需要模拟 NVRAM，请删除 `/EFI/nvram.plist` 文件。
+更新支持读写硬件 NVRAM，不再需要模拟 NVRAM。<br>
+*如之前进行过模拟 NVRAM 操作，请在`终端`执行下面两条命令后，删除`/EFI/nvram.plist`文件。*<br>
+````
+sudo rm -rf $(sudo defaults read com.apple.loginwindow LogoutHook) //删除 LogoutHook
+sudo defaults delete com.apple.loginwindow LogoutHook  //清空 LogoutHook 的触发设置
+````
 
 #### 2020.01.14
 更新 OpenCore 至 0.5.4 正式版；更新 Lilu / AppleALC / CPUFriend / VitualSMC / WhateverGreen 等 Kexts 至官方最新版。<br>
@@ -92,7 +100,7 @@
 经过三天的测试后，上传第一版。
 
 ## 使用 EFI
-准备 [ProperTree](https://github.com/corpnewt/ProperTree) ([下载](https://blog.xjn819.com/wp-content/uploads/2019/10/ProperTree.zip)) 或 [PlistEdit Pro](https://www.fatcatsoftware.com/plisteditpro/) 用来编辑配置文件，请勿使用其他编辑器编辑（切记）。<br>
+准备 [ProperTree](https://github.com/corpnewt/ProperTree) ([下载](https://github.com/GeQ1an/Personal/raw/master/Hackintosh/ProperTree.zip)) 或 [PlistEdit Pro](https://www.fatcatsoftware.com/plisteditpro/) 用来编辑配置文件，请勿使用其他编辑器编辑（切记）。<br>
 OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配置好的基础版本，之后再通过 [xjn 博客](https://blog.xjn819.com/?p=543) 和 [黑果小兵博客](https://blog.daliansky.net/OpenCore-BootLoader.html) 学习更多内容进行修改。
 
 ### BIOS 设置
@@ -166,8 +174,8 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]（必须！）<br>
 ~~无论是直接使用还是修改使用，都建议参考 [xjn 博客](https://blog.xjn819.com/?p=543) 的完善部分「3.1 模拟 NVRAM」，进行模拟 NVRAM 的操作。~~
 
 ### 进阶使用
-1. 参考 [xjn 博客](https://blog.xjn819.com/?p=543) 的进阶部分「4.1 CPU 的变频优化」或 xjn 大佬发表于 PCBETA 的帖子 [FCPX 核显独显全程满速指南](http://bbs.pcbeta.com/viewthread-1836920-1-1.html) 中「HWP 变频」部分，根据个人需求定制`CPUFriendDataProvider.kext`HWP 变频文件，放入`/EFI/OC/Kexts/`替换同名文件，重新启用`/EFI/OC/config.plist`文件 Kernel > Add > 10 和 11。<br>
-*iMac19,2 和 iMacPro1,1 均不支持 HWP 变频，无需尝试，对于有核显的用户建议选择 iMac19,1 机型，对于只使用核显的用户推荐 Macmini8,1 机型。*
+1. 参考 [xjn 博客](https://blog.xjn819.com/?p=543) 的进阶部分「4.1 CPU 的变频优化」或 xjn 大佬发表于 PCbeta 的帖子 [FCPX 核显独显全程满速指南](http://bbs.pcbeta.com/viewthread-1836920-1-1.html) 中「HWP 变频」部分，根据个人需求定制`CPUFriendDataProvider.kext`HWP 变频文件，放入`/EFI/OC/Kexts/`替换同名文件，重新启用`/EFI/OC/config.plist`文件 Kernel > Add > 10 和 11。<br>
+*iMac19,2 和 iMacPro1,1 均不支持 HWP 变频，无需尝试。对于有核显的用户建议选择 iMac19,1 机型，对于只使用核显的用户推荐 Macmini8,1 机型。*
 2. 参考 [黑果小兵博客](https://blog.daliansky.net/Intel-FB-Patcher-USB-Custom-Video.html) 生成`USBPorts.kext`USB 定制文件，放入`/EFI/OC/Kexts/`替换同名文件，打开`/EFI/OC/config.plist`，关闭 Kernel > Add > 7，打开 8。<br>
 *目录内有我的 USB 定制文件，可在备份好 EFI 的情况下尝试使用。*<br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_USB.png)
@@ -180,17 +188,20 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]（必须！）<br>
    两种方法选择其一即可，经反复测试，在微星 B360M 迫击炮（钛金版）上我更推荐方法二。<br>
    *如果同时使用方法一和方法二，开机 logo 的显示依旧会不正常。*
 2. **无法正常进入睡眠状态怎么办？**<br>
-   目前所知的情况是 ~~bugOS~~ 10.15.2 存在睡眠相关 bugs，如果使用了最新的 EFI 仍然无法正常进入睡眠，请尝试到「系统偏好设置——安全性与隐私——隐私——定位服务」关闭「Siri 与听写」。
+   目前所知的情况是 ~~bugOS~~macOS 10.15.2 及 10.15.3 存在睡眠相关 bugs，如果使用了最新的 EFI 仍然无法正常进入睡眠，请尝试到「系统偏好设置——安全性与隐私——隐私——定位服务」关闭「Siri 与听写」。
 3. **为什么推荐拥有核显的 CPU？**<br>
    首先，macOS Catalina 原生支持 4K 双硬解的独显最低为 RX VEGA⁵⁶，而第七代及以后的酷睿处理器核显可以和低于 RX VEGA⁵⁶ 的独显协同工作，完成 4K 双硬解；<br>
    其次，因为黑果没有 T2 芯片，所以没有核显的黑果无法使用随航（Sidecar）功能。
 4. **引导过程触发原生快捷键怎么这么难？**<br>
    我也被这个问题困扰了许久，在 OC 0.5.5 之前尝试过各种配置组合，均无法触发，但 OC 更新 0.5.5 后，通过设置 TakeoffDelay 参数可在引导过程中触发原生快捷键，建议在启动时按住组合键，或键盘灯亮起时不断重按组合键，可自行调整 TakeoffDelay 参数。
-5. **待更新**
+5. **NVMe 硬盘温度过高怎么办？**<br>
+   一般来说读写速度越快的硬盘温度往往越高，无需太过担心，但待机情况下超过 50℃ 或你认为硬盘的温度不正常，可尝试加载 [NVMeFix](https://github.com/acidanthera/NVMeFix/releases) 解决。<br>
+   将 NVMeFix.kext 放入`/EFI/OC/Kexts/`目录，打开`/EFI/OC/config.plist`，在 Kernel > Add 处添加 NVMeFix.kext（参考其他 kext 的添加方式）。
+6. **待更新**
 
 ## 结语
 完成以上步骤后，基本上已经有了一个完成度为 99% 的黑苹果设备，更多截图请查看 [截图预览](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/tree/master/Images/Preview.md) 。<br>
-黑果和白果不一样，一旦稳定后，系统等各个方面追新速度不要太快，待各路大佬测试后再升级也不迟。
+黑果和白果不一样，各种补丁和新系统的兼容性可能存在问题，一旦稳定后，追新速度不要太快，待各路大佬测试、完善后再升级也不迟。
 
 ## 鸣谢
 [xjn](https://blog.xjn819.com/)<br>
@@ -200,5 +211,9 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]（必须！）<br>
 [cattyhouse](https://github.com/cattyhouse/oc-guide/)<br>
 [osx86zh](https://t.me/osx86zh/) ([Telegram](https://telegram.org/) 讨论组)
 
+## 链接
+OpenCorePkg [官方版本](https://github.com/acidanthera/OpenCorePkg/releases) [自动编译](https://github.com/williambj1/OpenCore-Factory/releases) / AppleSupportPkg [官方版本](https://github.com/acidanthera/AppleSupportPkg/releases) [自动编译](https://github.com/athlonreg/AppleSupportPkg-Factory/releases) / WhateverGreen [官方版本](https://github.com/acidanthera/WhateverGreen/releases) [魔改版本](https://github.com/bugprogrammer/WhateverGreen) / [Lilu](https://github.com/acidanthera/Lilu) / [MacInfoPkg](https://github.com/acidanthera/MacInfoPkg/releases) / [VirtualSMC](https://github.com/acidanthera/VirtualSMC) / [AppleALC](https://github.com/acidanthera/AppleALC/releases) / [IntelMausi](https://github.com/acidanthera/IntelMausi) / [CPUFriend](https://github.com/acidanthera/CPUFriend) / [MaciASL](https://github.com/acidanthera/MaciASL/releases) / [Hackintool](https://www.tonymacx86.com/threads/release-hackintool-v2-8-6.254559/) / [HWMonitorSMC2](https://github.com/CloverHackyColor/HWMonitorSMC2/releases)
+
 ## 写在最后
-作为一个黑果小白，欢迎指正错误及提出建议，我会及时更新此 EFI。另外，如果有在 iOS 使用 Quantumult X 的用户，欢迎使用我的规则 [Stick Rules](https://github.com/GeQ1an/Rules/tree/master)，也欢迎 [点击此处](https://t.me/usestick) 订阅我的 Telegram 频道及时获取规则和 EFI 相关信息。
+作为一个黑果小白，欢迎在 [Issues](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues) 或通过 [Telegram](https://t.me/GeQ1an) 联系我，指正错误及提出建议，我将及时修改、更新此 EFI。<br>
+另外，如果有在 iOS 使用 Quantumult X 的用户，欢迎使用我的规则 [Stick Rules](https://github.com/GeQ1an/Rules/tree/master)，也欢迎 [点击此处](https://t.me/usestick) 订阅我的 Telegram 频道及时获取规则和 EFI 相关信息。
