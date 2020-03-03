@@ -188,7 +188,7 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
 ## Q&A
 1. **开机时苹果 logo 显示不正常怎么办？**<br>
    有两个方法可以解决这个问题。<br>
-   方法一：在`/EFI/OC/config.plist`配置文件 Misc—–Boot——Resolution 处填写正确的显示器分辨率；<br>
+   方法一：在`/EFI/OC/config.plist`配置文件 UEFI—–Output——Resolution 处填写正确的显示器分辨率；<br>
    方法二：将 BIOS「STTINGS\启动\全荧幕商标」设置为 [允许]。<br>
    两种方法选择其一即可，如果同时使用的话开机 logo 的显示依旧会不正常，原本更推荐方法二（会比方法一进入系统登陆界面略快一些），但反复测试后发现，如果在 BIOS 打开「Windows 10 WHQL支持」，使用方法二可能会导致**关机再开机时丢失苹果 logo**，请测试后选择~~适合~~自己喜欢的方法。
 2. **无法正常进入睡眠状态怎么办？**<br>
