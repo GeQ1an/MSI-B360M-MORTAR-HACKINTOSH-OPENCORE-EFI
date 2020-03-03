@@ -1,7 +1,7 @@
 # 微星 B360M 迫击炮（钛金版）黑苹果 OpenCore EFI
 
 ## EFI 介绍
-此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮（钛金版）的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，[OpenCore](https://github.com/acidanthera/OpenCorePkg) 版本：0.5.5<br>
+此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮（钛金版）的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，[OpenCore](https://github.com/acidanthera/OpenCorePkg) 版本：0.5.6<br>
 <br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/About.png)
 
@@ -24,7 +24,7 @@
 |             处理器 | 英特尔酷睿 i5-9600K                            |
 |               显卡 | 公版 RX 570 4GB（由微星代工）                    |
 |               硬盘 | 西部数据 SN750 500GB                          |
-|               内存 | 光威悍将 8GB DDR4 2666Mhz x 2                 |
+|               内存 | 光威悍将 8GB DDR4 2666MHz x 2                 |
 |        无线 + 蓝牙 | 奋威 BCM94360CD（双频 1750M + 蓝牙 4.0）PCI-E 无线网卡  |
 |  机箱 + 电源 + 散热 | 乔思伯 U3 + 台达 NX450 + 利民 AS120 + ARCTIC F12 PWM |
 |             显示器 | 飞利浦 276E8VJSB（27 英寸 4K 分辨率）                 |
@@ -39,7 +39,7 @@
 |-------------------:|:------------------------------------------------------------|
 |               主板 | 微星 B360M 迫击炮（钛金版）                                    |
 |             处理器 | 英特尔第 8 代、第 9 代酷睿处理器（推荐拥有核显的版本）                |
-|               显卡 | RX 560 / RX 570 / RX 580 / RX 590 / RX VEGA⁵⁶ / RX VEGA⁶⁴ / Radeon VII / RX 5500 XT / RX 5600 XT / RX 5700 / RX 5700 XT |
+|               显卡 | RX 560 / RX 570 / RX 580 / RX 590 / RX VEGA⁵⁶ / RX VEGA⁶⁴ / Radeon VII / RX 5500 XT / RX 5600 / RX 5600 XT / RX 5700 / RX 5700 XT |
 |               硬盘 | 除了几个特例（如三星 PM981），基本都可以                            |
 |               内存 | 除了非常差的，基本都可以                                        |
 |        无线 + 蓝牙 | 黑苹果免驱版无线 + 蓝牙 PCI-E 网卡都可以                          |
@@ -50,10 +50,14 @@
 |           其它外设 | 根据个人喜好选配                                              |
 
 *显卡优先选择蓝宝石，其次选择迪兰恒进、华硕和微星，尽量不选择盈通和讯景，一定避开 RX 580 2048SP 版本！*<br>
-*如果选择购买新显卡，推荐 RX 5500 XT、RX 5600 XT、RX 5700 和 RX 5700 XT 这四个型号。*<br>
+*如果选择购买新显卡，推荐 RX 5500 XT、RX 5600、RX 5600 XT、RX 5700 和 RX 5700 XT 这五个型号。*<br>
 *个人非常不推荐使用玄冰 400 散热器（不含扣具升级款），我已经更换为利民 AS120，远离反人类设计保平安。*
 
 ## 更新记录
+#### 2020.03.03
+更新 OpenCore 至 0.5.6 正式版；更新 Lilu / AppleALC / WhateverGreen 等 Kexts 至官方最新版；更新 ApfsDriverLoader / HfsPlus / FwRuntimeServices 等驱动至最新版；添加 ExFatDxe 驱动，同步添加 `/EFI/OC/config.plist`文件 EFI > Drivers > 2: ExFatDxe.efi；更新 Shell / VerifyMsrE2 等工具至最新版；移除`/EFI/OC/Tools/memtest.efi`文件，同步移除`/EFI/OC/config.plist`文件 Misc > Tools > 2 条目。<br>
+*OC 0.5.6 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。目前已支持 ~~bugOS~~macOS 10.15.4，正式版发布后可直接升级。*
+
 #### 2020.02.14
 移除 Slide=129 启动参数（相关 [Issue](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/7)）；删除`/EFI/OC/Drivers/AppleUsbKbDxe.efi`文件（无用，详见 [vit9696 的解释](https://applelife.ru/threads/opencore-obsuzhdenie-i-ustanovka.2944066/page-176#post-856653)）；修改`/EFI/OC/Drivers/HFSPlus.efi`文件名称为`HfsPlus.efi`，同步修改`/EFI/OC/config.plist`文件 UEFI > Drivers > 2 为 HfsPlus.efi（无实质作用，仅统一名称格式）。
 
@@ -104,33 +108,34 @@ sudo defaults delete com.apple.loginwindow LogoutHook  //清空 LogoutHook 的�
 OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配置好的基础版本，之后再通过 [xjn 博客](https://blog.xjn819.com/?p=543) 和 [黑果小兵博客](https://blog.daliansky.net/OpenCore-BootLoader.html) 学习更多内容进行修改。
 
 ### BIOS 设置
-*请先确定正在使用的 BIOS 版本，[迫击炮](https://cn.msi.com/Motherboard/support/B360M-MORTAR) 7B23v16 以上，[迫击炮钛金版](https://cn.msi.com/Motherboard/support/B360M-MORTAR-TITANIUM) 7B23vA6 以上，否则请参考官方文档升级 BIOS 至最新版本。*<br>
+*请先确定正在使用的 BIOS 版本，[迫击炮](https://cn.msi.com/Motherboard/support/B360M-MORTAR) 7B23v16 以上，[迫击炮钛金版](https://cn.msi.com/Motherboard/support/B360M-MORTAR-TITANIUM) 7B23vA6 以上，否则请参考官方文档升级 BIOS 至最新版本（v18 & vA8 版本可用）。*<br>
 <br>
 STTINGS\高级\PCI子系统设置\Above 4G memory/Crypto Currency mining [允许]<br>
 <br>
-STTINGS\高级\内建显示配置\设置第一显卡 [PEG]<br>
-STTINGS\高级\内建显示配置\集成显卡多显示器 [允许] （如果使用拥有核显的处理器）<br>
+STTINGS\高级\内建显示配置\设置第一显卡 [PEG]*（仅同时拥有核显及独显需要手动设置）*<br>
+STTINGS\高级\内建显示配置\Integrated Graphics Share Memory [64M]*（如果使用拥有核显的处理器）*<br>
+STTINGS\高级\内建显示配置\集成显卡多显示器 [允许]*（如果使用拥有核显的处理器）*<br>
 <br>
-STTINGS\高级\ACPI设置\电源 LED 灯 [双色]（如果选择 [闪烁]，睡眠时电源灯将不断闪烁）<br>
+STTINGS\高级\ACPI设置\电源 LED 灯 [双色]*（如果选择 [闪烁]，睡眠时电源灯将不断闪烁）*<br>
 <br>
 STTINGS\高级\USB设置\XHCI Hand-off [允许]<br>
 STTINGS\高级\USB设置\传统USB支持 [允许]<br>
 <br>
 STTINGS\高级\电源管理设置\ErP Ready [允许]<br>
 <br>
-STTINGS\高级\Windows操作系统的配置\Windows 10 WHQL支持 [允许]<br>
+STTINGS\高级\Windows操作系统的配置\Windows 10 WHQL支持 [允许]*（开启为「纯」UEFI 模式，否则为「兼容」UEFI 模式，推荐设置为允许）*<br>
 STTINGS\高级\Windows操作系统的配置\MSI 快速开机 [禁止]<br>
 STTINGS\高级\Windows操作系统的配置\快速开机 [禁止]<br>
 <br>
 STTINGS\高级\唤醒事件设置\唤醒事件管理 [BIOS]<br>
 STTINGS\高级\唤醒事件设置\USB设备从S3/S4/S5唤醒 [允许]<br>
 <br>
-STTINGS\启动\启动NumLock状态 [关]（macOS 默认可使用数字键盘）<br>
+STTINGS\启动\启动NumLock状态 [关]*（macOS 默认可使用数字键盘，只有 macOS 的话推荐关闭）*<br>
 STTINGS\启动\启动模式选择 [UEFI]<br>
 <br>
-OC(Overclocking)\CPU 特征\Intel 虚拟化技术 [允许]（必须）<br>
-OC(Overclocking)\CPU 特征\Intel VT-D 技术 [禁止]（必须）<br>
-OC(Overclocking)\CPU 特征\CFG锁定 [禁止]（必须！）<br>
+OC(Overclocking)\CPU 特征\Intel 虚拟化技术 [允许]*（必须）*<br>
+OC(Overclocking)\CPU 特征\Intel VT-D 技术 [禁止]*（必须）*<br>
+OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
 
 ### 直接使用
 仅适合使用 9600K 处理器的用户！<br>
@@ -164,7 +169,7 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]（必须！）<br>
 1. 填入`Macmini8,1`机型的三码 + ROM 信息到`/EFI/OC/config.plist`文件 PlatformInfo > Generic 处，并将机型修改为`Macmini8,1`。<br>
 2. 使用非 9600K 处理器，将`/EFI/OC/config.plist`文件 Kernel > Add > 10 和 11 中 Enabled 的`Ture`手动修改为`False`。<br>
 *Macmini8,1 机型支持 HWP 变频，对于非 9600K 处理器可稍后自行定制 HWP 变频文件。*
-3. 修改`/EFI/OC/config.plist`文件 DeviceProperties > Add > PciRoot(0x0)/Pci(0x2,0x0) 下 AAPL,ig-platform-id 参数为 07009b3e ，并新增 framebuffer-unifiedmem 参数为 00000080（如下图）。<br> 
+3. 修改`/EFI/OC/config.plist`文件 DeviceProperties > Add > PciRoot(0x0)/Pci(0x2,0x0) 下 AAPL,ig-platform-id 参数为`07009b3e`，并新增 framebuffer-unifiedmem 参数为`00000080`（如下图）。<br> 
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_DeviceProperties_I.png)
 4. 右键点击`/EFI/OC/Kexts/USBPower.kext`文件——显示包内容，进入`Contents`文件夹，打开`Info.plist`文件，将机型修改为`Macmini8,1`。
 <br>
@@ -185,8 +190,7 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]（必须！）<br>
    有两个方法可以解决这个问题。<br>
    方法一：在`/EFI/OC/config.plist`配置文件 Misc—–Boot——Resolution 处填写正确的显示器分辨率；<br>
    方法二：将 BIOS「STTINGS\启动\全荧幕商标」设置为 [允许]。<br>
-   两种方法选择其一即可，经反复测试，在微星 B360M 迫击炮（钛金版）上我更推荐方法二。<br>
-   *如果同时使用方法一和方法二，开机 logo 的显示依旧会不正常。*
+   两种方法选择其一即可，如果同时使用的话开机 logo 的显示依旧会不正常，原本更推荐方法二（会比方法一进入系统登陆界面略快一些），但反复测试后发现，如果在 BIOS 打开「Windows 10 WHQL支持」，使用方法二可能会导致**关机再开机时丢失苹果 logo**，请测试后选择~~适合~~自己喜欢的方法。
 2. **无法正常进入睡眠状态怎么办？**<br>
    目前所知的情况是 ~~bugOS~~macOS 10.15.2 及 10.15.3 存在睡眠相关 bugs，如果使用了最新的 EFI 仍然无法正常进入睡眠，请尝试到「系统偏好设置——安全性与隐私——隐私——定位服务」关闭「Siri 与听写」。
 3. **为什么推荐拥有核显的 CPU？**<br>
@@ -212,7 +216,7 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]（必须！）<br>
 [osx86zh](https://t.me/osx86zh/) ([Telegram](https://telegram.org/) 讨论组)
 
 ## 链接
-OpenCorePkg [官方版本](https://github.com/acidanthera/OpenCorePkg/releases) [自动编译](https://github.com/williambj1/OpenCore-Factory/releases) / AppleSupportPkg [官方版本](https://github.com/acidanthera/AppleSupportPkg/releases) [自动编译](https://github.com/athlonreg/AppleSupportPkg-Factory/releases) / WhateverGreen [官方版本](https://github.com/acidanthera/WhateverGreen/releases) [魔改版本](https://github.com/bugprogrammer/WhateverGreen) / [Lilu](https://github.com/acidanthera/Lilu) / [MacInfoPkg](https://github.com/acidanthera/MacInfoPkg/releases) / [VirtualSMC](https://github.com/acidanthera/VirtualSMC) / [AppleALC](https://github.com/acidanthera/AppleALC/releases) / [IntelMausi](https://github.com/acidanthera/IntelMausi) / [CPUFriend](https://github.com/acidanthera/CPUFriend) / [MaciASL](https://github.com/acidanthera/MaciASL/releases) / [Hackintool](https://www.tonymacx86.com/threads/release-hackintool-v2-8-6.254559/) / [HWMonitorSMC2](https://github.com/CloverHackyColor/HWMonitorSMC2/releases)
+OpenCorePkg [官方版本](https://github.com/acidanthera/OpenCorePkg/releases) [自动编译](https://github.com/williambj1/OpenCore-Factory/releases) / AppleSupportPkg [官方版本](https://github.com/acidanthera/AppleSupportPkg/releases) [自动编译](https://github.com/athlonreg/AppleSupportPkg-Factory/releases) / WhateverGreen [官方版本](https://github.com/acidanthera/WhateverGreen/releases) [魔改版本](https://github.com/bugprogrammer/WhateverGreen) / [Lilu](https://github.com/acidanthera/Lilu/releases) / [MacInfoPkg](https://github.com/acidanthera/MacInfoPkg/releases) / [VirtualSMC](https://github.com/acidanthera/VirtualSMC/releases) / [AppleALC](https://github.com/acidanthera/AppleALC/releases) / [IntelMausi](https://github.com/acidanthera/IntelMausi/releases) / [CPUFriend](https://github.com/acidanthera/CPUFriend/releases) / [OcBinaryData](https://github.com/acidanthera/OcBinaryData) / [MaciASL](https://github.com/acidanthera/MaciASL/releases) / [ProperTree](https://github.com/corpnewt/ProperTree) / [Hackintool](https://www.tonymacx86.com/threads/release-hackintool-v2-8-6.254559/) / [HWMonitorSMC2](https://github.com/CloverHackyColor/HWMonitorSMC2/releases)
 
 ## 写在最后
 作为一个黑果小白，欢迎在 [Issues](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues) 或通过 [Telegram](https://t.me/GeQ1an) 联系我，指正错误及提出建议，我将及时修改、更新此 EFI。<br>
