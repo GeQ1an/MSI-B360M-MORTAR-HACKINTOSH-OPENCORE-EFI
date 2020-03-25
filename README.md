@@ -201,7 +201,11 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
 5. **NVMe 硬盘温度过高怎么办？**<br>
    一般来说读写速度越快的硬盘温度往往越高，无需太过担心，但待机情况下超过 50℃ 或你认为硬盘的温度不正常，可尝试加载 [NVMeFix](https://github.com/acidanthera/NVMeFix/releases) 解决。<br>
    将 NVMeFix.kext 放入`/EFI/OC/Kexts/`目录，打开`/EFI/OC/config.plist`，在 Kernel > Add 处添加 NVMeFix.kext（参考其他 kext 的添加方式）。
-6. **待更新**
+6. **可以观看 Apple TV+ / Netflix 等 DRM 媒体吗？**<br>
+   得益于 WhateverGreen 的功能，添加 shikigva=80 参数后，拥有独立显卡的机器都可以直接使用 tv 应用，并观看 Apple TV+，也支持 Safari 硬解观看 Netflix / Amazon Prime 等流媒体。<br>
+   macOS 10.15.4 之前版本，RX 4XX/500 大部分显卡不可使用 Safari 硬解 DRM（表现为冻屏），但这一问题在 10.15.4 中已经被修复，直接升级系统即可。<br>
+   *注意：因为缺少 Apple Firmware，导致 iGPU 无法硬解 DRM，所以没有独显的机器无法观看 DRM 媒体。*
+7. **待更新**
 
 ## 结语
 完成以上步骤后，基本上已经有了一个完成度为 99% 的黑苹果设备，更多截图请查看 [截图预览](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/tree/master/Images/Preview.md) 。<br>
