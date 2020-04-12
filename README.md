@@ -1,7 +1,7 @@
 # 微星 B360M 迫击炮（钛金版）黑苹果 OpenCore EFI
 
 ## EFI 介绍
-此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮（钛金版）的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，[OpenCore](https://github.com/acidanthera/OpenCorePkg) 版本：0.5.6<br>
+此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮（钛金版）的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，[OpenCore](https://github.com/acidanthera/OpenCorePkg) 版本：0.5.7<br>
 <br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/About.png)
 
@@ -54,12 +54,17 @@
 *个人非常不推荐使用玄冰 400 散热器（不含扣具升级款），我已经更换为利民 AS120，远离反人类设计保平安。*
 
 ## 更新记录
+#### 2020.04.12
+更新 OpenCore 至 0.5.7 正式版；更新 Lilu / AppleALC / WhateverGreen / VitualSMC 等 Kexts 至官方最新版；替换驱动 FwRuntimeServices 为 OpenRuntime，增加 OpenCanopy 驱动；替换工具 Shell 为 OpenShell；增加`/EFI/OC/Resources`主题相关文件夹，其中 Font / Image / Label 目录包含文件；增加 igfxfw=2 启动参数。<br>
+*OC 0.5.7 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。添加启动主题但默认未启用，如需使用可将配置文件 Misc > Boot > Picker 的 Builtin 修改为 External；igfxfw=2 启动参数可以满频使用核显，如果没有核显可将其移除。*
+*因近期事务繁多，拖到今天才得以更新，为等待的用户道一声抱歉。*
+
 #### 2020.03.03
 更新 OpenCore 至 0.5.6 正式版；更新 Lilu / AppleALC / WhateverGreen 等 Kexts 至官方最新版；更新 ApfsDriverLoader / HfsPlus / FwRuntimeServices 等驱动至最新版；添加 ExFatDxe 驱动，同步添加 `/EFI/OC/config.plist`文件 EFI > Drivers > 2: ExFatDxe.efi；更新 Shell / VerifyMsrE2 等工具至最新版；移除`/EFI/OC/Tools/memtest.efi`文件，同步移除`/EFI/OC/config.plist`文件 Misc > Tools > 2 条目。<br>
 *OC 0.5.6 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。目前已支持 ~~bugOS~~macOS 10.15.4，正式版发布后可直接升级。*
 
 #### 2020.02.14
-移除 Slide=129 启动参数（相关 [Issue](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/7)）；删除`/EFI/OC/Drivers/AppleUsbKbDxe.efi`文件（无用，详见 [vit9696 的解释](https://applelife.ru/threads/opencore-obsuzhdenie-i-ustanovka.2944066/page-176#post-856653)）；修改`/EFI/OC/Drivers/HFSPlus.efi`文件名称为`HfsPlus.efi`，同步修改`/EFI/OC/config.plist`文件 UEFI > Drivers > 2 为 HfsPlus.efi（无实质作用，仅统一名称格式）。
+移除 Slide=129 启动参数（相关 [Issue](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/7)）；删除ResourcesDrivers/AppleUsbKbDxe.efi`文件（无用，详见 [vit9696 的解释](https://applelife.ru/threads/opencore-obsuzhdenie-i-ustanovka.2944066/page-176#post-856653)）；修改`/EFI/OC/Drivers/HFSPlus.efi`文件名称为`HfsPlus.efi`，同步修改`/EFI/OC/config.plist`文件 UEFI > Drivers > 2 为 HfsPlus.efi（无实质作用，仅统一名称格式）。
 
 #### 2020.02.10
 修复 OpenCore 0.5.5 正式版将 SupportCsm 改名为 AdviseWindows 我却没有更改配置文件的问题。<br>
