@@ -8,7 +8,7 @@
 ### 可正常工作
 - [x] 声卡（板载）/ 网卡（板载）
 - [x] 显卡（核显 + 独显）/ 硬解 4K（HEVC + H.264）
-- [x] WiFi（PCI-E 设备） / 蓝牙（PCI-E 设备）
+- [x] WiFi（PCI-E 设备） / 蓝牙（PEI-E 载 USB 设备）
 - [x] 隔空投送 / 接力 / 随航
 - [x] FaceTime / iMessage
 - [x] Apple Music / Apple TV Plus
@@ -55,7 +55,7 @@
 
 ## 更新记录
 #### 2020.04.12
-更新 OpenCore 至 0.5.7 正式版；更新 Lilu / AppleALC / WhateverGreen / VitualSMC 等 Kexts 至官方最新版；替换驱动 FwRuntimeServices 为 OpenRuntime，增加 OpenCanopy 驱动；替换工具 Shell 为 OpenShell；增加`/EFI/OC/Resources`主题相关文件夹，其中 Font / Image / Label 目录包含文件；增加 igfxfw=2 启动参数。<br>
+更新 OpenCore 至 0.5.7 正式版；更新 Lilu / AppleALC / WhateverGreen / VitualSMC 等 Kexts 至官方最新版；替换驱动 FwRuntimeServices 为 OpenRuntime，添加 OpenCanopy 驱动；替换工具 Shell 为 OpenShell；添加`/EFI/OC/Resources`主题相关文件夹，其中 Font / Image / Label 目录包含文件；添加 igfxfw=2 启动参数。<br>
 *OC 0.5.7 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。添加启动主题但默认未启用，如需使用可将配置文件 Misc > Boot > Picker 的 Builtin 修改为 External；igfxfw=2 启动参数可以满频使用核显，如果没有核显可将其移除。（因近期事务繁多，拖到今天才得以更新，为等待的用户道一声抱歉）*
 
 #### 2020.03.03
@@ -117,7 +117,7 @@ OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配�
 STTINGS\高级\PCI子系统设置\Above 4G memory/Crypto Currency mining [允许]<br>
 <br>
 STTINGS\高级\内建显示配置\设置第一显卡 [PEG]*（仅同时拥有核显及独显需要手动设置）*<br>
-STTINGS\高级\内建显示配置\Integrated Graphics Share Memory [64M]*（如果使用拥有核显的处理器）*<br>
+STTINGS\高级\内建显示配置\集显共享内存 [64M]*（如果使用拥有核显的处理器）*<br>
 STTINGS\高级\内建显示配置\集成显卡多显示器 [允许]*（如果使用拥有核显的处理器）*<br>
 <br>
 STTINGS\高级\ACPI设置\电源 LED 灯 [双色]*（如果选择 [闪烁]，睡眠时电源灯将不断闪烁）*<br>
@@ -197,7 +197,7 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
    两种方法选择其一即可，如果同时使用的话开机 logo 的显示依旧会不正常，原本更推荐方法二（会比方法一进入系统登陆界面略快一些），但反复测试后发现，如果在 BIOS 打开「Windows 10 WHQL支持」，使用方法二可能会导致**关机再开机时丢失苹果 logo**，请测试后选择~~适合~~自己喜欢的方法。
 2. **无法正常进入睡眠状态怎么办？**<br>
    目前所知的情况是 ~~bugOS~~macOS 10.15.2 至 10.15.4（包括补充更新版本）都存在睡眠相关 bugs，如果使用了最新的 EFI 仍然无法正常进入睡眠，请尝试到「系统偏好设置——安全性与隐私——隐私——定位服务」关闭「Siri 与听写」，并尽量关闭「系统服务」中的定位权限。<br>
-   部分机器需要将`/EFI/OC/config.plist`文件 Config > Kernel > Quirks > PowerTimeoutKernelPanic 设置为 Ture/Yes 才可以正常睡眠，原因不明。
+   部分机器需要将`/EFI/OC/config.plist`文件 Config > Kernel > Quirks > PowerTimeoutKernelPanic 设置为 Ture/Yes 才可以正常睡眠，原因尚不明确（同型号主板、同版本 BIOS）。
 3. **为什么推荐拥有核显的 CPU？**<br>
    首先，macOS Catalina 原生支持 4K 双硬解的独显最低为 RX VEGA⁵⁶，而第七代及以后的酷睿处理器核显可以和低于 RX VEGA⁵⁶ 的独显协同工作，完成 4K 双硬解；<br>
    其次，因为黑果没有 T2 芯片，所以没有核显的黑果无法使用随航（Sidecar）功能。
@@ -210,7 +210,7 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
    得益于 WhateverGreen 的功能，添加 shikigva=80 参数后，拥有独立显卡的机器都可以直接使用 tv 应用，并观看 Apple TV+，也支持 Safari 硬解观看 Netflix / Amazon Prime 等流媒体。<br>
    macOS 10.15.4 之前版本，RX 4XX/5XX 大部分显卡不可使用 Safari 硬解 DRM（表现为冻屏），但这一问题在 10.15.4 中已经被修复，直接升级系统即可。<br>
    *注意：因为缺少 Apple Firmware，导致 iGPU 无法硬解 DRM，所以没有独显的机器无法观看 DRM 媒体。*
-7. **更新 OC 0.5.7 后睡眠唤醒不正常怎么办？**
+7. **更新 OC 0.5.7 后睡眠唤醒不正常怎么办？**<br>
    可参考这个 [Issue](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/35) 尝试解决。
 8. **待更新**
 
@@ -227,10 +227,10 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
 [osx86zh](https://t.me/osx86zh/) ([Telegram](https://telegram.org/) 讨论组)
 
 ## 链接
-OpenCorePkg [官方版本](https://github.com/acidanthera/OpenCorePkg/releases) [自动编译](https://github.com/williambj1/OpenCore-Factory/releases) / AppleSupportPkg [官方版本](https://github.com/acidanthera/AppleSupportPkg/releases) [自动编译](https://github.com/athlonreg/AppleSupportPkg-Factory/releases) / WhateverGreen [官方版本](https://github.com/acidanthera/WhateverGreen/releases) [魔改版本](https://github.com/bugprogrammer/WhateverGreen) / [Lilu](https://github.com/acidanthera/Lilu/releases) / [MacInfoPkg](https://github.com/acidanthera/MacInfoPkg/releases) / [VirtualSMC](https://github.com/acidanthera/VirtualSMC/releases) / [AppleALC](https://github.com/acidanthera/AppleALC/releases) / [IntelMausi](https://github.com/acidanthera/IntelMausi/releases) / [CPUFriend](https://github.com/acidanthera/CPUFriend/releases) / [OcBinaryData](https://github.com/acidanthera/OcBinaryData) / [MaciASL](https://github.com/acidanthera/MaciASL/releases) / [ProperTree](https://github.com/corpnewt/ProperTree) / [Hackintool](https://www.tonymacx86.com/threads/release-hackintool-v2-8-6.254559/) / [HWMonitorSMC2](https://github.com/CloverHackyColor/HWMonitorSMC2/releases)
+OpenCorePkg [官方版本](https://github.com/acidanthera/OpenCorePkg/releases) [自动编译](https://github.com/williambj1/OpenCore-Factory/releases) / AppleSupportPkg [官方版本](https://github.com/acidanthera/AppleSupportPkg/releases) [自动编译](https://github.com/athlonreg/AppleSupportPkg-Factory/releases) / [MacInfoPkg](https://github.com/acidanthera/MacInfoPkg/releases) / [Lilu](https://github.com/acidanthera/Lilu/releases) / [AppleALC](https://github.com/acidanthera/AppleALC/releases) / [WhateverGreen](https://github.com/acidanthera/WhateverGreen/releases) / [IntelMausi](https://github.com/acidanthera/IntelMausi/releases) / [VirtualSMC](https://github.com/acidanthera/VirtualSMC/releases) / [CPUFriend](https://github.com/acidanthera/CPUFriend/releases) / [OcBinaryData](https://github.com/acidanthera/OcBinaryData) / [MaciASL](https://github.com/acidanthera/MaciASL/releases) / [ProperTree](https://github.com/corpnewt/ProperTree) / [Hackintool](https://www.tonymacx86.com/threads/release-hackintool-v2-8-6.254559/) / [HWMonitorSMC2](https://github.com/CloverHackyColor/HWMonitorSMC2/releases)
 
 ## 写在最后
-**警告：使用此 EFI 非法获利的小站，请尽快停止你的违法行为，改为免费向用户提供并注明出处。**<br>
+**警告：使用此 EFI 非法获利的小站，请尽快停止违法行为，改为免费向用户提供并注明出处。**<br>
 <br>
-有问题可以在 [Issues](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues) 反馈，或直接通过 [Telegram](https://t.me/GeQ1an) 联系我，确定问题后将及时修复此 EFI，但作为**免费分享**的项目，本人**没有义务**解答各种令人无奈的问题，也不对修复 EFI 问题的**时效**做出保证，**伸手党也该明白什么叫适可而止**。<br>
+有问题可以在 [Issues](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues) 反馈，或直接通过 [Telegram](https://t.me/GeQ1an) 联系我，确定问题后将及时修复此 EFI，但作为**免费分享**的项目，本人**没有义务**解答各种令人无奈的问题，也不对修复 EFI 问题的**时效**做出保证，**伸手党也该适可而止**。<br>
 另外，如果有在 iOS 使用 Quantumult X 的用户，欢迎使用我的规则 [Stick Rules](https://github.com/GeQ1an/Rules/tree/master)，也欢迎 [点击此处](https://t.me/usestick) 订阅我的 Telegram 频道及时获取规则和 EFI 相关信息。
