@@ -39,7 +39,7 @@
 |-------------------:|:------------------------------------------------------------|
 |               主板 | 微星 B360M 迫击炮（钛金版）                                    |
 |             处理器 | 英特尔第 8 代、第 9 代酷睿处理器（推荐拥有核显的版本）                |
-|               显卡 | RX 560 / RX 570 / RX 580 / RX 590 / RX VEGA⁵⁶ / RX VEGA⁶⁴ / Radeon VII / RX 5500 XT / RX 5600 / RX 5600 XT / RX 5700 / RX 5700 XT |
+|               显卡 | RX 560 / RX 570 / RX 580 / RX 590 / RX VEGA⁵⁶ / RX VEGA⁶⁴ / Radeon VII / RX 5500 / RX 5500 XT / RX 5600 / RX 5600 XT / RX 5700 / RX 5700 XT |
 |               硬盘 | 除了几个特例（如三星 PM981），基本都可以                            |
 |               内存 | 除了非常差的，基本都可以                                        |
 |        无线 + 蓝牙 | 黑苹果免驱版无线 + 蓝牙 PCI-E 网卡都可以                          |
@@ -50,36 +50,55 @@
 |           其它外设 | 根据个人喜好选配                                              |
 
 *显卡优先选择蓝宝石，其次选择迪兰恒进、华硕和微星，尽量不选择盈通和讯景，一定避开 RX 580 2048SP 版本！*<br>
-*如果选择购买新显卡，推荐 RX 5500 XT、RX 5600、RX 5600 XT、RX 5700 和 RX 5700 XT 这五个型号。*<br>
+*如果选择购买新显卡，推荐 RX 5500、RX 5500 XT、RX 5600、RX 5600 XT、RX 5700 和 RX 5700 XT 这六个型号。*<br>
 *个人非常不推荐使用玄冰 400 散热器（不含扣具升级款），我已经更换为利民 AS120，远离反人类设计保平安。*
 
 ## 更新记录
 #### 2020.04.12
-更新 OpenCore 至 0.5.7 正式版；更新 Lilu / AppleALC / WhateverGreen / VitualSMC 等 Kexts 至官方最新版；替换驱动 FwRuntimeServices 为 OpenRuntime，添加 OpenCanopy 驱动；替换工具 Shell 为 OpenShell；添加`/EFI/OC/Resources`主题相关文件夹，其中 Font / Image / Label 目录包含文件；添加 igfxfw=2 启动参数。<br>
-*OC 0.5.7 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。添加启动主题但默认未启用，如需使用可将配置文件 Misc > Boot > Picker 的 Builtin 修改为 External；igfxfw=2 启动参数可以满频使用核显，如果没有核显可将其移除。（因近期事务繁多，拖到今天才得以更新，为等待的用户道一声抱歉）*
+* 更新 OpenCore 至 0.5.7 正式版
+* 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC Kexts 至官方最新版
+* 替换驱动 FwRuntimeServices 为 OpenRuntime，添加 OpenCanopy 驱动
+* 替换工具 Shell 为 OpenShell
+* 添加`/EFI/OC/Resources`主题相关文件夹，其中 Font \ Image \ Label 目录包含文件
+* 开启 KASLR 内存注入，添加 igfxfw=2 启动参数
+
+*OC 0.5.7 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。添加启动主题但默认未启用，如需使用可将配置文件 Misc > Boot > Picker 的 Builtin 修改为 External；igfxfw=2 启动参数可以满频使用核显，如果没有核显可将其移除（因近期事务繁多，拖到今天才得以更新，为等待的用户道一声抱歉）。*
 
 #### 2020.03.03
-更新 OpenCore 至 0.5.6 正式版；更新 Lilu / AppleALC / WhateverGreen 等 Kexts 至官方最新版；更新 ApfsDriverLoader / HfsPlus / FwRuntimeServices 等驱动至最新版；添加 ExFatDxe 驱动，同步添加 `/EFI/OC/config.plist`文件 EFI > Drivers > 2: ExFatDxe.efi；更新 Shell / VerifyMsrE2 等工具至最新版；移除`/EFI/OC/Tools/memtest.efi`文件，同步移除`/EFI/OC/config.plist`文件 Misc > Tools > 2 条目。<br>
+* 更新 OpenCore 至 0.5.6 正式版
+* 更新 Lilu \ AppleALC \ WhateverGreen Kexts 至官方最新版
+* 更新 ApfsDriverLoader \ HfsPlus \ FwRuntimeServices 驱动至最新版
+* 添加 ExFatDxe 驱动，同步添加配置文件 EFI > Drivers > 2: ExFatDxe.efi
+* 更新 Shell \ VerifyMsrE2 工具至最新版
+* 移除`/EFI/OC/Tools/memtest.efi`文件，同步移除配置文件 Misc > Tools > 2 条目
+
 *OC 0.5.6 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。目前已支持 ~~bugOS~~macOS 10.15.4，正式版发布后可直接升级。*
 
 #### 2020.02.14
-移除 Slide=129 启动参数（相关 [Issue](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/7)）；删除`/EFI/OC/Drivers/AppleUsbKbDxe.efi`文件（无用，详见 [vit9696 的解释](https://applelife.ru/threads/opencore-obsuzhdenie-i-ustanovka.2944066/page-176#post-856653)）；修改`/EFI/OC/Drivers/HFSPlus.efi`文件名称为`HfsPlus.efi`，同步修改`/EFI/OC/config.plist`文件 UEFI > Drivers > 2 为 HfsPlus.efi（无实质作用，仅统一名称格式）。
+* 移除 Slide=129 启动参数（相关 [Issue](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/7)）
+* 删除`/EFI/OC/Drivers/AppleUsbKbDxe.efi`文件（无用，详见 [vit9696 的解释](https://applelife.ru/threads/opencore-obsuzhdenie-i-ustanovka.2944066/page-176#post-856653)）
+* 修改`/EFI/OC/Drivers/HFSPlus.efi`文件名称为`HfsPlus.efi`，同步修改配置文件 UEFI > Drivers > 2 为 HfsPlus.efi（无实质作用，仅统一名称格式）
 
 #### 2020.02.10
-修复 OpenCore 0.5.5 正式版将 SupportCsm 改名为 AdviseWindows 我却没有更改配置文件的问题。<br>
+* 修复 OpenCore 0.5.5 正式版将 SupportCsm 改名为 AdviseWindows 我却没有更改配置文件的问题
+
 *请手动更改该项名称（PlatformInfo > Generic），并建议按照官方示例文件调整 AdviseWindows 顺序至 Generic 第一位。*
 
 #### 2020.02.05
-设置 TakeoffDelay 参数为 200 (Misc > Boot，单位：毫秒) 以支持引导过程的原生快捷键。<br>
-*实测参数设置到 150 时便可触发原生快捷键，但触发概率较小，200 是较为均衡的数值，可将其适当调高，如 300~500 之间。*<br>
-*在 OC 0.5.5 版本之前，我一直无法触发原生快捷键 (可能和键盘有关？)，如果你之前能触发，或仍不能触发，请在 Issues 讨论。*
+* 设置 TakeoffDelay 参数为 200 (Misc > Boot，单位：毫秒) 以支持引导过程的原生快捷键
+
+*实测参数设置到 150 时便可触发原生快捷键，但触发概率较小，200 是较为均衡的数值，可将其适当调高，如 300~500 之间。在 OC 0.5.5 版本之前，我一直无法触发原生快捷键 (可能和键盘有关？)，如果你之前能触发，或仍不能触发，请在 Issues 讨论。*
 
 #### 2020.02.04
-更新 OpenCore 至 0.5.5 正式版；更新 AppleALC / VitualSMC 等 Kexts 至官方最新版；添加 UEFI Shell 工具（默认未启用）。<br>
+* 更新 OpenCore 至 0.5.5 正式版
+* 更新 AppleALC \ VitualSMC Kexts 至官方最新版
+* 添加 UEFI Shell 工具（默认未启用）
+
 *OC 0.5.5 正式版的配置文件新增了若干条目，建议按照使用习惯重新配置。*
 
 #### 2020.02.02
-更新支持读写硬件 NVRAM，不再需要模拟 NVRAM。<br>
+* 更新支持读写硬件 NVRAM，不再需要模拟 NVRAM
+
 *如之前进行过模拟 NVRAM 操作，请在`终端`执行下面两条命令后，删除`/EFI/nvram.plist`文件。*<br>
 ````
 sudo rm -rf $(sudo defaults read com.apple.loginwindow LogoutHook) //删除 LogoutHook
@@ -87,28 +106,34 @@ sudo defaults delete com.apple.loginwindow LogoutHook  //清空 LogoutHook 的�
 ````
 
 #### 2020.01.14
-更新 OpenCore 至 0.5.4 正式版；更新 Lilu / AppleALC / CPUFriend / VitualSMC / WhateverGreen 等 Kexts 至官方最新版。<br>
-*OC 0.5.4 正式版的配置文件新增了若干条目，建议按照使用习惯重新配置，并删除`/EFI/OC/Drivers/virtualsmc.efi`文件（已被合并至 OC 中）。*
+* 更新 OpenCore 至 0.5.4 正式版
+* 更新 Lilu \ AppleALC \ CPUFriend \ VitualSMC \ WhateverGreen Kexts 至官方最新版
+* 移除`/EFI/OC/Drivers/virtualsmc.efi`文件（已被合并至 OC 中）
+
+*OC 0.5.4 正式版的配置文件新增了若干条目，建议按照使用习惯重新配置。*
 
 #### 2020.01.05
-使用 OpenCore 官方补丁间接修复「不开启小憩无法进入睡眠」的问题，移除 SSDT-SBUS.aml 文件。<br>
+* 使用 OpenCore 官方补丁间接修复「不开启小憩无法进入睡眠」的问题，移除 SSDT-SBUS.aml 文件
+
 *不开启小憩的目的是睡眠后不被自动唤醒，开启 OC 的「禁用 RTC 唤醒计划」补丁后，打开小憩功能可以正常进入睡眠，且不会被自动唤醒，间接达到「不开启小憩进入睡眠」的状态，如不需要可以手动关闭该补丁（感谢 [ArchFeh](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/5) 针对文案的提醒）。*<br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_Patch.png)
 
 #### 2019.12.29
-更新 WhateverGreen.kext 至 1.3.6 最新编译版；修复「不开启小憩无法进入睡眠」的问题（理论上不该存在问题）。
+* 更新 WhateverGreen.kext 至 1.3.6 最新编译版
+* 修复「不开启小憩无法进入睡眠」的问题（理论上不该存在问题）
 
 #### 2019.12.23
-更新 WhateverGreen.kext 至 1.3.6，修改 shikigva 代码为 80（可支持 Netflix）。
+* 更新 WhateverGreen.kext 至 1.3.6
+* 修改 shikigva 启动参数代码为 80（支持 Safari 硬解 DRM 内容）
 
 #### 2019.12.20
-上传忘记添加的 SSDT-SBUS.aml（用来修复「不开启小憩无法进入睡眠」，但我发现好像仍然无法进入，待测试）。
+* 上传忘记添加的 SSDT-SBUS.aml（用来修复「不开启小憩无法进入睡眠」，具体效果待测试）
 
 #### 2019.12.19
-经过三天的测试后，上传第一版。
+* 经过三天的测试后，上传第一版
 
 ## 使用 EFI
-准备 [ProperTree](https://github.com/corpnewt/ProperTree) ([下载](https://github.com/GeQ1an/Personal/raw/master/Hackintosh/ProperTree.zip)) 或 [PlistEdit Pro](https://www.fatcatsoftware.com/plisteditpro/) 用来编辑配置文件，请勿使用其他编辑器编辑（切记）。<br>
+准备 [ProperTree](https://github.com/corpnewt/ProperTree) ([下载](https://github.com/GeQ1an/Personal/raw/master/Hackintosh/ProperTree.zip)) 或 [PlistEdit Pro](https://www.fatcatsoftware.com/plisteditpro/) 编辑配置文件，尽量避免使用其他编辑器。<br>
 OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配置好的基础版本，之后再通过 [xjn 博客](https://blog.xjn819.com/?p=543) 和 [黑果小兵博客](https://blog.daliansky.net/OpenCore-BootLoader.html) 学习更多内容进行修改。
 
 ### BIOS 设置
@@ -179,6 +204,9 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
 <br>
 保存后，先通过 USB 测试引导，无问题后将 EFI 文件夹放置到启动磁盘 EFI 分区，重启电脑。
 
+### 对于 RX 5XXX 系列显卡
+目前 RX 5500、RX 5500 XT、RX 5600、RX 5600 XT、RX 5700 和 RX 5700 XT 均需要手动添加`agdpmod=pikera`启动参数来防止开机黑屏，请耐心等待 WhateverGreen 更新。
+
 ### ~~模拟 NVRAM~~（不再需要）
 ~~无论是直接使用还是修改使用，都建议参考 [xjn 博客](https://blog.xjn819.com/?p=543) 的完善部分「3.1 模拟 NVRAM」，进行模拟 NVRAM 的操作。~~
 
@@ -233,4 +261,9 @@ OpenCorePkg [官方版本](https://github.com/acidanthera/OpenCorePkg/releases) 
 **警告：使用此 EFI 非法获利的小站，请尽快停止违法行为，改为免费向用户提供并注明出处。**<br>
 <br>
 有问题可以在 [Issues](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues) 反馈，或直接通过 [Telegram](https://t.me/GeQ1an) 联系我，确定问题后将及时修复此 EFI，但作为**免费分享**的项目，本人**没有义务**解答各种令人无奈的问题，也不对修复 EFI 问题的**时效**做出保证，**伸手党也该适可而止**。<br>
+<br>
+如果你觉得我的工作帮助到了你，可以选择进行打赏，这将是我不断完善 EFI 的动力。<br>
+`#吱口令#长按复制此条消息，去支付宝首页进行搜索粘贴即可给我打赏9Rgv0b74jI#`
+![](https://raw.githubusercontent.com/GeQ1an/Rules/master/Images/Pay2Me.png)<br>
+<br>
 另外，如果有在 iOS 使用 Quantumult X 的用户，欢迎使用我的规则 [Stick Rules](https://github.com/GeQ1an/Rules/tree/master)，也欢迎 [点击此处](https://t.me/usestick) 订阅我的 Telegram 频道及时获取规则和 EFI 相关信息。
