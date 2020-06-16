@@ -22,7 +22,7 @@
 |-------------------:|:------------------------------------------|
 |               主板 | 微星 B360M 迫击炮                               |
 |             处理器 | 英特尔酷睿 i5-9600K                            |
-|               显卡 | 公版 RX 570 4GB（由微星代工）                    |
+|               显卡 | 公版 RX 570 4GB（VBIOS 品牌为微星）             |
 |               硬盘 | 西部数据 SN750 500GB                          |
 |               内存 | 光威悍将 8GB DDR4 2666MHz x 2                 |
 |        无线 + 蓝牙 | 奋威 BCM94360CD（双频 1750M + 蓝牙 4.0）PCI-E 无线网卡  |
@@ -145,7 +145,7 @@ sudo defaults delete com.apple.loginwindow LogoutHook  //清空 LogoutHook 的�
 OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配置好的基础版本，之后再通过 [xjn 博客](https://blog.xjn819.com/?p=543) 和 [黑果小兵博客](https://blog.daliansky.net/OpenCore-BootLoader.html) 学习更多内容进行修改。
 
 ### BIOS 设置
-*请先确定正在使用的 BIOS 版本，[迫击炮](https://cn.msi.com/Motherboard/support/B360M-MORTAR) 7B23v16 以上，[迫击炮钛金版](https://cn.msi.com/Motherboard/support/B360M-MORTAR-TITANIUM) 7B23vA6 以上，否则请参考官方文档升级 BIOS 至最新版本（v18 & vA8 版本可用）。*<br>
+*请先确定正在使用的 BIOS 版本，[迫击炮](https://cn.msi.com/Motherboard/support/B360M-MORTAR) 7B23v16 以上，[迫击炮钛金版](https://cn.msi.com/Motherboard/support/B360M-MORTAR-TITANIUM) 7B23vA6 以上，否则请参考官方文档升级 BIOS 至最新版本（v19 & vA9 版本可用）。*<br>
 <br>
 STTINGS\高级\PCI子系统设置\Above 4G memory/Crypto Currency mining [允许]<br>
 <br>
@@ -228,9 +228,10 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
 ## Q&A
 1. **开机时苹果 logo 显示不正常怎么办？**<br>
    有两个方法可以解决这个问题。<br>
-   方法一：在`/EFI/OC/config.plist`配置文件 UEFI—–Output——Resolution 处填写正确的显示器分辨率；<br>
+   方法一：在`/EFI/OC/config.plist`配置文件 UEFI > Output > Resolution 处填写正确的显示器分辨率；<br>
    方法二：将 BIOS「STTINGS\启动\全荧幕商标」设置为 [允许]。<br>
-   两种方法选择其一即可，如果同时使用的话开机 logo 的显示依旧会不正常，原本更推荐方法二（会比方法一进入系统登陆界面略快一些），但反复测试后发现，如果在 BIOS 打开「Windows 10 WHQL支持」，使用方法二可能会导致**关机再开机时丢失苹果 logo**，请测试后选择~~适合~~自己喜欢的方法。
+   两种方法选择其一即可，如果同时使用的话开机 logo 的显示依旧会不正常，原本更推荐方法二（会比方法一进入系统登陆界面略快一些），但反复测试后发现，如果在 BIOS 打开「Windows 10 WHQL支持」，使用方法二可能会导致**关机再开机时丢失苹果 logo**，请测试后选择~~适合~~自己喜欢的方法。<br>
+   **P.S.** 如果使用 2K 分辨率及以下无法开启 HiDPI 的显示器，需要将配置文件 NVRAM > Add > 4D1EDE05-XXXX > UIScale 设置为`01`。
 2. **无法正常进入睡眠状态怎么办？**<br>
    目前所知的情况是 ~~bugOS~~macOS 10.15.2 至 10.15.4（包括补充更新版本）都存在睡眠相关 bugs，如果使用了最新的 EFI 仍然无法正常进入睡眠，请尝试到「系统偏好设置——安全性与隐私——隐私——定位服务」关闭「Siri 与听写」，并尽量关闭「系统服务」中的定位权限。<br>
    部分机器需要将`/EFI/OC/config.plist`文件 Config > Kernel > Quirks > PowerTimeoutKernelPanic 设置为 Ture/Yes 才可以正常睡眠，原因尚不明确（同型号主板、同版本 BIOS）。
@@ -249,7 +250,7 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
 7. **更新 OC 0.5.7 后睡眠唤醒不正常怎么办？**<br>
    可参考这个 [Issue](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/35) 尝试解决。
 8. **为什么没有开启 OC 0.5.9 中的启动项高优先级功能？**<br>
-   经测试，开启该功能后可能会造成无法设置 “启动磁盘” 的问题，默认未启用。如需开启，请自行将 Misc--Security--BootProtect 设置为`Bootstrap`（关闭填写`None`）。
+   经测试，开启该功能后可能会造成无法设置 “启动磁盘” 的问题，默认未启用。如需启用该功能，请自行将配置文件 Misc > Security > BootProtect 设置为`Bootstrap`（关闭填写`None`）。
 9. **待更新**
 
 ## 结语
