@@ -1,7 +1,7 @@
 # 微星 B360M 迫击炮（钛金版）黑苹果 OpenCore EFI
 
 ## EFI 介绍
-此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮（钛金版）的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，[OpenCore](https://github.com/acidanthera/OpenCorePkg) 版本：0.5.7<br>
+此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮（钛金版）的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，[OpenCore](https://github.com/acidanthera/OpenCorePkg) 版本：0.5.9<br>
 <br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/About.png)
 
@@ -54,6 +54,14 @@
 *个人非常不推荐使用玄冰 400 散热器（不含扣具升级款），我已经更换为利民 AS120，远离反人类设计保平安。*
 
 ## 更新记录
+#### 2020.06.16
+* 更新 OpenCore 至 0.5.9 正式版
+* 更新 Lilu \ AppleALC \ IntelMausi \ WhateverGreen \ VitualSMC Kexts 至官方最新版，更新 USBInjectAll kext 为更新的修改版
+* 更新 OpenRuntime \ OpenCanopy 驱动，移除 ApfsDriverLoader 驱动
+* 更新`/EFI/OC/Resources`启动主题相关文件
+
+*OC 0.5.9 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。支持 macOS 10.15.5，可直接升级。（因近期事务繁多，拖到今天才得以更新，为等待的用户道一声抱歉）。*
+
 #### 2020.04.12
 * 更新 OpenCore 至 0.5.7 正式版
 * 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC Kexts 至官方最新版
@@ -240,7 +248,9 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
    *注意：因为缺少 Apple Firmware，导致 iGPU 无法硬解 DRM，所以没有独显的机器无法观看 DRM 媒体。*
 7. **更新 OC 0.5.7 后睡眠唤醒不正常怎么办？**<br>
    可参考这个 [Issue](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/35) 尝试解决。
-8. **待更新**
+8. **为什么没有开启 OC 0.5.9 中的启动项高优先级功能？**<br>
+   经测试，开启该功能后可能会造成无法设置 “启动磁盘” 的问题，默认未启用。如需开启，请自行将 Misc--Security--BootProtect 设置为`Bootstrap`（关闭填写`None`）。
+9. **待更新**
 
 ## 结语
 完成以上步骤后，基本上已经有了一个完成度为 99% 的黑苹果设备，更多截图请查看 [截图预览](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/tree/master/Images/Preview.md) 。<br>
