@@ -260,9 +260,9 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
    可参考这个 [Issue](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/35) 尝试解决。
 8. **为什么没有开启 OC 0.5.9 中的启动项高优先级功能？**<br>
    经测试，开启该功能后可能会造成无法设置 “启动磁盘” 的问题，默认未启用。如需启用该功能，请自行将配置文件 Misc > Security > BootProtect 设置为`Bootstrap`（关闭填写`None`）。
-9. **如何使用 macOS Big Sur 11.0 测试版？**
-   首先，需要明确的是：个人非常不建议一般用户使用黑果更新 Big Sur！可能会对你的系统及数据造成不可挽回的损坏，若十分想测试，建议使用单独的硬盘（起码也得是个单独分区）进行安装。<br>
-   请确认你的 OpenCore 已经更新到 0.6.0 版本，且已更新所有 Kext 为最新版，添加 vsmcgen=1 启动参数使用。若出现问题，你可能还会需要 -lilubetaall vsmcbeta 启动参数。
+9. **如何使用 macOS Big Sur 11.0 测试版？**<br>
+   首先，需要明确的是：**个人非常不建议一般用户使用黑果测试 macOS Big Sur！**现阶段 Big Sur 尚未稳定，OC 及有关 Kexts 需要不断对其进行适配，在趋于稳定的过程中**可能**会对你的系统及数据造成**不可挽回的损坏**，若十分想测试，建议使用单独的硬盘（起码也得是个单独分区）进行安装测试。<br>
+   请确认你的 OpenCore 已更新到 0.6.0 版本，且所有 Kexts 也已更新到最新版，添加 vsmcgen=1 启动参数使用 Big Sur 测试版。若出现问题，你可能还会需要 -lilubetaall vsmcbeta 启动参数。
 10. **待更新**
 
 ## 结语
