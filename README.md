@@ -1,7 +1,7 @@
 # 微星 B360M 迫击炮（钛金版）黑苹果 OpenCore EFI
 
 ## EFI 介绍
-此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮（钛金版）的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，[OpenCore](https://github.com/acidanthera/OpenCorePkg) 版本：0.5.9<br>
+此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮（钛金版）的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，[OpenCore](https://github.com/acidanthera/OpenCorePkg) 版本：0.6.0<br>
 <br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/About.png)
 
@@ -54,6 +54,13 @@
 *个人非常不推荐使用玄冰 400 散热器（不含扣具升级款），我已经更换为利民 AS120，远离反人类设计保平安。*
 
 ## 更新记录
+#### 2020.08.07
+* 更新 OpenCore 至 0.6.0 正式版
+* 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC \ CPUFriend Kexts 至官方最新版
+* 更新 OpenRuntime \ OpenCanopy 驱动
+
+*OC 0.6.0 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。支持 macOS 10.15.6，可直接升级；支持 ~~bugOS~~macOS Big Sur 11.0 测试版，详见 [Q&A](#qa) 条目 9。*
+
 #### 2020.06.16
 * 更新 OpenCore 至 0.5.9 正式版
 * 更新 Lilu \ AppleALC \ IntelMausi \ WhateverGreen \ VitualSMC Kexts 至官方最新版，更新 USBInjectAll kext 为更新的修改版
@@ -147,28 +154,30 @@ OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配�
 ### BIOS 设置
 *请先确定正在使用的 BIOS 版本，[迫击炮](https://cn.msi.com/Motherboard/support/B360M-MORTAR) 7B23v16 以上，[迫击炮钛金版](https://cn.msi.com/Motherboard/support/B360M-MORTAR-TITANIUM) 7B23vA6 以上，否则请参考官方文档升级 BIOS 至最新版本（v19 & vA9 版本可用）。*<br>
 <br>
-STTINGS\高级\PCI子系统设置\Above 4G memory/Crypto Currency mining [允许]<br>
+SETTINGS\高级\PCI子系统设置\Above 4G memory/Crypto Currency mining [允许]<br>
 <br>
-STTINGS\高级\内建显示配置\设置第一显卡 [PEG]*（仅同时拥有核显及独显需要手动设置）*<br>
-STTINGS\高级\内建显示配置\集显共享内存 [64M]*（如果使用拥有核显的处理器）*<br>
-STTINGS\高级\内建显示配置\集成显卡多显示器 [允许]*（如果使用拥有核显的处理器）*<br>
+SETTINGS\高级\内建显示配置\设置第一显卡 [PEG]*（仅同时拥有核显及独显需要手动设置）*<br>
+SETTINGS\高级\内建显示配置\集显共享内存 [64M]*（如果使用拥有核显的处理器）*<br>
+SETTINGS\高级\内建显示配置\集成显卡多显示器 [允许]*（如果使用拥有核显的处理器）*<br>
 <br>
-STTINGS\高级\ACPI设置\电源 LED 灯 [双色]*（如果选择 [闪烁]，睡眠时电源灯将不断闪烁）*<br>
+SETTINGS\高级\ACPI设置\电源 LED 灯 [双色]*（如果选择 [闪烁]，睡眠时电源灯将不断闪烁）*<br>
 <br>
-STTINGS\高级\USB设置\XHCI Hand-off [允许]<br>
-STTINGS\高级\USB设置\传统USB支持 [允许]<br>
+SETTINGS\高级\整合周边设备\SATA设置\SATA模式 [AHCI模式]*（如果选择 Optane 模式则无法识别硬盘）*<br>
 <br>
-STTINGS\高级\电源管理设置\ErP Ready [允许]<br>
+SETTINGS\高级\USB设置\XHCI Hand-off [允许]<br>
+SETTINGS\高级\USB设置\传统USB支持 [允许]<br>
 <br>
-STTINGS\高级\Windows操作系统的配置\Windows 10 WHQL支持 [允许]*（开启为「纯」UEFI 模式，否则为「兼容」UEFI 模式，推荐设置为允许）*<br>
-STTINGS\高级\Windows操作系统的配置\MSI 快速开机 [禁止]<br>
-STTINGS\高级\Windows操作系统的配置\快速开机 [禁止]<br>
+SETTINGS\高级\电源管理设置\ErP Ready [允许]<br>
 <br>
-STTINGS\高级\唤醒事件设置\唤醒事件管理 [BIOS]<br>
-STTINGS\高级\唤醒事件设置\USB设备从S3/S4/S5唤醒 [允许]<br>
+SETTINGS\高级\Windows操作系统的配置\Windows 10 WHQL支持 [允许]*（开启为「纯」UEFI 模式，否则为「兼容」UEFI 模式，推荐设置为允许）*<br>
+SETTINGS\高级\Windows操作系统的配置\MSI 快速开机 [禁止]<br>
+SETTINGS\高级\Windows操作系统的配置\快速开机 [禁止]<br>
 <br>
-STTINGS\启动\启动NumLock状态 [关]*（macOS 默认可使用数字键盘，只有 macOS 的话推荐关闭）*<br>
-STTINGS\启动\启动模式选择 [UEFI]<br>
+SETTINGS\高级\唤醒事件设置\唤醒事件管理 [BIOS]<br>
+SETTINGS\高级\唤醒事件设置\USB设备从S3/S4/S5唤醒 [允许]<br>
+<br>
+SETTINGS\启动\启动NumLock状态 [关]*（macOS 默认可使用数字键盘，只有 macOS 的话推荐关闭）*<br>
+SETTINGS\启动\启动模式选择 [UEFI]<br>
 <br>
 OC(Overclocking)\CPU 特征\Intel 虚拟化技术 [允许]*（必须）*<br>
 OC(Overclocking)\CPU 特征\Intel VT-D 技术 [禁止]*（必须）*<br>
@@ -244,14 +253,17 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
    一般来说读写速度越快的硬盘温度往往越高，无需太过担心，但待机情况下超过 50℃ 或你认为硬盘的温度不正常，可尝试加载 [NVMeFix](https://github.com/acidanthera/NVMeFix/releases) 解决。<br>
    将 NVMeFix.kext 放入`/EFI/OC/Kexts/`目录，打开`/EFI/OC/config.plist`，在 Kernel > Add 处添加 NVMeFix.kext（参考其他 kext 的添加方式）。
 6. **可以观看 Apple TV+ / Netflix 等 DRM 媒体吗？**<br>
-   得益于 WhateverGreen 的功能，添加 shikigva=80 参数后，拥有独立显卡的机器都可以直接使用 tv 应用，并观看 Apple TV+，也支持 Safari 硬解观看 Netflix / Amazon Prime 等流媒体。<br>
+   得益于 WhateverGreen 的功能，添加 shikigva=80 启动参数后，拥有独立显卡的机器都可以直接使用 tv 应用，并观看 Apple TV+，也支持 Safari 硬解观看 Netflix / Amazon Prime 等流媒体。<br>
    macOS 10.15.4 之前版本，RX 4XX/5XX 大部分显卡不可使用 Safari 硬解 DRM（表现为冻屏），但这一问题在 10.15.4 中已经被修复，直接升级系统即可。<br>
    *注意：因为缺少 Apple Firmware，导致 iGPU 无法硬解 DRM，所以没有独显的机器无法观看 DRM 媒体。*
 7. **更新 OC 0.5.7 后睡眠唤醒不正常怎么办？**<br>
    可参考这个 [Issue](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/35) 尝试解决。
 8. **为什么没有开启 OC 0.5.9 中的启动项高优先级功能？**<br>
    经测试，开启该功能后可能会造成无法设置 “启动磁盘” 的问题，默认未启用。如需启用该功能，请自行将配置文件 Misc > Security > BootProtect 设置为`Bootstrap`（关闭填写`None`）。
-9. **待更新**
+9. **如何使用 macOS Big Sur 11.0 测试版？**
+   首先，需要明确的是：个人非常不建议一般用户使用黑果更新 Big Sur！可能会对你的系统及数据造成不可挽回的损坏，若十分想测试，建议使用单独的硬盘（起码也得是个单独分区）进行安装。<br>
+   请确认你的 OpenCore 已经更新到 0.6.0 版本，且已更新所有 Kext 为最新版，添加 vsmcgen=1 启动参数使用。若出现问题，你可能还会需要 -lilubetaall vsmcbeta 启动参数。
+10. **待更新**
 
 ## 结语
 完成以上步骤后，基本上已经有了一个完成度为 99% 的黑苹果设备，更多截图请查看 [截图预览](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/tree/master/Images/Preview.md) 。<br>
