@@ -1,7 +1,7 @@
 # 微星 B360M 迫击炮（钛金版）黑苹果 OpenCore EFI
 
 ## EFI 介绍
-此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮（钛金版）的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，[OpenCore](https://github.com/acidanthera/OpenCorePkg) 版本：0.6.1<br>
+此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮（钛金版）的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，[OpenCore](https://github.com/acidanthera/OpenCorePkg) 版本：0.6.2<br>
 <br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/About.png)
 
@@ -54,6 +54,14 @@
 *个人非常不推荐使用玄冰 400 散热器（不含扣具升级款），我已经更换为利民 AS120，远离反人类设计保平安。*
 
 ## 更新记录
+#### 2020.10.10
+* 更新 OpenCore 至 0.6.2 正式版
+* 更新 Lilu \ AppleALC \ WhateverGreen \ IntelMausi \ VitualSMC \ CPUFriend Kexts 至官方最新版
+* 更新 OpenRuntime \ OpenCanopy 驱动
+* 增加`/EFI/OC/Bootstrap/Bootstrap.efi`OC 引导稳定性帮助文件
+
+*OC 0.6.2 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。支持 ~~bugOS~~macOS Big Sur 11.0 测试版，详见 [Q&A](#qa) 条目 9。有关 Bootstrap 的使用详见 [Q&A](#qa) 条目 8。*
+
 #### 2020.09.16
 * 更新 OpenCore 至 0.6.1 正式版
 * 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC Kexts 至官方最新版
