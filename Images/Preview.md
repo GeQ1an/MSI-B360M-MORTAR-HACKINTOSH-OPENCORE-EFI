@@ -1,5 +1,5 @@
 ## 截图预览
-系统版本：macOS Catalina 10.15.7，OpenCare 版本：0.6.3，EFI 更新日期：2020.11.12
+系统版本：macOS Catalina 10.15.7，OpenCare 版本：0.6.4，EFI 更新日期：2020.12.18
 
 ### 关于本机
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/About.png)
@@ -42,8 +42,8 @@
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/Apple_TV_Plus.png)
 *因 DRM 版权保护，截图时视频画面变为纯黑*
 
-### VedioProc
-![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/VedioProc.png)
+### VideoProc
+![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/VideoProc.png)
 
 ### HWMonitorSMC2
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/HWMonitorSMC2.png)

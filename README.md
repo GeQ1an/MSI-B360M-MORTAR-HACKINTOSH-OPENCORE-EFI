@@ -1,7 +1,7 @@
 # 微星 B360M 迫击炮（钛金版）黑苹果 OpenCore EFI
 
 ## EFI 介绍
-此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮（钛金版）的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，[OpenCore](https://github.com/acidanthera/OpenCorePkg) 版本：0.6.3<br>
+此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮（钛金版）的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，[OpenCore](https://github.com/acidanthera/OpenCorePkg) 版本：0.6.4<br>
 <br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/About.png)
 
@@ -54,6 +54,14 @@
 *个人非常不推荐使用玄冰 400 散热器（不含扣具升级款），我已经更换为利民 AS120，远离反人类设计保平安。*
 
 ## 更新记录
+#### 2020.12.18
+* 更新 OpenCore 至 0.6.4 正式版
+* 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC Kexts 至官方最新版，更新 USBInjectAll Kext 为更新的修改版
+* 更新 OpenRuntime \ OpenCanopy 驱动
+* 移除 SSDT-HCMC SSDT 文件
+
+*OC 0.6.4 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。支持 macOS 11.1，可直接升级。（因近期事务繁多，拖到今天才得以更新，为等待的用户道一声抱歉。）*
+
 #### 2020.11.12
 * 更新 OpenCore 至 0.6.3 正式版
 * 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC Kexts 至官方最新版
@@ -282,9 +290,7 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
    可参考这个 [Issue](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/35) 尝试解决。
 8. **为什么没有开启 OC 0.5.9 中的启动项高优先级功能？**<br>
    经测试，开启该功能后可能会造成无法设置 “启动磁盘” 的问题，默认未启用。如需启用该功能，请自行将配置文件 Misc > Security > BootProtect 设置为`Bootstrap`（关闭填写`None`）。
-9. **如何使用 macOS Big Sur 11.0 测试版？**<br>
-   首先，需要明确的是：**个人非常不建议一般用户使用黑果测试 macOS Big Sur！**<br>
-   现阶段 Big Sur 尚未稳定，OC 及有关 Kexts 需要不断对其进行适配，因此**可能**会对你的系统及数据造成**不可挽回的损坏**，若十分想测试，建议使用单独的硬盘（起码也得是个单独分区）进行安装测试。<br>
+9. **如何使用 macOS Big Sur 11？**<br>
    请确认你的 OpenCore 已更新到 0.6.1 以上版本，且所有 Kexts 也已更新到最新版，将配置文件 Kernel > Quirks > DisableLinkeditJettison 设置为 Ture/Yes 即可。
 10. **待更新**
 
