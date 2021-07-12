@@ -218,7 +218,7 @@ SETTINGS\高级\内建显示配置\集成显卡多显示器 [允许]*（如果�
 <br>
 SETTINGS\高级\ACPI设置\电源 LED 灯 [双色]*（如果选择 [闪烁]，睡眠时电源灯将不断闪烁）*<br>
 <br>
-SETTINGS\高级\整合周边设备\SATA设置\SATA模式 [AHCI模式]*（如果选择 Optane 模式则无法识别硬盘）*<br>
+SETTINGS\高级\整合周边设备\SATA设置\SATA模式 [AHCI模式]*（如果选择 Optane 模式将无法识别 SATA 硬盘）*<br>
 <br>
 SETTINGS\高级\USB设置\XHCI Hand-off [允许]<br>
 SETTINGS\高级\USB设置\传统USB支持 [允许]<br>
