@@ -1,7 +1,7 @@
 # 微星 B360M 迫击炮（钛金版）黑苹果 OpenCore EFI
 
 ## EFI 介绍
-此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮（钛金版）的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，[OpenCore](https://github.com/acidanthera/OpenCorePkg) 版本：0.6.6<br>
+此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮（钛金版）的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，[OpenCore](https://github.com/acidanthera/OpenCorePkg) 版本：0.7.1<br>
 <br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/About.png)
 
@@ -54,6 +54,15 @@
 *个人非常不推荐使用玄冰 400 散热器（不含扣具升级款），我已经更换为利民 AS120，远离反人类设计保平安。*
 
 ## 更新记录
+#### 2021.07.12
+* 更新 OpenCore 至 0.7.1 正式版
+* 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC \ IntelMausi \ CPUFriend Kexts 至官方最新版，添加 NVMeFix Kext 并启用
+* 更新 OpenRuntime \ OpenCanopy 驱动，替换 HfsPlus 驱动为 OpenHfsPlus 驱动，移除 ExFatDxe 驱动
+* 替换 VerifyMsrE2 工具为 ControlMsrE2 工具
+* 更新`/EFI/OC/Resources`启动主题相关文件
+
+*OC 0.7.1 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。此版本开始默认启用启动主题，如需关闭可将配置文件 Misc > Boot > PickerMode 的 External 修改为 Builtin；支持 macOS 11.5，正式版发布后可直接升级（因近几个月事务繁多，直到今天才得以更新，向所有用户道一声抱歉）。*
+
 #### 2021.02.08
 * 更新 OpenCore 至 0.6.6 正式版
 * 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC Kexts 至官方最新版
@@ -77,7 +86,7 @@
 * 更新 OpenRuntime \ OpenCanopy 驱动
 * 移除 SSDT-HCMC SSDT 文件
 
-*OC 0.6.4 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。支持 macOS 11.1，可直接升级。（因近期事务繁多，拖到今天才得以更新，为等待的用户道一声抱歉。）*
+*OC 0.6.4 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。支持 macOS 11.1，可直接升级（因近期事务繁多，拖到今天才得以更新，为等待的用户道一声抱歉）。*
 
 #### 2020.11.12
 * 更新 OpenCore 至 0.6.3 正式版
@@ -90,7 +99,7 @@
 * 更新 OpenCore 至 0.6.2 正式版
 * 更新 Lilu \ AppleALC \ WhateverGreen \ IntelMausi \ VitualSMC \ CPUFriend Kexts 至官方最新版
 * 更新 OpenRuntime \ OpenCanopy 驱动
-* 增加`/EFI/OC/Bootstrap/Bootstrap.efi`OC 引导稳定性帮助文件
+* 添加`/EFI/OC/Bootstrap/Bootstrap.efi`OC 引导稳定性帮助文件
 
 *OC 0.6.2 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。支持 macOS 10.15.7，可直接升级；支持 ~~bugOS~~macOS Big Sur 11.0 测试版，详见 [Q&A](#qa) 条目 9。有关 Bootstrap 的使用详见 [Q&A](#qa) 条目 8。*
 
@@ -114,13 +123,13 @@
 * 更新 OpenRuntime \ OpenCanopy 驱动，移除 ApfsDriverLoader 驱动
 * 更新`/EFI/OC/Resources`启动主题相关文件
 
-*OC 0.5.9 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。支持 macOS 10.15.5，可直接升级。（因近期事务繁多，拖到今天才得以更新，为等待的用户道一声抱歉）。*
+*OC 0.5.9 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。支持 macOS 10.15.5，可直接升级（因近期事务繁多，拖到今天才得以更新，为等待的用户道一声抱歉）。*
 
 #### 2020.04.12
 * 更新 OpenCore 至 0.5.7 正式版
 * 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC Kexts 至官方最新版
-* 替换驱动 FwRuntimeServices 为 OpenRuntime，添加 OpenCanopy 驱动
-* 替换工具 Shell 为 OpenShell
+* 替换 FwRuntimeServices 驱动为 OpenRuntime 驱动，添加 OpenCanopy 驱动
+* 替换 Shell 工具为 OpenShell 工具
 * 添加`/EFI/OC/Resources`主题相关文件夹，其中 Font \ Image \ Label 目录包含文件
 * 开启 KASLR 内存注入，添加 igfxfw=2 启动参数
 
@@ -287,7 +296,7 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
    方法一：在`/EFI/OC/config.plist`配置文件 UEFI > Output > Resolution 处填写正确的显示器分辨率；<br>
    方法二：将 BIOS「STTINGS\启动\全荧幕商标」设置为 [允许]。<br>
    两种方法选择其一即可，如果同时使用的话开机 logo 的显示依旧会不正常，原本更推荐方法二（会比方法一进入系统登陆界面略快一些），但反复测试后发现，如果在 BIOS 打开「Windows 10 WHQL支持」，使用方法二可能会导致**关机再开机时丢失苹果 logo**，请测试后选择~~适合~~自己喜欢的方法。<br>
-   **P.S.** 如果使用 2K 分辨率及以下无法开启 HiDPI 的显示器，需要将配置文件 NVRAM > Add > 4D1EDE05-XXXX > UIScale 设置为`01`。
+   **P.S.** 如果使用 2K 及以下分辨率无法开启 HiDPI 的显示器，需要将配置文件 NVRAM > Add > 4D1EDE05-XXXX > UIScale 设置为`01`。
 2. **无法正常进入睡眠状态怎么办？**<br>
    目前所知的情况是 ~~bugOS~~macOS 10.15.2 至 10.15.4（包括补充更新版本）都存在睡眠相关 bugs，如果使用了最新的 EFI 仍然无法正常进入睡眠，请尝试到「系统偏好设置——安全性与隐私——隐私——定位服务」关闭「Siri 与听写」，并尽量关闭「系统服务」中的定位权限。<br>
    部分机器需要将`/EFI/OC/config.plist`文件 Config > Kernel > Quirks > PowerTimeoutKernelPanic 设置为 Ture/Yes 才可以正常睡眠，原因尚不明确（同型号主板、同版本 BIOS）。
@@ -298,7 +307,7 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
    我也被这个问题困扰了许久，在 OC 0.5.5 之前尝试过各种配置组合，均无法触发，但 OC 更新 0.5.5 后，通过设置 TakeoffDelay 参数可在引导过程中触发原生快捷键，建议在启动时按住组合键，或键盘灯亮起时不断重按组合键，可自行调整 TakeoffDelay 参数。
 5. **NVMe 硬盘温度过高怎么办？**<br>
    一般来说读写速度越快的硬盘温度往往越高，无需太过担心，但待机情况下超过 50℃ 或你认为硬盘的温度不正常，可尝试加载 [NVMeFix](https://github.com/acidanthera/NVMeFix/releases) 解决。<br>
-   将 NVMeFix.kext 放入`/EFI/OC/Kexts/`目录，打开`/EFI/OC/config.plist`，在 Kernel > Add 处添加 NVMeFix.kext（参考其他 kext 的添加方式）。
+   将 NVMeFix.kext 放入`/EFI/OC/Kexts/`目录，打开`/EFI/OC/config.plist`，在 Kernel > Add 处添加 NVMeFix.kext（参考其他 kext 的添加方式），当前已添加并启用。
 6. **可以观看 Apple TV+ / Netflix 等 DRM 媒体吗？**<br>
    得益于 WhateverGreen 的功能，添加 shikigva=80 启动参数后，拥有独立显卡的机器都可以直接使用 tv 应用，并观看 Apple TV+，也支持 Safari 硬解观看 Netflix / Amazon Prime 等流媒体。<br>
    macOS 10.15.4 之前版本，RX 4XX/5XX 大部分显卡不可使用 Safari 硬解 DRM（表现为冻屏），但这一问题在 10.15.4 中已经被修复，直接升级系统即可。<br>
@@ -324,7 +333,7 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
 [osx86zh](https://t.me/osx86zh/) ([Telegram](https://telegram.org/) 讨论组)
 
 ## 链接
-OpenCorePkg [官方版本](https://github.com/acidanthera/OpenCorePkg/releases) [自动编译](https://github.com/williambj1/OpenCore-Factory/releases) / AppleSupportPkg [官方版本](https://github.com/acidanthera/AppleSupportPkg/releases) [自动编译](https://github.com/athlonreg/AppleSupportPkg-Factory/releases) / [MacInfoPkg](https://github.com/acidanthera/MacInfoPkg/releases) / [Lilu](https://github.com/acidanthera/Lilu/releases) / [AppleALC](https://github.com/acidanthera/AppleALC/releases) / [WhateverGreen](https://github.com/acidanthera/WhateverGreen/releases) / [IntelMausi](https://github.com/acidanthera/IntelMausi/releases) / [VirtualSMC](https://github.com/acidanthera/VirtualSMC/releases) / [CPUFriend](https://github.com/acidanthera/CPUFriend/releases) / [OcBinaryData](https://github.com/acidanthera/OcBinaryData) / [MaciASL](https://github.com/acidanthera/MaciASL/releases) / [ProperTree](https://github.com/corpnewt/ProperTree) / [Hackintool](https://www.tonymacx86.com/threads/release-hackintool-v2-8-6.254559/) / [HWMonitorSMC2](https://github.com/CloverHackyColor/HWMonitorSMC2/releases)
+OpenCorePkg [官方版本](https://github.com/acidanthera/OpenCorePkg/releases) [自动编译](https://github.com/williambj1/OpenCore-Factory/releases) / AppleSupportPkg [官方版本](https://github.com/acidanthera/AppleSupportPkg/releases) [自动编译](https://github.com/athlonreg/AppleSupportPkg-Factory/releases) / [MacInfoPkg](https://github.com/acidanthera/MacInfoPkg/releases) / [Lilu](https://github.com/acidanthera/Lilu/releases) / [AppleALC](https://github.com/acidanthera/AppleALC/releases) / [WhateverGreen](https://github.com/acidanthera/WhateverGreen/releases) / [IntelMausi](https://github.com/acidanthera/IntelMausi/releases) / [VirtualSMC](https://github.com/acidanthera/VirtualSMC/releases) / [CPUFriend](https://github.com/acidanthera/CPUFriend/releases) / [OcBinaryData](https://github.com/acidanthera/OcBinaryData) / [MaciASL](https://github.com/acidanthera/MaciASL/releases) / [ProperTree](https://github.com/corpnewt/ProperTree) / [Hackintool](https://github.com/headkaze/Hackintool/releases) / [HWMonitorSMC2](https://github.com/CloverHackyColor/HWMonitorSMC2/releases)
 
 ## 写在最后
 **警告：使用此 EFI 非法获利的小站，请尽快停止违法行为，改为免费向用户提供并注明出处。**<br>
