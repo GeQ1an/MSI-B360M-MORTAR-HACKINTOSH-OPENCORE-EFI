@@ -1,7 +1,7 @@
 # 微星 B360M 迫击炮（钛金版）黑苹果 OpenCore EFI
 
 ## EFI 介绍
-此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮（钛金版）的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，[OpenCore](https://github.com/acidanthera/OpenCorePkg) 版本：0.7.1<br>
+此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮（钛金版）的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，[OpenCore](https://github.com/acidanthera/OpenCorePkg) 版本：0.7.5<br>
 <br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/About.png)
 
@@ -39,7 +39,7 @@
 |-------------------:|:------------------------------------------------------------|
 |               主板 | 微星 B360M 迫击炮（钛金版）                                    |
 |             处理器 | 英特尔第 8 代、第 9 代酷睿处理器（推荐拥有核显的版本）                |
-|               显卡 | RX 560 / RX 570 / RX 580 / RX 590 / RX VEGA⁵⁶ / RX VEGA⁶⁴ / Radeon VII / RX 5500 / RX 5500 XT / RX 5600 / RX 5600 XT / RX 5700 / RX 5700 XT |
+|               显卡 | RX 560 / RX 570 / RX 580 / RX 590 / RX VEGA⁵⁶ / RX VEGA⁶⁴ / Radeon VII / RX 5500 / RX 5500 XT / RX 5600 / RX 5600 XT / RX 5700 / RX 5700 XT / RX 6800 / RX 6800 XT / RX 6900 XT|
 |               硬盘 | 除了几个特例（如三星 PM981），基本都可以                            |
 |               内存 | 除了非常差的，基本都可以                                        |
 |        无线 + 蓝牙 | 黑苹果免驱版无线 + 蓝牙 PCI-E 网卡都可以                          |
@@ -49,19 +49,31 @@
 |  键盘 + 鼠标 + 音箱 | 根据个人喜好选择                                                |
 |           其它外设 | 根据个人喜好选配                                              |
 
-*显卡优先选择蓝宝石，其次选择迪兰恒进、华硕和微星，尽量不选择盈通和讯景，一定避开 RX 580 2048SP 版本！*<br>
-*如果选择购买新显卡，推荐 RX 5500、RX 5500 XT、RX 5600、RX 5600 XT、RX 5700 和 RX 5700 XT 这六个型号。*<br>
+*选购 RX 500 系列显卡优先选择蓝宝石品牌，其次选择迪兰恒进、华硕和微星，尽量不选择盈通和讯景，一定避开 RX 580 2048SP 版本！*<br>
+*推荐选购 RX 5000 系列和 RX 6000 系列新显卡，蓝宝石在 RX 6000 系列比较缩水，不建议优先选择，一定避开 RX 6600 和 RX 6700 XT。使用 RX 6800 / RX 6800 XT / RX 6900 XT 显卡要求 macOS 最低系统版本为 Big Sur 11.4 beta 1，使用 RX 6600 XT 显卡要求 macOS 最低系统版本为 Monterey 12.1 beta 1。*<br>
 *个人非常不推荐使用玄冰 400 散热器（不含扣具升级款），我已经更换为利民 AS120，远离反人类设计保平安。*
 
 ## 更新记录
-#### 2021.07.12
-* 更新 OpenCore 至 0.7.1 正式版
-* 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC \ IntelMausi \ CPUFriend Kexts 至官方最新版，添加 NVMeFix Kext 并启用
-* 更新 OpenRuntime \ OpenCanopy 驱动，替换 HfsPlus 驱动为 OpenHfsPlus 驱动，移除 ExFatDxe 驱动
-* 替换 VerifyMsrE2 工具为 ControlMsrE2 工具
-* 更新`/EFI/OC/Resources`启动主题相关文件
+#### 2021.11.10
+* 更新 OpenCore 至 0.7.5 正式版
+* 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC Kexts 至官方最新版
+* 更新 OpenRuntime \ OpenCanopy \ OpenHfsPlus 驱动
+* 修改配置文件 Misc > Security > DmgLoading 参数为 Signed \ Misc > Security > SecureBootModel 参数为 Default（详见 [Q&A 条目 10](#10-为什么要开启安全启动和-sip)）；修改配置文件 NVRAM > Add > 7C436110-XXXX > csr-active-config 参数为 00000000 \ Misc > Security > AllowToggleSip 参数为 True/Yes（详见 [Q&A 条目 10](#10-为什么要开启安全启动和-sip)）；修改配置文件 Misc > Boot > TakeoffDelay 参数为 5000 (单位：毫秒) 以提高兼容性<br>
+<br>
+**注意事项**：1. 如果你仍在使用 **macOS Catalina 10.15 或更早版本**系统需要**修改 OC 配置文件** UEFI > APFS 下的 **MinData** 和 **MinVersion** 参数为 **-1**（详见 [Q&A 条目 11](#11-为什么使用-catalina-需要额外修改配置)）；2. 更新或安装 **macOS Big Sur 11.3.1** 及以后版本，请提前**定制 USB 并启用**（详见 [Q&A 条目 12 ](#12-为什么一定要定制-usb)）。
 
-*OC 0.7.1 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。此版本开始默认启用启动主题，如需关闭可将配置文件 Misc > Boot > PickerMode 的 External 修改为 Builtin；支持 macOS 11.5，正式版发布后可直接升级（因近几个月事务繁多，直到今天才得以更新，向所有用户道一声抱歉）。*
+*OC 0.7.5 正式版的配置文件新增和删除了若干条目，此次配置文件改动较大，建议按照使用习惯重新配置。支持 macOS 12 及 macOS 12.1 测试版，正式版发布后可直接升级（因近几个月事务繁多，直到今天才得以更新，向所有用户道一声抱歉）。*
+
+
+#### ~~2021.07.12~~
+* ~~更新 OpenCore 至 0.7.1 正式版~~
+* ~~更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC \ IntelMausi \ CPUFriend Kexts 至官方最新版，添加 NVMeFix Kext 并启用~~
+* ~~更新 OpenRuntime \ OpenCanopy 驱动，替换 HfsPlus 驱动为 OpenHfsPlus 驱动，移除 ExFatDxe 驱动~~
+* ~~替换 VerifyMsrE2 工具为 ControlMsrE2 工具~~
+* ~~更新`/EFI/OC/Resources`启动主题相关文件~~
+
+*~~OC 0.7.1 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。此版本开始默认启用启动主题，如需关闭可将配置文件 Misc > Boot > PickerMode 的 External 修改为 Builtin；支持 macOS 11.5，正式版发布后可直接升级（因近几个月事务繁多，直到今天才得以更新，向所有用户道一声抱歉）。~~因网络问题，此更新一直未得以上传。*
+
 
 #### 2021.02.08
 * 更新 OpenCore 至 0.6.6 正式版
@@ -93,7 +105,7 @@
 * 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC Kexts 至官方最新版
 * 更新 OpenRuntime \ OpenCanopy 驱动
 
-*OC 0.6.3 正式版的配置文件仅新增了 Kernel > Quirks > ForceSecureBootScheme、PlatformInfo > CustomMemory 和 UEFI > Output > ForceResolution 三个条目，建议直接手动添加。支持 ~~bugOS~~macOS Big Sur 11.0 RC 版，详见 [Q&A](#qa) 条目 9。*
+*OC 0.6.3 正式版的配置文件仅新增了 Kernel > Quirks > ForceSecureBootScheme、PlatformInfo > CustomMemory 和 UEFI > Output > ForceResolution 三个条目，建议直接手动添加。支持 ~~bugOS~~macOS Big Sur 11.0 RC 版，详见 [Q&A 条目 9](#9-如何使用-macos-big-sur-11)。*
 
 #### 2020.10.10
 * 更新 OpenCore 至 0.6.2 正式版
@@ -101,21 +113,21 @@
 * 更新 OpenRuntime \ OpenCanopy 驱动
 * 添加`/EFI/OC/Bootstrap/Bootstrap.efi`OC 引导稳定性帮助文件
 
-*OC 0.6.2 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。支持 macOS 10.15.7，可直接升级；支持 ~~bugOS~~macOS Big Sur 11.0 测试版，详见 [Q&A](#qa) 条目 9。有关 Bootstrap 的使用详见 [Q&A](#qa) 条目 8。*
+*OC 0.6.2 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。支持 macOS 10.15.7，可直接升级；支持 ~~bugOS~~macOS Big Sur 11.0 测试版，详见 [Q&A 条目 9](#9-如何使用-macos-big-sur-11)。有关 Bootstrap 的使用详见 [Q&A 条目 8](#8-为什么没有开启-oc-059-中的启动项高优先级功能)。*
 
 #### 2020.09.16
 * 更新 OpenCore 至 0.6.1 正式版
 * 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC Kexts 至官方最新版
 * 更新 OpenRuntime \ OpenCanopy 驱动
 
-*OC 0.6.1 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。支持 ~~bugOS~~macOS Big Sur 11.0 测试版，详见 [Q&A](#qa) 条目 9。*
+*OC 0.6.1 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。支持 ~~bugOS~~macOS Big Sur 11.0 测试版，详见 [Q&A 条目 9](#9-如何使用-macos-big-sur-11)。*
 
 #### 2020.08.07
 * 更新 OpenCore 至 0.6.0 正式版
 * 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC \ CPUFriend Kexts 至官方最新版
 * 更新 OpenRuntime \ OpenCanopy 驱动
 
-*OC 0.6.0 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。支持 macOS 10.15.6，可直接升级；支持 ~~bugOS~~macOS Big Sur 11.0 测试版，详见 [Q&A](#qa) 条目 9。*
+*OC 0.6.0 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。支持 macOS 10.15.6，可直接升级；支持 ~~bugOS~~macOS Big Sur 11.0 测试版，详见 [Q&A 条目 9](#9-如何使用-macos-big-sur-11)。*
 
 #### 2020.06.16
 * 更新 OpenCore 至 0.5.9 正式版
@@ -277,8 +289,8 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
 <br>
 保存后，先通过 USB 测试引导，无问题后将 EFI 文件夹放置到启动磁盘 EFI 分区，重启电脑。
 
-### 对于 RX 5XXX 系列显卡
-目前 RX 5500、RX 5500 XT、RX 5600、RX 5600 XT、RX 5700 和 RX 5700 XT 均需要手动添加`agdpmod=pikera`启动参数来防止开机黑屏，请耐心等待 WhateverGreen 更新。
+### 对于 RX 5000 \ RX 6000 系列显卡
+目前 RX 5000 系列 Navi 10 核心显卡、RX 6000 系列 Navi 21 核心显卡和 RX 6000 系列 Navi 23 核心显卡均应该手动添加`agdpmod=pikera`启动参数来防止开机黑屏，请耐心等待 WhateverGreen 更新。
 
 ### ~~模拟 NVRAM~~（不再需要）
 ~~无论是直接使用还是修改使用，都建议参考 [xjn 博客](https://blog.xjn819.com/?p=543) 的完善部分「3.1 模拟 NVRAM」，进行模拟 NVRAM 的操作。~~
@@ -287,41 +299,56 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
 1. 参考 [xjn 博客](https://blog.xjn819.com/?p=543) 的进阶部分「4.1 CPU 的变频优化」或 xjn 大佬发表于 PCbeta 的帖子 [FCPX 核显独显全程满速指南](http://bbs.pcbeta.com/viewthread-1836920-1-1.html) 中「HWP 变频」部分，根据个人需求定制`CPUFriendDataProvider.kext`HWP 变频文件，放入`/EFI/OC/Kexts/`替换同名文件，重新启用`/EFI/OC/config.plist`文件 Kernel > Add > 10 和 11。<br>
 *iMac19,2 和 iMacPro1,1 均不支持 HWP 变频，无需尝试。对于有核显的用户建议选择 iMac19,1 机型，对于只使用核显的用户推荐 Macmini8,1 机型。*
 2. 参考 [黑果小兵博客](https://blog.daliansky.net/Intel-FB-Patcher-USB-Custom-Video.html) 生成`USBPorts.kext`USB 定制文件，放入`/EFI/OC/Kexts/`替换同名文件，打开`/EFI/OC/config.plist`，关闭 Kernel > Add > 7，打开 8。<br>
-*目录内有我的 USB 定制文件，可在备份好 EFI 的情况下尝试使用。*<br>
+*目录内有我的 USB 定制文件，可在备份好 EFI 到启动 U 盘的情况下尝试使用。*<br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_USB.png)
 
 ## Q&A
-1. **开机时苹果 logo 显示不正常怎么办？**<br>
+##### 1. 开机时苹果 logo 显示不正常怎么办？
    有两个方法可以解决这个问题。<br>
    方法一：在`/EFI/OC/config.plist`配置文件 UEFI > Output > Resolution 处填写正确的显示器分辨率；<br>
    方法二：将 BIOS「STTINGS\启动\全荧幕商标」设置为 [允许]。<br>
    两种方法选择其一即可，如果同时使用的话开机 logo 的显示依旧会不正常，原本更推荐方法二（会比方法一进入系统登陆界面略快一些），但反复测试后发现，如果在 BIOS 打开「Windows 10 WHQL支持」，使用方法二可能会导致**关机再开机时丢失苹果 logo**，请测试后选择~~适合~~自己喜欢的方法。<br>
    **P.S.** 如果使用 2K 及以下分辨率无法开启 HiDPI 的显示器，需要将配置文件 NVRAM > Add > 4D1EDE05-XXXX > UIScale 设置为`01`。
-2. **无法正常进入睡眠状态怎么办？**<br>
+##### 2. 无法正常进入睡眠状态怎么办？
    目前所知的情况是 ~~bugOS~~macOS 10.15.2 至 10.15.4（包括补充更新版本）都存在睡眠相关 bugs，如果使用了最新的 EFI 仍然无法正常进入睡眠，请尝试到「系统偏好设置——安全性与隐私——隐私——定位服务」关闭「Siri 与听写」，并尽量关闭「系统服务」中的定位权限。<br>
    部分机器需要将`/EFI/OC/config.plist`文件 Config > Kernel > Quirks > PowerTimeoutKernelPanic 设置为 Ture/Yes 才可以正常睡眠，原因尚不明确（同型号主板、同版本 BIOS）。
-3. **为什么推荐拥有核显的 CPU？**<br>
+##### 3. 为什么推荐拥有核显的 CPU？
    首先，macOS Catalina 原生支持 4K 双硬解的独显最低为 RX VEGA⁵⁶，而第七代及以后的酷睿处理器核显可以和低于 RX VEGA⁵⁶ 的独显协同工作，完成 4K 双硬解；<br>
    其次，因为黑果没有 T2 芯片，所以没有核显的黑果无法使用随航（Sidecar）功能。
-4. **引导过程触发原生快捷键怎么这么难？**<br>
+##### 4. 引导过程触发原生快捷键怎么这么难？
    我也被这个问题困扰了许久，在 OC 0.5.5 之前尝试过各种配置组合，均无法触发，但 OC 更新 0.5.5 后，通过设置 TakeoffDelay 参数可在引导过程中触发原生快捷键，建议在启动时按住组合键，或键盘灯亮起时不断重按组合键，可自行调整 TakeoffDelay 参数。
-5. **NVMe 硬盘温度过高怎么办？**<br>
+##### 5. NVMe 硬盘温度过高怎么办？
    一般来说读写速度越快的硬盘温度往往越高，无需太过担心，但待机情况下超过 50℃ 或你认为硬盘的温度不正常，可尝试加载 [NVMeFix](https://github.com/acidanthera/NVMeFix/releases) 解决。<br>
    将 NVMeFix.kext 放入`/EFI/OC/Kexts/`目录，打开`/EFI/OC/config.plist`，在 Kernel > Add 处添加 NVMeFix.kext（参考其他 kext 的添加方式），当前已添加并启用。
-6. **可以观看 Apple TV+ / Netflix 等 DRM 媒体吗？**<br>
+##### 6. 可以观看 Apple TV+ / Netflix 等 DRM 媒体吗？`更新`
    得益于 WhateverGreen 的功能，添加 shikigva=80 启动参数后，拥有独立显卡的机器都可以直接使用 tv 应用，并观看 Apple TV+，也支持 Safari 硬解观看 Netflix / Amazon Prime 等流媒体。<br>
    macOS 10.15.4 之前版本，RX 4XX/5XX 大部分显卡不可使用 Safari 硬解 DRM（表现为冻屏），但这一问题在 10.15.4 中已经被修复，直接升级系统即可。<br>
+   WhateverGreen 的 DRM 补丁目前不支持 Safari 14 和 macOS 11 及以后版本，但可以在`终端`中依次执行下列代码正常使用 tv 应用观看 Apple TV+（Safari 仍然不可以正常解码 DRM）。
+````
+defaults write com.apple.AppleGVA gvaForceAMDKE -bool YES
+defaults write com.apple.AppleGVA gvaForceAMDAVCEncode -bool YES
+defaults write com.apple.AppleGVA gvaForceAMDAVCDecode -bool YES
+defaults write com.apple.AppleGVA gvaForceAMDHEVCDecode -bool YES
+````
    *注意：因为缺少 Apple Firmware，导致 iGPU 无法硬解 DRM，所以没有独显的机器无法观看 DRM 媒体。*
-7. **更新 OC 0.5.7 后睡眠唤醒不正常怎么办？**<br>
+##### 7. 更新 OC 0.5.7 后睡眠唤醒不正常怎么办？
    可参考这个 [Issue](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/35) 尝试解决。
-8. **为什么没有开启 OC 0.5.9 中的启动项高优先级功能？**<br>
+##### 8. 为什么没有开启 OC 0.5.9 中的启动项高优先级功能？
    经测试，开启该功能后可能会造成无法设置 “启动磁盘” 的问题，默认未启用。如需启用该功能，请自行将配置文件 Misc > Security > BootProtect 设置为`Bootstrap`（关闭填写`None`）。
-9. **如何使用 macOS Big Sur 11？**<br>
+##### 9. 如何使用 macOS Big Sur 11？
    请确认你的 OpenCore 已更新到 0.6.1 以上版本，且所有 Kexts 也已更新到最新版，将配置文件 Kernel > Quirks > DisableLinkeditJettison 设置为 Ture/Yes 即可。
-10. **待更新**
+##### 10. 为什么要开启安全启动和 SIP？
+   首先，从 Monterey 开始，不会向未启用安全启动的 T2 Mac 提供更新，所以需要我们打开安全启动功能，修改 OC 的 SecureBootModel 和 DmgLoading 两个设置。<br>
+   其次，从 Big Sur 开始，未开启 SIP 可能无法检测到更新，所以需要我们开启 SIP，修改 csr-active-config 设置，AllowToggleSip 开启后可在引导选择界面快速开关 SIP。如果更新此次 OC 后无法检测到更新可尝试到引导选择界面再次开启 SIP（括号会标注状态，Enable 为开启，Disable 为关闭）。
+##### 11. 为什么使用 Catalina 需要额外修改配置？
+   从 OpenCore 0.7.2 版本开始，早期的 APFS 驱动不会被加载（出于安全性考虑），如果要启动 Catalina 或更早版本，请修改配置 UEFI > APFS 下面的 MinDate 和 MinVersion 为 -1，详情参考 [OC 0.7.2 版本](https://github.com/acidanthera/OpenCorePkg/releases/tag/0.7.2) 中的文档。
+##### 12. 为什么一定要定制 USB？
+   从 macOS Big Sur 11.3 正式版开始，macOS 会使 OC 解除 15 个 USB 端口的 XhciPortLimit Quirks 失效，会导致即使加载 USBInjectAll Kext 也无法正确加载超过 15 个的全部 USB 端口，可自行搜索相关教程或参考 [进阶使用](#进阶使用) 或 [OpenCore Post Install](https://dortania.github.io/OpenCore-Post-Install/usb/) 或 [黑苹果星球](https://heipg.cn/tutorial/customize-usb-port-windows.html)（Windows 下定制教程，需付费查看，无利益相关）有关 USB 定制的教程。
+##### 13. 待更新
 
 ## 结语
 完成以上步骤后，基本上已经有了一个完成度为 99% 的黑苹果设备，更多截图请查看 [截图预览](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/tree/master/Images/Preview.md) 。<br>
+<br>
 黑果和白果不一样，各种补丁和新系统的兼容性可能存在问题，一旦稳定后，追新速度不要太快，待各路大佬测试、完善后再升级也不迟。
 
 ## 鸣谢
@@ -331,9 +358,10 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
 [tonymoses](http://bbs.pcbeta.com/viewthread-1835637-1-1.html)<br>
 [cattyhouse](https://github.com/cattyhouse/oc-guide/)<br>
 [osx86zh](https://t.me/osx86zh/) ([Telegram](https://telegram.org/) 讨论组)
+[黑苹果星球](https://heipg.cn)
 
 ## 链接
-OpenCorePkg [官方版本](https://github.com/acidanthera/OpenCorePkg/releases) [自动编译](https://github.com/williambj1/OpenCore-Factory/releases) / AppleSupportPkg [官方版本](https://github.com/acidanthera/AppleSupportPkg/releases) [自动编译](https://github.com/athlonreg/AppleSupportPkg-Factory/releases) / [MacInfoPkg](https://github.com/acidanthera/MacInfoPkg/releases) / [Lilu](https://github.com/acidanthera/Lilu/releases) / [AppleALC](https://github.com/acidanthera/AppleALC/releases) / [WhateverGreen](https://github.com/acidanthera/WhateverGreen/releases) / [IntelMausi](https://github.com/acidanthera/IntelMausi/releases) / [VirtualSMC](https://github.com/acidanthera/VirtualSMC/releases) / [CPUFriend](https://github.com/acidanthera/CPUFriend/releases) / [OcBinaryData](https://github.com/acidanthera/OcBinaryData) / [MaciASL](https://github.com/acidanthera/MaciASL/releases) / [ProperTree](https://github.com/corpnewt/ProperTree) / [Hackintool](https://github.com/headkaze/Hackintool/releases) / [HWMonitorSMC2](https://github.com/CloverHackyColor/HWMonitorSMC2/releases)
+OpenCorePkg [官方版本](https://github.com/acidanthera/OpenCorePkg/releases) [自动编译](https://github.com/hjp521/OpenCore-Factory/releases) / [MacInfoPkg](https://github.com/acidanthera/MacInfoPkg/releases) / [Lilu](https://github.com/acidanthera/Lilu/releases) / [AppleALC](https://github.com/acidanthera/AppleALC/releases) / [WhateverGreen](https://github.com/acidanthera/WhateverGreen/releases) / [IntelMausi](https://github.com/acidanthera/IntelMausi/releases) / [VirtualSMC](https://github.com/acidanthera/VirtualSMC/releases) / [CPUFriend](https://github.com/acidanthera/CPUFriend/releases) / [OcBinaryData](https://github.com/acidanthera/OcBinaryData) / [MaciASL](https://github.com/acidanthera/MaciASL/releases) / [ProperTree](https://github.com/corpnewt/ProperTree) / [Hackintool](https://github.com/headkaze/Hackintool/releases) / [HWMonitorSMC2](https://github.com/CloverHackyColor/HWMonitorSMC2/releases)
 
 ## 写在最后
 **警告：使用此 EFI 非法获利的小站，请尽快停止违法行为，改为免费向用户提供并注明出处。**<br>
