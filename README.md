@@ -58,11 +58,11 @@
 * 更新 OpenCore 至 0.7.5 正式版
 * 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC Kexts 至官方最新版
 * 更新 OpenRuntime \ OpenCanopy \ OpenHfsPlus 驱动
-* 修改配置文件 Misc > Security > DmgLoading 参数为 Signed \ Misc > Security > SecureBootModel 参数为 Default（详见 [Q&A 条目 10](#10-为什么要开启安全启动和-sip)）；修改配置文件 NVRAM > Add > 7C436110-XXXX > csr-active-config 参数为 00000000 \ Misc > Security > AllowToggleSip 参数为 True/Yes（详见 [Q&A 条目 10](#10-为什么要开启安全启动和-sip)）；修改配置文件 Misc > Boot > TakeoffDelay 参数为 5000 (单位：毫秒) 以提高兼容性
+* 修改配置文件 Misc > Security > DmgLoading 参数为`Signed`\ Misc > Security > SecureBootModel 参数为`Default`（详见 [Q&A 条目 10](#10-为什么要开启安全启动和-sip)）；修改配置文件 NVRAM > Add > 7C436110-XXXX > csr-active-config 参数为`00000000`\ Misc > Security > AllowToggleSip 参数为 `True/Yes`（详见 [Q&A 条目 10](#10-为什么要开启安全启动和-sip)）；修改配置文件 Misc > Boot > TakeoffDelay 参数为`5000`（单位：毫秒）以提高兼容性
 
-**注意事项**：1. 如果你仍在使用 **macOS Catalina 10.15 或更早版本**系统需要**修改 OC 配置文件** UEFI > APFS 下的 **MinData** 和 **MinVersion** 参数为 **-1**（详见 [Q&A 条目 11](#11-为什么使用-catalina-需要额外修改配置)）；2. 更新或安装 **macOS Big Sur 11.3.1 及以后版本**，请提前**定制 USB 并启用**（详见 [Q&A 条目 12](#12-为什么一定要定制-usb)）。<br>
+**注意事项**：1. 如果你仍在使用 **macOS Catalina 10.15 或更早版本**系统，需要**修改 OC 配置文件** UEFI > APFS 下的 **MinData** 和 **MinVersion** 参数为`-1`（详见 [Q&A 条目 11](#11-为什么使用-catalina-需要额外修改配置)）；2. 更新或安装 **macOS Big Sur 11.3.1 及以后版本**，请提前**定制 USB 并启用**（详见 [Q&A 条目 12](#12-为什么一定要定制-usb)）。<br>
 <br>
-*OC 0.7.5 正式版的配置文件新增和删除了若干条目，此次配置文件改动较大，建议按照使用习惯重新配置。支持 macOS 12.0.1 正式版及 macOS 12.1 测试版，12.1 正式版发布后可直接升级（因近几个月事务繁多，直到今天才得以更新，向所有用户道一声抱歉）。*
+*OC 0.7.5 正式版的配置文件新增和删除了若干条目，此次配置文件改动较大，建议按照使用习惯重新配置。支持 macOS 12.1，正式版发布后可直接升级（因近几个月事务繁多，直到今天才得以更新，向所有用户道一声抱歉）。*
 
 
 #### ~~2021.07.12~~
@@ -72,7 +72,7 @@
 * ~~替换 VerifyMsrE2 工具为 ControlMsrE2 工具~~
 * ~~更新`/EFI/OC/Resources`启动主题相关文件~~
 
-*~~OC 0.7.1 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。此版本开始默认启用启动主题，如需关闭可将配置文件 Misc > Boot > PickerMode 的 External 修改为 Builtin；支持 macOS 11.5，正式版发布后可直接升级（因近几个月事务繁多，直到今天才得以更新，向所有用户道一声抱歉）。~~ 因网络问题，此更新一直未得以上传。*
+*~~OC 0.7.1 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。此版本开始默认启用启动主题，如需关闭可将 OC 配置文件 Misc > Boot > PickerMode 的`External`修改为`Builtin`；支持 macOS 11.5，正式版发布后可直接升级（因近几个月事务繁多，直到今天才得以更新，向所有用户道一声抱歉）。~~ 因网络问题，此更新一直未得以上传。*
 
 
 #### 2021.02.08
@@ -82,7 +82,7 @@
 * 更新`/EFI/OC/Resources`启动主题相关文件
 * 移除`/EFI/OC/Bootstrap/Bootstrap.efi`OC 引导稳定性帮助文件
 
-*OC 0.6.6 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。支持 macOS 11.2，可直接升级。有关 启动项高优先级的使用方法有所改变，详见 [Q&A 条目 8](#8-如何使用-oc-的启动项高优先级功能)。*
+*OC 0.6.6 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。支持 macOS 11.2，可直接升级。有关启动项高优先级的使用方法有所改变，详见 [Q&A 条目 8](#8-如何使用-oc-的启动项高优先级功能)。*
 
 #### 2021.01.16
 * 更新 OpenCore 至 0.6.5 正式版
@@ -319,11 +319,11 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
    我也被这个问题困扰了许久，在 OC 0.5.5 之前尝试过各种配置组合，均无法触发，但 OC 更新 0.5.5 后，通过设置 TakeoffDelay 参数可在引导过程中触发原生快捷键，建议在启动时按住组合键，或键盘灯亮起时不断重按组合键，可自行调整 TakeoffDelay 参数。
 #### 5. NVMe 硬盘温度过高怎么办？
    一般来说读写速度越快的硬盘温度往往越高，无需太过担心，但待机情况下超过 50℃ 或你认为硬盘的温度不正常，可尝试加载 [NVMeFix](https://github.com/acidanthera/NVMeFix/releases) 解决。<br>
-   将 NVMeFix.kext 放入`/EFI/OC/Kexts/`目录，打开`/EFI/OC/config.plist`，在 Kernel > Add 处添加 NVMeFix.kext（参考其他 kext 的添加方式），当前已添加并启用。
-#### 6. 可以观看 Apple TV+ / Netflix 等 DRM 媒体吗？`更新`
+   将 NVMeFix.kext 放入`/EFI/OC/Kexts/`目录，打开 OC 配置文件，在 Kernel > Add 处添加 NVMeFix.kext（参考其他 kext 的添加方式），当前已添加并启用。
+#### 6. 可以观看 Apple TV+ / Netflix 等 DRM 媒体吗？`更新！`
    得益于 WhateverGreen 的功能，添加 shikigva=80 启动参数后，拥有独立显卡的机器都可以直接使用 tv 应用，并观看 Apple TV+，也支持 Safari 硬解观看 Netflix / Amazon Prime 等流媒体。<br>
    macOS 10.15.4 之前版本，RX 4XX/5XX 大部分显卡不可使用 Safari 硬解 DRM（表现为冻屏），但这一问题在 10.15.4 中已经被修复，直接升级系统即可。<br>
-   WhateverGreen 的 DRM 补丁目前不支持 Safari 14 和 macOS 11 及以后版本，但可以在`终端`中依次执行下列代码正常使用 tv 应用观看 Apple TV+（Safari 仍然不可以正常解码 DRM）。
+   WhateverGreen 的 DRM 补丁目前不支持 Safari 14 和 macOS 11 及以后版本，但可以在`终端`中依次执行下列代码后正常使用 tv 应用观看 Apple TV+（Safari 仍然不可以正常解码 DRM）。
 ````
 defaults write com.apple.AppleGVA gvaForceAMDKE -bool YES
 defaults write com.apple.AppleGVA gvaForceAMDAVCEncode -bool YES
@@ -334,17 +334,18 @@ defaults write com.apple.AppleGVA gvaForceAMDHEVCDecode -bool YES
 #### 7. 更新 OC 0.5.7 后睡眠唤醒不正常怎么办？
    可参考这个 [Issue](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/35) 尝试解决。
 #### 8. 如何使用 OC 的启动项高优先级功能？
-   ~~开启该功能后可能会造成无法设置 “启动磁盘” 的问题，默认未启用。如需启用该功能，请自行将配置文件 Misc > Security > BootProtect 设置为`Bootstrap`（关闭填写`None`）。~~ 适用 OC 0.5.9 至 0.6.5<br>
-   自 OC 0.6.6 版本开始，可通过修改配置文件 Misc > Boot > LauncherOption 参数为 Full 置顶 OC 启动项，填写 Disabled 则为默认不修改。
+   ~~开启该功能后可能会造成无法设置 “启动磁盘” 的问题，默认未启用。如需启用该功能，请自行修改配置文件 Misc > Security > BootProtect 参数为`Bootstrap`（填写`None`为关闭）。仅适用于 OC 0.5.9 至 0.6.5 版本。~~<br>
+   自 OC 0.6.6 版本开始，可通过修改配置文件 Misc > Boot > LauncherOption 参数为`Full`置顶 OC 启动项，填写`Disabled`则为默认不做改动。
 #### 9. 如何使用 macOS Big Sur 11？
    请确认你的 OpenCore 已更新到 0.6.1 以上版本，且所有 Kexts 也已更新到最新版，将配置文件 Kernel > Quirks > DisableLinkeditJettison 设置为 Ture/Yes 即可。
 #### 10. 为什么要开启安全启动和 SIP？
    首先，从 Monterey 开始，不会向未启用安全启动的 T2 Mac 提供更新，所以需要我们打开安全启动功能，修改 OC 的 SecureBootModel 和 DmgLoading 两个设置。<br>
-   其次，从 Big Sur 开始，未开启 SIP 可能无法检测到更新，所以需要我们开启 SIP，修改 csr-active-config 设置，AllowToggleSip 开启后可在引导选择界面快速开关 SIP。如果更新此次 OC 后无法检测到更新可尝试到引导选择界面再次开启 SIP（括号会标注状态，Enable 为开启，Disable 为关闭）。
+   其次，从 Big Sur 开始，未开启 SIP 可能无法检测到更新，为了保证正常使用，我们需要开启 SIP 修改 csr-active-config 设置，AllowToggleSip 开启后可在引导选择界面快速开关 SIP。如果更新此次 OC 后无法检测到更新可尝试到引导选择界面再次开启 SIP 解决问题（括号会标注状态，Enable 为开启，Disable 为关闭）。<br>
+   详情参考 [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/extras/monterey.html#ota-updates) 中的说明。
 #### 11. 为什么使用 Catalina 需要额外修改配置？
-   从 OpenCore 0.7.2 版本开始，早期的 APFS 驱动不会被加载（出于安全性考虑），如果要启动 Catalina 或更早版本，请修改配置 UEFI > APFS 下面的 MinDate 和 MinVersion 为 -1，详情参考 [OC 0.7.2 版本](https://github.com/acidanthera/OpenCorePkg/releases/tag/0.7.2) 中的文档。
+   从 OpenCore 0.7.2 版本开始，早期的 APFS 驱动不会被加载（出于安全性考虑），这会导致低于 Big Sur 11.0 版本的系统无法启动，如果要启动 Catalina 或更早版本的系统，请修改配置 UEFI > APFS 下面的 MinDate 和 MinVersion 为 -1，详情参考 [OC 0.7.2 版本](https://github.com/acidanthera/OpenCorePkg/releases/tag/0.7.2) 中的文档。
 #### 12. 为什么一定要定制 USB？
-   从 macOS Big Sur 11.3 正式版开始，macOS 会使 OC 解除 15 个 USB 端口的 XhciPortLimit Quirks 失效，会导致即使加载 USBInjectAll Kext 也无法正确加载超过 15 个的全部 USB 端口，可自行搜索相关教程或参考 [进阶使用](#进阶使用) 或 [OpenCore Post Install](https://dortania.github.io/OpenCore-Post-Install/usb/) 或 [黑苹果星球](https://heipg.cn/tutorial/customize-usb-port-windows.html)（Windows 版，需付费查看，无相关利益）有关 USB 定制的教程。
+   从 macOS Big Sur 11.3 正式版开始，macOS 会使 OC 解除 15 个 USB 端口的 XhciPortLimit Quirk 失效，会导致即使加载 USBInjectAll Kext 也无法全部正确加载超过 15 个的 USB 端口，可自行搜索 USB 定制教程或参考 [进阶使用](#进阶使用) \ [OpenCore Post Install](https://dortania.github.io/OpenCore-Post-Install/usb/) \ [黑苹果星球](https://heipg.cn/tutorial/customize-usb-port-windows.html)（包含 Windows 版，需付费查看，无相关利益）中有关 USB 定制的教程。
 #### 13. 待更新
 
 ## 结语
@@ -359,10 +360,11 @@ defaults write com.apple.AppleGVA gvaForceAMDHEVCDecode -bool YES
 [tonymoses](http://bbs.pcbeta.com/viewthread-1835637-1-1.html)<br>
 [cattyhouse](https://github.com/cattyhouse/oc-guide/)<br>
 [osx86zh](https://t.me/osx86zh/) ([Telegram](https://telegram.org/) 讨论组)<br>
+[OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/)<br>
 [黑苹果星球](https://heipg.cn)
 
 ## 链接
-OpenCorePkg [官方版本](https://github.com/acidanthera/OpenCorePkg/releases) [自动编译](https://github.com/hjp521/OpenCore-Factory/releases) / [MacInfoPkg](https://github.com/acidanthera/MacInfoPkg/releases) / [Lilu](https://github.com/acidanthera/Lilu/releases) / [AppleALC](https://github.com/acidanthera/AppleALC/releases) / [WhateverGreen](https://github.com/acidanthera/WhateverGreen/releases) / [IntelMausi](https://github.com/acidanthera/IntelMausi/releases) / [VirtualSMC](https://github.com/acidanthera/VirtualSMC/releases) / [CPUFriend](https://github.com/acidanthera/CPUFriend/releases) / [OcBinaryData](https://github.com/acidanthera/OcBinaryData) / [MaciASL](https://github.com/acidanthera/MaciASL/releases) / [ProperTree](https://github.com/corpnewt/ProperTree) / [Hackintool](https://github.com/headkaze/Hackintool/releases) / [HWMonitorSMC2](https://github.com/CloverHackyColor/HWMonitorSMC2/releases)
+OpenCorePkg [官方版本](https://github.com/acidanthera/OpenCorePkg/releases) [自动编译](https://github.com/hjp521/OpenCore-Factory/releases) / [MacInfoPkg](https://github.com/acidanthera/MacInfoPkg/releases) / [Lilu](https://github.com/acidanthera/Lilu/releases) / [AppleALC](https://github.com/acidanthera/AppleALC/releases) / [WhateverGreen](https://github.com/acidanthera/WhateverGreen/releases) / [IntelMausi](https://github.com/acidanthera/IntelMausi/releases) / [VirtualSMC](https://github.com/acidanthera/VirtualSMC/releases) / [CPUFriend](https://github.com/acidanthera/CPUFriend/releases) / [NVMeFix](https://github.com/acidanthera/NVMeFix/releases) / [OcBinaryData](https://github.com/acidanthera/OcBinaryData) / [MaciASL](https://github.com/acidanthera/MaciASL/releases) / [ProperTree](https://github.com/corpnewt/ProperTree) / [Hackintool](https://github.com/headkaze/Hackintool/releases) / [HWMonitorSMC2](https://github.com/CloverHackyColor/HWMonitorSMC2/releases)
 
 ## 写在最后
 **警告：使用此 EFI 非法获利的小站，请尽快停止违法行为，改为免费向用户提供并注明出处。**<br>
