@@ -82,7 +82,7 @@
 * 更新`/EFI/OC/Resources`启动主题相关文件
 * 移除`/EFI/OC/Bootstrap/Bootstrap.efi`OC 引导稳定性帮助文件
 
-*OC 0.6.6 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。支持 macOS 11.2，可直接升级。*
+*OC 0.6.6 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。支持 macOS 11.2，可直接升级。有关 启动项高优先级的使用方法有所改变，详见 [Q&A 条目 8](#8-如何使用-oc-的启动项高优先级功能)。*
 
 #### 2021.01.16
 * 更新 OpenCore 至 0.6.5 正式版
@@ -113,7 +113,7 @@
 * 更新 OpenRuntime \ OpenCanopy 驱动
 * 添加`/EFI/OC/Bootstrap/Bootstrap.efi`OC 引导稳定性帮助文件
 
-*OC 0.6.2 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。支持 macOS 10.15.7，可直接升级；支持 ~~bugOS~~macOS Big Sur 11.0 测试版，详见 [Q&A 条目 9](#9-如何使用-macos-big-sur-11)。有关 Bootstrap 的使用详见 [Q&A 条目 8](#8-为什么没有开启-oc-059-中的启动项高优先级功能)。*
+*OC 0.6.2 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。支持 macOS 10.15.7，可直接升级；支持 ~~bugOS~~macOS Big Sur 11.0 测试版，详见 [Q&A 条目 9](#9-如何使用-macos-big-sur-11)。有关 Bootstrap 的使用详见 [Q&A 条目 8](#8-如何使用-oc-的启动项高优先级功能)。*
 
 #### 2020.09.16
 * 更新 OpenCore 至 0.6.1 正式版
@@ -333,8 +333,9 @@ defaults write com.apple.AppleGVA gvaForceAMDHEVCDecode -bool YES
    *注意：因为缺少 Apple Firmware，导致 iGPU 无法硬解 DRM，所以没有独显的机器无法观看 DRM 媒体。*
 #### 7. 更新 OC 0.5.7 后睡眠唤醒不正常怎么办？
    可参考这个 [Issue](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/35) 尝试解决。
-#### 8. 为什么没有开启 OC 0.5.9 中的启动项高优先级功能？
-   经测试，开启该功能后可能会造成无法设置 “启动磁盘” 的问题，默认未启用。如需启用该功能，请自行将配置文件 Misc > Security > BootProtect 设置为`Bootstrap`（关闭填写`None`）。
+#### 8. 如何使用 OC 的启动项高优先级功能？
+   ~~开启该功能后可能会造成无法设置 “启动磁盘” 的问题，默认未启用。如需启用该功能，请自行将配置文件 Misc > Security > BootProtect 设置为`Bootstrap`（关闭填写`None`）。~~ 适用 OC 0.5.9 至 0.6.5<br>
+   自 OC 0.6.6 版本开始，可通过修改配置文件 Misc > Boot > LauncherOption 参数为 Full 置顶 OC 启动项，填写 Disabled 则为默认不修改。
 #### 9. 如何使用 macOS Big Sur 11？
    请确认你的 OpenCore 已更新到 0.6.1 以上版本，且所有 Kexts 也已更新到最新版，将配置文件 Kernel > Quirks > DisableLinkeditJettison 设置为 Ture/Yes 即可。
 #### 10. 为什么要开启安全启动和 SIP？
@@ -357,7 +358,7 @@ defaults write com.apple.AppleGVA gvaForceAMDHEVCDecode -bool YES
 [daliansky](https://github.com/daliansky) ([黑果小兵](https://blog.daliansky.net/))<br>
 [tonymoses](http://bbs.pcbeta.com/viewthread-1835637-1-1.html)<br>
 [cattyhouse](https://github.com/cattyhouse/oc-guide/)<br>
-[osx86zh](https://t.me/osx86zh/) ([Telegram](https://telegram.org/) 讨论组)
+[osx86zh](https://t.me/osx86zh/) ([Telegram](https://telegram.org/) 讨论组)<br>
 [黑苹果星球](https://heipg.cn)
 
 ## 链接
