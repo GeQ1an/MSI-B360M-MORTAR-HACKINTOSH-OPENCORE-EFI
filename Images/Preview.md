@@ -1,5 +1,5 @@
 ## 截图预览
-系统版本：macOS Catalina 10.15.7，OpenCare 版本：0.7.5，EFI 更新日期：2021.11.10
+系统版本：macOS Catalina 12.1，OpenCare 版本：0.7.6，EFI 更新日期：2021.12.09
 
 ### 关于本机
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/About.png)
