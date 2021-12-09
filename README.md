@@ -1,7 +1,7 @@
 # 微星 B360M 迫击炮（钛金版）黑苹果 OpenCore EFI
 
 ## EFI 介绍
-此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮（钛金版）的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，[OpenCore](https://github.com/acidanthera/OpenCorePkg) 版本：0.7.5<br>
+此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮（钛金版）的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，[OpenCore](https://github.com/acidanthera/OpenCorePkg) 版本：0.7.6<br>
 <br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/About.png)
 
@@ -18,7 +18,7 @@
 
 ### 我的配置
 
-|         硬件       |                   型号                     | 
+|         硬件        |                   型号                     | 
 |-------------------:|:------------------------------------------|
 |               主板 | 微星 B360M 迫击炮                               |
 |             处理器 | 英特尔酷睿 i5-9600K                            |
@@ -35,25 +35,33 @@
 
 ### 兼容的配置
 
-|         硬件       |                              型号                           | 
+|         硬件        |                              型号                           | 
 |-------------------:|:------------------------------------------------------------|
 |               主板 | 微星 B360M 迫击炮（钛金版）                                    |
 |             处理器 | 英特尔第 8 代、第 9 代酷睿处理器（推荐拥有核显的版本）                |
-|               显卡 | RX 560 / RX 570 / RX 580 / RX 590 / RX VEGA⁵⁶ / RX VEGA⁶⁴ / Radeon VII / RX 5500 / RX 5500 XT / RX 5600 / RX 5600 XT / RX 5700 / RX 5700 XT / RX 6800 / RX 6800 XT / RX 6900 XT|
-|               硬盘 | 除了几个特例（如三星 PM981），基本都可以                            |
+|               显卡 | RX 560 / RX 570 / RX 580 / RX 590 / RX VEGA⁵⁶ / RX VEGA⁶⁴ / Radeon VII / RX 5500 / RX 5500 XT / RX 5600 / RX 5600 XT / RX 5700 / RX 5700 XT / RX 6600 / RX 6600 XT / RX 6800 / RX 6800 XT / RX 6900 XT                                        |
+|               硬盘 | 除了几个特例（如三星 PM981 / PM991），基本都可以                    |
 |               内存 | 除了非常差的，基本都可以                                        |
 |        无线 + 蓝牙 | 黑苹果免驱版无线 + 蓝牙 PCI-E 网卡都可以                          |
 |     摄像头 + 麦克风 | macOS 免驱版都可以                                             |
 |  机箱 + 电源 + 风扇 | 根据个人喜好和 CPU、显卡的功率来决定                               |
 |             显示器 | 根据个人喜好选择（推荐 4K 分辨率）                                |
 |  键盘 + 鼠标 + 音箱 | 根据个人喜好选择                                                |
-|           其它外设 | 根据个人喜好选配                                              |
+|           其它外设 | 根据个人喜好选配                                               |
 
 *选购 RX 500 系列显卡优先选择蓝宝石品牌，其次选择迪兰恒进、华硕和微星，尽量不选择盈通和讯景，一定避开 RX 580 2048SP 版本！*<br>
-*推荐选购 RX 5000 系列和 RX 6000 系列新显卡，蓝宝石在 RX 6000 系列比较缩水，不建议优先选择，一定避开 RX 6600 和 RX 6700 XT。使用 RX 6800 / RX 6800 XT / RX 6900 XT 显卡要求 macOS 最低系统版本为 Big Sur 11.4 beta 1，使用 RX 6600 XT 显卡要求 macOS 最低系统版本为 Monterey 12.1 beta 1。*<br>
-*个人非常不推荐使用玄冰 400 散热器（不含扣具升级款），我已经更换为利民 AS120，远离反人类设计保平安。*
+*推荐选购 RX 5000 系列和 RX 6000 系列新显卡，蓝宝石在 RX 6000 系列比较缩水，不建议优先选择，一定避开 RX 6700 XT。使用 RX 6800 / RX 6800 XT / RX 6900 XT 显卡要求 macOS 最低系统版本为 Big Sur 11.4 beta 1，使用 RX 6600 / RX 6600 XT 显卡要求 macOS 最低系统版本为 Monterey 12.1 beta 1。*<br>
+*选购硬盘建议避开三星，特别是 macOS Monterey 会因为 TRIM 的原因导致开机时间变长（970 EVO 几乎全军覆没，980 PRO 看人品）。推荐选择西数 SN850 / SN750、英特尔 760P 等比较稳定的硬盘。<br>
 
 ## 更新记录
+#### 2021.12.09
+* 更新 OpenCore 至 0.7.6 正式版
+* 更新 Lilu \ AppleALC \ VitualSMC Kexts 至官方最新版，更新 USBInjectAll Kext 为更新的修改版
+* 更新 OpenRuntime \ OpenCanopy 驱动
+
+*~~OC 0.7.6 正式版的配置文件新增和调整了一些条目，建议按照使用习惯重新配置。此版本开始默认将自动检测 HiDPI，一般无需手动设置，但可能需要先清理一次 NVRAM（如果更新后遇到开机时显示不正常的情况）；同步 OC 官方默认隐藏引导选择界面中的辅助工具，按空格键显示；支持 macOS 12.1，正式版发布后可直接升级。~~*
+
+
 #### 2021.11.10
 * 更新 OpenCore 至 0.7.5 正式版
 * 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC Kexts 至官方最新版
@@ -308,7 +316,7 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
    方法一：在`/EFI/OC/config.plist`配置文件 UEFI > Output > Resolution 处填写正确的显示器分辨率；<br>
    方法二：将 BIOS「STTINGS\启动\全荧幕商标」设置为 [允许]。<br>
    两种方法选择其一即可，如果同时使用的话开机 logo 的显示依旧会不正常，原本更推荐方法二（会比方法一进入系统登陆界面略快一些），但反复测试后发现，如果在 BIOS 打开「Windows 10 WHQL支持」，使用方法二可能会导致**关机再开机时丢失苹果 logo**，请测试后选择~~适合~~自己喜欢的方法。<br>
-   **P.S.** 如果使用 2K 及以下分辨率无法开启 HiDPI 的显示器，需要将配置文件 NVRAM > Add > 4D1EDE05-XXXX > UIScale 设置为`01`。
+   **P.S.** 目前 OC 已支持自动检测 HiDPI，如果你使用 2K 及以下分辨率无法开启 HiDPI 的显示器且开机时显示不正常，请尝试将配置文件 UEFI > Output > UIScale 设置为`01`。
 #### 2. 无法正常进入睡眠状态怎么办？
    目前所知的情况是 ~~bugOS~~macOS 10.15.2 至 10.15.4（包括补充更新版本）都存在睡眠相关 bugs，如果使用了最新的 EFI 仍然无法正常进入睡眠，请尝试到「系统偏好设置——安全性与隐私——隐私——定位服务」关闭「Siri 与听写」，并尽量关闭「系统服务」中的定位权限。<br>
    部分机器需要将`/EFI/OC/config.plist`文件 Config > Kernel > Quirks > PowerTimeoutKernelPanic 设置为 Ture/Yes 才可以正常睡眠，原因尚不明确（同型号主板、同版本 BIOS）。
@@ -337,15 +345,15 @@ defaults write com.apple.AppleGVA gvaForceAMDHEVCDecode -bool YES
    ~~开启该功能后可能会造成无法设置 “启动磁盘” 的问题，默认未启用。如需启用该功能，请自行修改配置文件 Misc > Security > BootProtect 参数为`Bootstrap`（填写`None`为关闭）。仅适用于 OC 0.5.9 至 0.6.5 版本。~~<br>
    自 OC 0.6.6 版本开始，可通过修改配置文件 Misc > Boot > LauncherOption 参数为`Full`置顶 OC 启动项，填写`Disabled`则为默认不做改动。
 #### 9. 如何使用 macOS Big Sur 11？
-   请确认你的 OpenCore 已更新到 0.6.1 以上版本，且所有 Kexts 也已更新到最新版，将配置文件 Kernel > Quirks > DisableLinkeditJettison 设置为 Ture/Yes 即可。
+   请确认你的 OpenCore 已更新到 0.6.1 以上版本，且所有 Kexts 也已更新到最新版，将配置文件 Kernel > Quirks > DisableLinkeditJettison 设置为`Ture/Yes`即可。
 #### 10. 为什么要开启安全启动和 SIP？
-   首先，从 Monterey 开始，不会向未启用安全启动的 T2 Mac 提供更新，所以需要我们打开安全启动功能，修改 OC 的 SecureBootModel 和 DmgLoading 两个设置。<br>
-   其次，从 Big Sur 开始，未开启 SIP 可能无法检测到更新，为了保证正常使用，我们需要开启 SIP 修改 csr-active-config 设置，AllowToggleSip 开启后可在引导选择界面快速开关 SIP。如果更新此次 OC 后无法检测到更新可尝试到引导选择界面再次开启 SIP 解决问题（括号会标注状态，Enable 为开启，Disable 为关闭）。<br>
+   首先，从 Monterey 开始，不会向未启用安全启动的包含 T2 芯片的 Mac 提供更新，所以需要我们打开安全启动功能，修改 OC 的 SecureBootModel 和 DmgLoading 两个设置。*注：如果你使用不包含 T2 芯片的 iMac19,1 或 iMac19,2 SMBIOS，也可以选择关闭安全启动，请同步修改配置文件 Misc > Security > SecureBootModel 为`Disabled`、DmgLoading 为`Any`。*<br>
+   其次，从 Big Sur 开始，未开启 SIP 可能无法检测到更新，为了保证正常使用，需要修改 csr-active-config 设置开启 SIP ，开启 AllowToggleSip 选项后可在引导选择界面快速开关 SIP。如果更新此次 OC 后无法检测到更新可尝试到引导选择界面再次开启 SIP 解决问题（括号会标注状态，Enable 为开启，Disable 为关闭）。<br>
    详情参考 [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/extras/monterey.html#ota-updates) 中的说明。
 #### 11. 为什么使用 Catalina 需要额外修改配置？
-   从 OpenCore 0.7.2 版本开始，早期的 APFS 驱动不会被加载（出于安全性考虑），这会导致低于 Big Sur 11.0 版本的系统无法启动，如果要启动 Catalina 或更早版本的系统，请修改配置 UEFI > APFS 下面的 MinDate 和 MinVersion 为 -1，详情参考 [OC 0.7.2 版本](https://github.com/acidanthera/OpenCorePkg/releases/tag/0.7.2) 中的文档。
+   从 OpenCore 0.7.2 版本开始，早期的 APFS 驱动不会被加载（出于安全性考虑），这会导致低于 Big Sur 11.0 版本的系统无法启动，如果要启动 Catalina 或更早版本的系统，请修改配置文件 UEFI > APFS 下面的 MinDate 和 MinVersion 为`-1`，详情参考 [OC 0.7.2 版本](https://github.com/acidanthera/OpenCorePkg/releases/tag/0.7.2) 中的文档。
 #### 12. 为什么一定要定制 USB？
-   从 macOS Big Sur 11.3 正式版开始，macOS 会使 OC 解除 15 个 USB 端口的 XhciPortLimit Quirk 失效，会导致即使加载 USBInjectAll Kext 也无法全部正确加载超过 15 个的 USB 端口，可自行搜索 USB 定制教程或参考 [进阶使用](#进阶使用) \ [OpenCore Post Install](https://dortania.github.io/OpenCore-Post-Install/usb/) \ [黑苹果星球](https://heipg.cn/tutorial/customize-usb-port-windows.html)（包含 Windows 版，需付费查看，无相关利益）中有关 USB 定制的教程。
+   从 macOS Big Sur 11.3.1 开始，macOS 会使 OC 解除 15 个 USB 端口的 XhciPortLimit Quirk 失效，导致即使加载 USBInjectAll Kext 也无法全部正确加载超过 15 个的 USB 端口，可自行搜索 USB 定制教程或参考 [进阶使用](#进阶使用) \ [OpenCore Post Install](https://dortania.github.io/OpenCore-Post-Install/usb/) \ [黑苹果星球](https://heipg.cn/tutorial/customize-usb-port-windows.html)（包含 Windows 版，需付费查看，无相关利益）中有关 USB 定制的教程。
 #### 13. 待更新
 
 ## 结语
