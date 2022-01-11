@@ -1,7 +1,7 @@
 # 微星 B360M 迫击炮（钛金版）黑苹果 OpenCore EFI
 
 ## EFI 介绍
-此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮（钛金版）的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，[OpenCore](https://github.com/acidanthera/OpenCorePkg) 版本：0.7.6<br>
+此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮（钛金版）的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，[OpenCore](https://github.com/acidanthera/OpenCorePkg) 版本：0.7.7<br>
 <br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/About.png)
 
@@ -25,13 +25,13 @@
 |               显卡 | 公版 RX 570 4GB（VBIOS 品牌为微星）             |
 |               硬盘 | 西部数据 SN750 500GB                          |
 |               内存 | 光威悍将 8GB DDR4 2666MHz x 2                 |
-|        无线 + 蓝牙 | 奋威 BCM94360CD（双频 1750M + 蓝牙 4.0）PCI-E 无线网卡  |
+|        无线 + 蓝牙 | 奋威 FV-T919 PCI-E 无线网卡（BCM94360CD 双频 1750M + 蓝牙 4.0） |
 |  机箱 + 电源 + 散热 | 乔思伯 U3 + 台达 NX450 + 利民 AS120 + ARCTIC F12 PWM |
 |             显示器 | 飞利浦 276E8VJSB（27 英寸 4K 分辨率）                 |
-|     摄像头 + 麦克风 | 双飞燕 PK-838G 带麦克风摄像头                       |
-|               音箱 | 漫步者 R19U 2.0 迷你音箱                           |
+|     摄像头 + 麦克风 | LOGITUBO 928 自动对焦带双降噪麦克风摄像头              |
+|               音箱 | 漫步者 R201T 北美版 2.1 桌面音箱                     |
 |               键盘 | iQunix F96 珊瑚海（有线茶轴 RGB 版）                 |
-|               鼠标 | 罗技 MX Anywhere 2（使用优联连接，以方便在 BIOS 中使用） |
+|               鼠标 | 罗技 MX Master 3（使用优联连接，以方便在 BIOS 中使用）  |
 
 ### 兼容的配置
 
@@ -39,7 +39,7 @@
 |-------------------:|:------------------------------------------------------------|
 |               主板 | 微星 B360M 迫击炮（钛金版）                                    |
 |             处理器 | 英特尔第 8 代、第 9 代酷睿处理器（推荐拥有核显的版本）                |
-|               显卡 | RX 560 / RX 570 / RX 580 / RX 590 / RX VEGA⁵⁶ / RX VEGA⁶⁴ / Radeon VII / RX 5500 / RX 5500 XT / RX 5600 / RX 5600 XT / RX 5700 / RX 5700 XT / RX 6600 / RX 6600 XT / RX 6800 / RX 6800 XT / RX 6900 XT                                        |
+|               显卡 | RX 560 / RX 570 / RX 580 / RX 590 / RX VEGA⁵⁶ / RX VEGA⁶⁴ / Radeon VII / RX 5500 / RX 5500 XT / RX 5600 / RX 5600 XT / RX 5700 / RX 5700 XT / RX 6600 / RX 6600 XT / RX 6800 / RX 6800 XT / RX 6900 XT                                 |
 |               硬盘 | 除了几个特例（如三星 PM981 / PM991），基本都可以                    |
 |               内存 | 除了非常差的，基本都可以                                        |
 |        无线 + 蓝牙 | 黑苹果免驱版无线 + 蓝牙 PCI-E 网卡都可以                          |
@@ -49,17 +49,25 @@
 |  键盘 + 鼠标 + 音箱 | 根据个人喜好选择                                                |
 |           其它外设 | 根据个人喜好选配                                               |
 
-*Tips 1：选购 RX 500 系列显卡优先选择蓝宝石品牌，其次选择迪兰恒进、华硕和微星，尽量不选择盈通和讯景，一定避开 RX 580 2048SP 版本！*<br>
+*Tips 1：如果选购 RX 500 系列显卡优先选择蓝宝石品牌，其次选择迪兰恒进、华硕和微星，尽量不选择盈通和讯景，一定避开 RX 580 2048SP 版本！*<br>
 *Tips 2：推荐选购 RX 5000 系列和 RX 6000 系列新显卡，蓝宝石在 RX 6000 系列比较缩水，不建议优先选择，一定避开 RX 6700 XT。使用 RX 6800 / RX 6800 XT / RX 6900 XT 显卡要求 macOS 最低系统版本为 Big Sur 11.4 beta 1，使用 RX 6600 / RX 6600 XT 显卡要求 macOS 最低系统版本为 Monterey 12.1 beta 1。*<br>
-*Tips 3：选购硬盘建议避开三星，特别是 macOS Monterey 会因为 TRIM 的原因导致开机时间变长（970 EVO 几乎全军覆没，980 PRO 看人品）。推荐选择西数 SN850 / SN750、英特尔 760P 等比较稳定的硬盘。*<br>
+*Tips 3：选购硬盘建议避开三星，特别是 macOS Monterey 会因为 TRIM 的原因导致开机时间变长（970 EVO 几乎全军覆没，980 PRO 听天由命）。推荐选择西数 SN850 / SN750、英特尔 760P 等比较稳定的硬盘。*<br>
 
 ## 更新记录
+#### 2022.01.11
+* 更新 OpenCore 至 0.7.7 正式版
+* 更新 Lilu \ AppleALC \ WhateverGreen Kexts 至官方最新版，移除 USBPower Kext
+* 更新 OpenRuntime \ OpenCanopy \ OpenHfsPlus 驱动
+* 整理 SSDT 为更主流的搭配，添加 SSDT-EC-USBX，更新 SSDT-PLUG，移除 SSDT-PM 合并至 SSDT-PLUG
+
+*OC 0.7.7 正式版的配置文件新增和调整了一些条目，建议按照使用习惯重新配置。支持 macOS 12.2，正式版发布后可直接升级。*
+
 #### 2021.12.09
 * 更新 OpenCore 至 0.7.6 正式版
 * 更新 Lilu \ AppleALC \ VitualSMC Kexts 至官方最新版，更新 USBInjectAll Kext 为更新的修改版
 * 更新 OpenRuntime \ OpenCanopy 驱动
 
-*OC 0.7.6 正式版的配置文件新增和调整了一些条目，建议按照使用习惯重新配置。此版本开始默认将自动检测 HiDPI，一般无需手动设置，但可能需要先清理一次 NVRAM（如果更新后遇到开机时显示不正常的情况）；同步 OC 官方默认隐藏引导选择界面中的辅助工具，按空格键显示；支持 macOS 12.1，正式版发布后可直接升级。*
+*OC 0.7.6 正式版的配置文件新增和调整了一些条目，建议按照使用习惯重新配置。此版本开始默认将自动检测 HiDPI，一般无需手动设置，但可能需要重置一次 NVRAM（如果更新后遇到开机进度条显示不正常的情况）；同步 OC 官方默认隐藏引导选择界面中的辅助工具，按空格键显示；支持 macOS 12.1，正式版发布后可直接升级。*
 
 
 #### 2021.11.10
@@ -281,8 +289,6 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
 *因 iMacPro1,1 机型不支持 HWP 变频，也可直接删除这两个条目和相关 kext 文件。*
 3. 删除`/EFI/OC/config.plist`文件 DeviceProperties > Add > PciRoot(0x0)/Pci(0x2,0x0) 下 AAPL,ig-platform-id 这一行参数（如下图）。<br> 
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_DeviceProperties.png)
-4. 右键点击`/EFI/OC/Kexts/USBPower.kext`文件——显示包内容，进入`Contents`文件夹，打开`Info.plist`文件，将机型修改为`iMacPro1,1`（如下图）。<br>
-![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_USBPower_Info.png)
 <br>
 保存后，先通过 USB 测试引导，无问题后将 EFI 文件夹放置到启动磁盘 EFI 分区，重启电脑。
 
@@ -293,12 +299,11 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
 *Macmini8,1 机型支持 HWP 变频，对于非 9600K 处理器可稍后自行定制 HWP 变频文件。*
 3. 修改`/EFI/OC/config.plist`文件 DeviceProperties > Add > PciRoot(0x0)/Pci(0x2,0x0) 下 AAPL,ig-platform-id 参数为`07009b3e`，并新增 framebuffer-unifiedmem 参数为`00000080`（如下图）。<br> 
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_DeviceProperties_I.png)
-4. 右键点击`/EFI/OC/Kexts/USBPower.kext`文件——显示包内容，进入`Contents`文件夹，打开`Info.plist`文件，将机型修改为`Macmini8,1`。
 <br>
 保存后，先通过 USB 测试引导，无问题后将 EFI 文件夹放置到启动磁盘 EFI 分区，重启电脑。
 
 ### 对于 RX 5000 \ RX 6000 系列显卡
-目前 RX 5000 系列 Navi 10 核心显卡、RX 6000 系列 Navi 21 核心显卡和 RX 6000 系列 Navi 23 核心显卡均应该手动添加`agdpmod=pikera`启动参数来防止开机黑屏，请耐心等待 WhateverGreen 更新。
+目前 RX 5000 系列 Navi 10 核心显卡、RX 6000 系列 Navi 21 核心显卡和 RX 6000 系列 Navi 23 核心显卡均应该手动添加`agdpmod=pikera`启动参数来防止开机黑屏，目前暂无其他解决方法。
 
 ### ~~模拟 NVRAM~~（不再需要）
 ~~无论是直接使用还是修改使用，都建议参考 [xjn 博客](https://blog.xjn819.com/?p=543) 的完善部分「3.1 模拟 NVRAM」，进行模拟 NVRAM 的操作。~~
@@ -372,7 +377,7 @@ defaults write com.apple.AppleGVA gvaForceAMDHEVCDecode -bool YES
 [黑苹果星球](https://heipg.cn)
 
 ## 链接
-OpenCorePkg [官方版本](https://github.com/acidanthera/OpenCorePkg/releases) [自动编译](https://github.com/hjp521/OpenCore-Factory/releases) / [MacInfoPkg](https://github.com/acidanthera/MacInfoPkg/releases) / [Lilu](https://github.com/acidanthera/Lilu/releases) / [AppleALC](https://github.com/acidanthera/AppleALC/releases) / [WhateverGreen](https://github.com/acidanthera/WhateverGreen/releases) / [IntelMausi](https://github.com/acidanthera/IntelMausi/releases) / [VirtualSMC](https://github.com/acidanthera/VirtualSMC/releases) / [CPUFriend](https://github.com/acidanthera/CPUFriend/releases) / [NVMeFix](https://github.com/acidanthera/NVMeFix/releases) / [OcBinaryData](https://github.com/acidanthera/OcBinaryData) / [MaciASL](https://github.com/acidanthera/MaciASL/releases) / [ProperTree](https://github.com/corpnewt/ProperTree) / [Hackintool](https://github.com/headkaze/Hackintool/releases) / [HWMonitorSMC2](https://github.com/CloverHackyColor/HWMonitorSMC2/releases)
+OpenCorePkg [官方版本](https://github.com/acidanthera/OpenCorePkg/releases) [自动编译](https://github.com/hjp521/OpenCore-Factory/releases) / [Lilu](https://github.com/acidanthera/Lilu/releases) / [AppleALC](https://github.com/acidanthera/AppleALC/releases) / [WhateverGreen](https://github.com/acidanthera/WhateverGreen/releases) / [IntelMausi](https://github.com/acidanthera/IntelMausi/releases) / [VirtualSMC](https://github.com/acidanthera/VirtualSMC/releases) / [CPUFriend](https://github.com/acidanthera/CPUFriend/releases) / [NVMeFix](https://github.com/acidanthera/NVMeFix/releases) / [OcBinaryData](https://github.com/acidanthera/OcBinaryData) / [MaciASL](https://github.com/acidanthera/MaciASL/releases) / [ProperTree](https://github.com/corpnewt/ProperTree) / [Hackintool](https://github.com/headkaze/Hackintool/releases) / [HWMonitorSMC2](https://github.com/CloverHackyColor/HWMonitorSMC2/releases)
 
 ## 写在最后
 **警告：使用此 EFI 非法获利的小站，请尽快停止违法行为，改为免费向用户提供并注明出处。**<br>
