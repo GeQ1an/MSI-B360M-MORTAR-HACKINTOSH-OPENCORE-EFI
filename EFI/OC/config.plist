@@ -53,7 +53,7 @@
 				<key>Count</key>
 				<integer>0</integer>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>Find</key>
 				<data>Cm0KBA==</data>
 				<key>Limit</key>
@@ -63,7 +63,7 @@
 				<key>OemTableId</key>
 				<data></data>
 				<key>Replace</key>
-				<data>CmkKAw==</data>
+				<data>Cm0KAw==</data>
 				<key>ReplaceMask</key>
 				<data></data>
 				<key>Skip</key>

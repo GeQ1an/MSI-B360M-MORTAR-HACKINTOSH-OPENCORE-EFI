@@ -54,6 +54,12 @@
 *Tips 3：选购硬盘建议避开三星，特别是 macOS Monterey 会因为 TRIM 的原因导致开机时间变长（970 EVO 几乎全军覆没，980 PRO 听天由命）。推荐选择西数 SN850 / SN750、英特尔 760P 等比较稳定的硬盘。*<br>
 
 ## 更新记录
+#### 2022.01.12
+* 关闭 ACPI > Patch > 0 用于修改 GPRW S4 级电源管理更改为 S3 级电源管理的补丁
+* 关闭 Kernel > Add > 10 & 11 用于开启 CPUFriend 的 Kexts
+
+*秉承 “能免则免、能简则简” 的原则，经反复测试，现在不需要再将 GPRW 降级为 S3 即可正常睡眠，于是将默认关闭这个补丁，如果更新后睡眠不正常（表现为睡眠即醒）请尝试重新打开这个补丁；默认关闭 CPUFriend，确保首次正常启动用户数最大化，有需要自行打开。*
+
 #### 2022.01.11
 * 更新 OpenCore 至 0.7.7 正式版
 * 更新 Lilu \ AppleALC \ WhateverGreen Kexts 至官方最新版，移除 USBPower Kext
@@ -269,35 +275,35 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
 
 ### 直接使用
 仅适合使用 9600K 处理器的用户！<br>
-下载整包后，如果之前在 Clover 时就使用`iMac19,1`机型，可直接使用之前的三码，或使用 [Clover Configurator](https://mackie100projects.altervista.org/download-clover-configurator/) （其他工具亦可）选择`iMac19,1`机型生成新的三码 + ROM，用 ProperTree 打开`/EFI/OC/config.plist`文件，填入到 PlatformInfo > Generic 位置中（如下图）。<br>
+下载整包后，如果之前在 Clover 时就使用`iMac19,1`机型，可直接使用之前的三码，或使用 [Hackintool](https://github.com/headkaze/Hackintool/releases) （其他工具亦可）选择`iMac19,1`机型生成新的三码 + ROM，用 ProperTree 打开`/EFI/OC/config.plist`配置文件，填入到 PlatformInfo > Generic 位置中（如下图）。<br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_PlatformInfo.png)<br>
 保存后，先通过 USB 测试引导，无问题后将 EFI 文件夹放置到启动磁盘 EFI 分区，重启电脑。
 
 ### 修改使用
 适合使用其他拥有核显处理器的用户。<br>
-1. 填入`iMac19,1`机型的三码 + ROM 信息到`/EFI/OC/config.plist`文件 PlatformInfo > Generic 处。
-2. 将`/EFI/OC/config.plist`文件 Kernel > Add > 10 和 11 中 Enabled 的`Ture`手动修改为`False`（如下图）。<br>
-*默认的是 9600K 专用的 HWP 变频文件，其他处理器不可启用！*<br>
+1. 填入`iMac19,1`机型的三码 + ROM 信息到`/EFI/OC/config.plist`配置文件 PlatformInfo > Generic 处。
+2. 将`/EFI/OC/config.plist`配置文件 Kernel > Add > 10 和 11 中 Enabled 的`Ture`手动修改为`False`（如下图）。<br>
+*附带的是本人按照个人习惯定制的 9600K HWP 变频文件，不建议其他处理器启用。*<br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_CPU.png)
 <br>
 保存后，先通过 USB 测试引导，无问题后将 EFI 文件夹放置到启动磁盘 EFI 分区，重启电脑。
 
 ### 无核显使用
 适合使用无核显处理器的用户。<br>
-1. 填入`iMacPro1,1`机型的三码 + ROM 信息到`/EFI/OC/config.plist`文件 PlatformInfo > Generic 处，并将机型修改为`iMacPro1,1`。
-2. 将`/EFI/OC/config.plist`文件 Kernel > Add > 10 和 11 中 Enabled 的`Ture`手动修改为`False`。<br>
+1. 填入`iMacPro1,1`机型的三码 + ROM 信息到`/EFI/OC/config.plist`配置文件 PlatformInfo > Generic 处，并将机型修改为`iMacPro1,1`。
+2. 将`/EFI/OC/config.plist`配置文件 Kernel > Add > 10 和 11 中 Enabled 的`Ture`手动修改为`False`。<br>
 *因 iMacPro1,1 机型不支持 HWP 变频，也可直接删除这两个条目和相关 kext 文件。*
-3. 删除`/EFI/OC/config.plist`文件 DeviceProperties > Add > PciRoot(0x0)/Pci(0x2,0x0) 下 AAPL,ig-platform-id 这一行参数（如下图）。<br> 
+3. 删除`/EFI/OC/config.plist`配置文件 DeviceProperties > Add > PciRoot(0x0)/Pci(0x2,0x0) 下 AAPL,ig-platform-id 这一行参数（如下图）。<br> 
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_DeviceProperties.png)
 <br>
 保存后，先通过 USB 测试引导，无问题后将 EFI 文件夹放置到启动磁盘 EFI 分区，重启电脑。
 
 ### 无独显使用
 适合无独显、只使用核显的用户。<br>
-1. 填入`Macmini8,1`机型的三码 + ROM 信息到`/EFI/OC/config.plist`文件 PlatformInfo > Generic 处，并将机型修改为`Macmini8,1`。<br>
-2. 使用非 9600K 处理器，将`/EFI/OC/config.plist`文件 Kernel > Add > 10 和 11 中 Enabled 的`Ture`手动修改为`False`。<br>
+1. 填入`Macmini8,1`机型的三码 + ROM 信息到`/EFI/OC/config.plist`配置文件 PlatformInfo > Generic 处，并将机型修改为`Macmini8,1`。<br>
+2. 使用非 9600K 处理器，将`/EFI/OC/config.plist`配置文件 Kernel > Add > 10 和 11 中 Enabled 的`Ture`手动修改为`False`。<br>
 *Macmini8,1 机型支持 HWP 变频，对于非 9600K 处理器可稍后自行定制 HWP 变频文件。*
-3. 修改`/EFI/OC/config.plist`文件 DeviceProperties > Add > PciRoot(0x0)/Pci(0x2,0x0) 下 AAPL,ig-platform-id 参数为`07009b3e`，并新增 framebuffer-unifiedmem 参数为`00000080`（如下图）。<br> 
+3. 修改`/EFI/OC/config.plist`配置文件 DeviceProperties > Add > PciRoot(0x0)/Pci(0x2,0x0) 下 AAPL,ig-platform-id 参数为`07009b3e`，并新增 framebuffer-unifiedmem 参数为`00000080`（如下图）。<br> 
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_DeviceProperties_I.png)
 <br>
 保存后，先通过 USB 测试引导，无问题后将 EFI 文件夹放置到启动磁盘 EFI 分区，重启电脑。
