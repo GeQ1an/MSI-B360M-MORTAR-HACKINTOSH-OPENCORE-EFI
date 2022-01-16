@@ -319,7 +319,7 @@
 				<key>BundlePath</key>
 				<string>USBInjectAll.kext</string>
 				<key>Comment</key>
-				<string>Load all USB ports</string>
+				<string>Inject all USB ports</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>

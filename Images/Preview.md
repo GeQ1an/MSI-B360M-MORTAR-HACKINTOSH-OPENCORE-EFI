@@ -32,7 +32,7 @@
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/iMessage.png)
 
 ### FaceTime
-![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/FaceTime.png)
+![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/FaceTime.png)<br>
 *使用 Mac 通过 iPhone 接打电话*
 
 ### App Store
@@ -42,7 +42,7 @@
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/Apple_Music.png)
 
 ### Apple TV Plus
-![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/Apple_TV_Plus.png)
+![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/Apple_TV_Plus.png)<br>
 *因 DRM 版权保护，截图时视频画面变为纯黑*
 
 ### VideoProc
