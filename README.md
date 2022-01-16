@@ -1,10 +1,10 @@
-# 微星 B360M 迫击炮（钛金版）黑苹果 OpenCore EFI
+# 微星 B360M 迫击炮 (钛金版) 黑苹果 OpenCore EFI
 
 ## EFI 介绍
 
 <img src="Images/Readme/Image.png" align="right" width="360" />
 
-此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮（钛金版）的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，[OpenCore](https://github.com/acidanthera/OpenCorePkg) 版本：0.7.7
+此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮 (钛金版) 的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，[OpenCore](https://github.com/acidanthera/OpenCorePkg) 版本：0.7.7
 
 > 注意：此 EFI 只是个人的构建分享，并标注了简单的使用提示，不是标准的 OpenCore 黑苹果安装指南，如果你需要标准安装指南请跳转至 [Dortania's Getting Started](https://dortania.github.io/getting-started/) 查看。在首次安装或更新硬件后启动黑苹果可能会遇到一些问题，虽然大部分问题都可以解决，但事实上确实存在部分没办法解决的问题，甚至可以说有一定的运气成分在里面，如果你要应用此 EFI 建议使用接近我的配置，才能尽可能地拥有相同的使用体验。
 
@@ -41,19 +41,19 @@
 
 ### 兼容的配置
 
-|                 硬件 | 型号                                                                                        | 
-|--------------------:|:-------------------------------------------------------------------------------------------|
-|                 主板 | 微星 B360M 迫击炮 (钛金版)                                                                    |
-|               处理器 | 英特尔第 8 代、第 9 代酷睿处理器 (推荐拥有核显的版本)                                               |
-|                 显卡 | RX 500 系列 (560D 以上) / RX VEGA 系列 / Radeon VII / RX 5000 系列 / RX 6000 系列 (除 6700 XT)  |
-|                 硬盘 | 除了几个特例 (如三星 PM981 / PM991)，基本都可以                                                  |
-|                 内存 | 除了非常差的，基本都可以                                                                        |
-|           无线 + 蓝牙 | 黑苹果免驱版无线 + 蓝牙 PCI-E 网卡都可以                                                         |
-|       摄像头 + 麦克风 | macOS 免驱版都可以                                                                            |
-|    机箱 + 电源 + 风扇 | 根据个人喜好和 CPU、显卡的功率来决定                                                              |
-|               显示器 | 根据个人喜好选择 (推荐 4K 及以上分辨率)                                                           |
-|    键盘 + 鼠标 + 音箱 | 根据个人喜好选择                                                                               |
-|             其它外设 | 根据个人喜好选配 (注意 macOS 兼容性)                                                             |
+|                 硬件 | 型号                                                                                                     | 
+|--------------------:|:--------------------------------------------------------------------------------------------------------|
+|                 主板 | 微星 B360M 迫击炮 (钛金版)                                                                                 |
+|               处理器 | 英特尔第 8 代、第 9 代酷睿处理器 (推荐拥有核显的版本)                                                            |
+|                 显卡 | RX 400 系列 / RX 500 系列 (560 以上) / RX VEGA 系列 / Radeon VII / RX 5000 系列 / RX 6000 系列 (除 6700 XT)  |
+|                 硬盘 | 除了几个特例 (如三星 PM981 / PM991)，基本都可以                                                               |
+|                 内存 | 除了非常差的，基本都可以                                                                                     |
+|           无线 + 蓝牙 | 黑苹果免驱版无线 + 蓝牙 PCI-E 网卡都可以                                                                      |
+|       摄像头 + 麦克风 | macOS 免驱版都可以                                                                                         |
+|    机箱 + 电源 + 风扇 | 根据个人喜好和 CPU、显卡的功率来决定                                                                           |
+|               显示器 | 根据个人喜好选择 (推荐 4K 及以上分辨率)                                                                        |
+|    键盘 + 鼠标 + 音箱 | 根据个人喜好选择                                                                                            |
+|             其它外设 | 根据个人喜好选配 (注意 macOS 兼容性)                                                                          |
 
 *Tips 1：如果选购 RX 500 系列显卡优先选择蓝宝石品牌，其次选择迪兰恒进、华硕和微星，尽量不选择盈通和讯景，一定避开 RX 580 2048SP 版本！*<br>
 *Tips 2：推荐选购 RX 5000 系列和 RX 6000 系列新显卡，蓝宝石在 RX 6000 系列比较缩水，不建议优先选择，一定避开 RX 6700 XT。使用 RX 6800 / RX 6800 XT / RX 6900 XT 显卡要求 macOS 最低系统版本为 Big Sur 11.4 beta 1，使用 RX 6600 / RX 6600 XT 显卡要求 macOS 最低系统版本为 Monterey 12.1 beta 1。*<br>
@@ -219,10 +219,10 @@
 * 更新支持读写硬件 NVRAM，不再需要模拟 NVRAM
 
 *如之前进行过模拟 NVRAM 操作，请在`终端`执行下面两条命令后，删除`/EFI/nvram.plist`文件。*<br>
-````
+```
 sudo rm -rf $(sudo defaults read com.apple.loginwindow LogoutHook) //删除 LogoutHook
 sudo defaults delete com.apple.loginwindow LogoutHook  //清空 LogoutHook 的触发设置
-````
+```
 
 #### 2020.01.14
 * 更新 OpenCore 至 0.5.4 正式版
@@ -269,19 +269,21 @@ OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配�
   - 高级
     - PCI子系统设置
       - Above 4G memory/Crypto Currency mining [**允许**]
-    - 内建显示配置
-      - 设置第一显卡 [**PEG**] *(仅同时拥有核显及独显需要手动设置)*
-      - 集显共享内存 [**64M**] *(如果使用拥有核显的处理器)*
-      - 集成显卡多显示器 [**允许**] *(如果使用拥有核显的处理器)*
     - ACPI设置
       - 电源 LED 灯 [**双色**] *(如果选择 [闪烁]，睡眠时电源灯将不断闪烁)*
     - 整合周边设备
       - SATA设置
         - SATA模式 [**AHCI模式**] *(如果选择 Optane 模式将无法识别 SATA 硬盘)*
+    - 内建显示配置
+      - 设置第一显卡 [**PEG**] *(仅同时拥有核显及独显需要手动设置)*
+      - 集显共享内存 [**64M**] *(如果使用拥有核显的处理器)*
+      - 集成显卡多显示器 [**允许**] *(如果使用拥有核显的处理器)*
     - USB设置
       - XHCI Hand-off [**允许**]
       - 传统USB支持 [**允许**]
-    - 电源管理设置\ErP Ready [**允许**]
+    - 电源管理设置
+      - ErP Ready [**允许**]
+      - USB Standby Power at S4/S5 [**允许**]
     - Windows操作系统的配置
       - Windows 10 WHQL支持 [**允许**] *(开启为「纯」UEFI 模式，否则为「兼容」UEFI 模式，推荐设置为允许)*
       - MSI 快速开机 [**禁止**]
@@ -305,7 +307,7 @@ OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配�
 </details>
 
 ### 直接使用
-适合**同时使用核显+独显**的用户。<br>
+适合**同时使用核显 + 独显**的用户。<br>
 下载整包后，如果之前在 Clover 时就使用`iMac19,1`机型，可直接使用之前的三码，或使用 [Hackintool](https://github.com/headkaze/Hackintool/releases) （其他工具亦可）选择`iMac19,1`机型生成新的三码 + ROM，用 ProperTree 打开`/EFI/OC/config.plist`配置文件，填入到 PlatformInfo > Generic 位置中（如下图）。<br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_PlatformInfo.png)
 <br>
@@ -333,7 +335,8 @@ OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配�
 ### 进阶使用
 1. 参考 [黑果小兵博客](https://blog.daliansky.net/Intel-FB-Patcher-USB-Custom-Video.html) 生成`USBPorts.kext`USB 定制文件，放入`/EFI/OC/Kexts/`替换同名文件，打开`/EFI/OC/config.plist`，关闭 Kernel > Add > 7，打开 8。<br>
    ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_USB.png)
-   *目录内有我的 USB 定制文件，可在备份好自己 EFI 的情况下尝试使用。SMBIOS 为 iMac19,1，其他机型需自行打开 USBPorts.kext/Contents/Info.plist 修改 (共两处)，具体端口定制情况如下：*<br>
+   *目录内有我的 USB 定制文件，可在备份好自己 EFI 的情况下尝试使用。SMBIOS 为 iMac19,1，若你使用其他机型需自行打开 USBPorts.kext/Contents/Info.plist 修改 IOKitPersonalities > iMac19,1-XHC 和 model 子参数中的 iMac19,1 为你的机型 (两个 iMac19,1 字符都需要修改)；若你需要取消 HS07 内建，打开 Info.plist 修改 IOKitPersonalities > iMac19,1-XHC > IOProviderMergeProperties > ports > HS07 > UsbConnector 参数为 0 即可。端口具体定制情况如下：*<br>
+   
    <details><summary>点击展开查看</summary>
    
    ```
