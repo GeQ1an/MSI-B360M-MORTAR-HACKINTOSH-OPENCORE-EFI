@@ -54,11 +54,16 @@
 *Tips 3：选购硬盘建议避开三星，特别是 macOS Monterey 会因为 TRIM 的原因导致开机时间变长（970 EVO 几乎全军覆没，980 PRO 听天由命）。推荐选择西数 SN850 / SN750、英特尔 760P 等比较稳定的硬盘。*<br>
 
 ## 更新记录
+#### 2022.01.17
+* 调整配置文件部分选项
+
+*具体调整为：关闭 Booter > Quirks > EnableWriteUnprotector & ProtectUefiServices，开启 RebuildAppleMemoryMap & SyncRuntimePermissions (理论上兼容性更好，避免部分版本 BIOS 启动问题)；关闭 Misc > Security > BlacklistAppleUpdate (已在 OC 0.7.0 版本中调整为 NVRAM 注入参数)；关闭 UEFI > Output > SanitiseClearScreen (BuiltinGraphics 渲染方式下该选项不生效)。此次调整为增强兼容性、关闭不必要的选项，之前的设置不会影响使用，如无特殊需求，可等到下次 OC 更新时再更新。*
+
 #### 2022.01.12
-* 关闭 ACPI > Patch > 0 用于修改 GPRW S4 级电源管理更改为 S3 级电源管理的补丁
+* 关闭 ACPI > Patch > 0 用于修改 GPRW 电源管理 S4 级为 S3 级的补丁
 * 关闭 Kernel > Add > 10 & 11 用于开启 CPUFriend 的 Kexts
 
-*秉承 “能免则免、能简则简” 的原则，经反复测试，现在不需要再将 GPRW 降级为 S3 即可正常睡眠，于是将默认关闭这个补丁，如果更新后睡眠不正常（表现为睡眠即醒）请尝试重新打开这个补丁；默认关闭 CPUFriend，确保首次正常启动用户数最大化，有需要自行打开。*
+*秉承 “能免则免、能简则简” 的原则，经反复测试，现在不需要再将 GPRW 降级为 S3 即可正常睡眠，于是默认关闭这个补丁，如果更新后睡眠不正常（表现为睡眠即醒）请尝试重新打开这个补丁；默认关闭 CPUFriend，以方便基础用户使用，有需要自行定制后打开即可。*
 
 #### 2022.01.11
 * 更新 OpenCore 至 0.7.7 正式版
@@ -68,6 +73,8 @@
 
 *OC 0.7.7 正式版的配置文件新增和调整了一些条目，建议按照使用习惯重新配置。支持 macOS 12.2，正式版发布后可直接升级。*
 
+<details><summary>2021 年更新记录</summary>
+
 #### 2021.12.09
 * 更新 OpenCore 至 0.7.6 正式版
 * 更新 Lilu \ AppleALC \ VitualSMC Kexts 至官方最新版，更新 USBInjectAll Kext 为更新的修改版
@@ -75,17 +82,15 @@
 
 *OC 0.7.6 正式版的配置文件新增和调整了一些条目，建议按照使用习惯重新配置。此版本开始默认将自动检测 HiDPI，一般无需手动设置，但可能需要重置一次 NVRAM（如果更新后遇到开机进度条显示不正常的情况）；同步 OC 官方默认隐藏引导选择界面中的辅助工具，按空格键显示；支持 macOS 12.1，正式版发布后可直接升级。*
 
-
 #### 2021.11.10
 * 更新 OpenCore 至 0.7.5 正式版
 * 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC Kexts 至官方最新版
 * 更新 OpenRuntime \ OpenCanopy \ OpenHfsPlus 驱动
-* 修改配置文件 Misc > Security > DmgLoading 参数为`Signed`\ Misc > Security > SecureBootModel 参数为`Default`（详见 [Q&A 条目 10](#10-为什么要开启安全启动和-sip)）；修改配置文件 NVRAM > Add > 7C436110-XXXX > csr-active-config 参数为`00000000`\ Misc > Security > AllowToggleSip 参数为 `True/Yes`（详见 [Q&A 条目 10](#10-为什么要开启安全启动和-sip)）；修改配置文件 Misc > Boot > TakeoffDelay 参数为`5000`（单位：毫秒）以提高兼容性
+* 修改配置文件 Misc > Security > DmgLoading 参数为`Signed`\ Misc > Security > SecureBootModel 参数为`Default`（详见 [Q&A 条目 9](#9-为什么要开启安全启动和-sip)）；修改配置文件 NVRAM > Add > 7C436110-XXXX > csr-active-config 参数为`00000000`\ Misc > Security > AllowToggleSip 参数为 `True/Yes`（详见 [Q&A 条目 9](#9-为什么要开启安全启动和-sip)）；修改配置文件 Misc > Boot > TakeoffDelay 参数为`5000`（单位：毫秒）以提高兼容性
 
-**注意事项**：1. 如果你仍在使用 **macOS Catalina 10.15 或更早版本**系统，需要**修改 OC 配置文件** UEFI > APFS 下的 **MinData** 和 **MinVersion** 参数为`-1`（详见 [Q&A 条目 11](#11-为什么使用-catalina-需要额外修改配置)）；2. 更新或安装 **macOS Big Sur 11.3.1 及以后版本**，请提前**定制 USB 并启用**（详见 [Q&A 条目 12](#12-为什么一定要定制-usb)）。<br>
+**注意事项**：1. 如果你仍在使用 **macOS Catalina 10.15 或更早版本**系统，需要**修改 OC 配置文件** UEFI > APFS 下的 **MinData** 和 **MinVersion** 参数为`-1`（详见 [Q&A 条目 10](#10-为什么使用-catalina-需要额外修改配置)）；2. 更新或安装 **macOS Big Sur 11.3.1 及以后版本**，请提前**定制 USB 并启用**（详见 [Q&A 条目 11](#11-为什么一定要定制-usb)）。<br>
 <br>
 *OC 0.7.5 正式版的配置文件新增和删除了若干条目，此次配置文件改动较大，建议按照使用习惯重新配置。支持 macOS 12.1，正式版发布后可直接升级（因近几个月事务繁多，直到今天才得以更新，向所有用户道一声抱歉）。*
-
 
 #### ~~2021.07.12~~
 * ~~更新 OpenCore 至 0.7.1 正式版~~
@@ -96,7 +101,6 @@
 
 *~~OC 0.7.1 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。此版本开始默认启用启动主题，如需关闭可将 OC 配置文件 Misc > Boot > PickerMode 的`External`修改为`Builtin`；支持 macOS 11.5，正式版发布后可直接升级（因近几个月事务繁多，直到今天才得以更新，向所有用户道一声抱歉）。~~ 因网络问题，此更新一直未得以上传。*
 
-
 #### 2021.02.08
 * 更新 OpenCore 至 0.6.6 正式版
 * 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC Kexts 至官方最新版
@@ -104,7 +108,7 @@
 * 更新`/EFI/OC/Resources`启动主题相关文件
 * 移除`/EFI/OC/Bootstrap/Bootstrap.efi`OC 引导稳定性帮助文件
 
-*OC 0.6.6 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。支持 macOS 11.2，可直接升级。有关启动项高优先级的使用方法有所改变，详见 [Q&A 条目 8](#8-如何使用-oc-的启动项高优先级功能)。*
+*OC 0.6.6 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。支持 macOS 11.2，可直接升级。有关启动项高优先级的使用方法有所改变，详见 [Q&A 条目 7](#7-如何使用-oc-的启动项高优先级功能)。*
 
 #### 2021.01.16
 * 更新 OpenCore 至 0.6.5 正式版
@@ -113,6 +117,10 @@
 * 更新`/EFI/OC/Resources`启动主题相关文件
 
 *OC 0.6.5 正式版的配置文件仅新增了 Misc > Boot > PickerVariant 和 UEFI > Audio > SetupDelay 两个条目、删除 UEFI > Quirks > DeduplicateBootOrder 一个条目，同时对若干条目进行排序（使用无差别），建议直接手动更新。*
+
+</details>
+
+<details><summary>2020 年更新记录</summary>
 
 #### 2020.12.18
 * 更新 OpenCore 至 0.6.4 正式版
@@ -223,6 +231,10 @@ sudo defaults delete com.apple.loginwindow LogoutHook  //清空 LogoutHook 的�
 *不开启小憩的目的是睡眠后不被自动唤醒，开启 OC 的「禁用 RTC 唤醒计划」补丁后，打开小憩功能可以正常进入睡眠，且不会被自动唤醒，间接达到「不开启小憩进入睡眠」的状态，如不需要可以手动关闭该补丁（感谢 [ArchFeh](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/5) 针对文案的提醒）。*<br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_Patch.png)
 
+</details>
+
+<details><summary>2019 年更新记录</summary>
+
 #### 2019.12.29
 * 更新 WhateverGreen.kext 至 1.3.6 最新编译版
 * 修复「不开启小憩无法进入睡眠」的问题（理论上不该存在问题）
@@ -237,63 +249,55 @@ sudo defaults delete com.apple.loginwindow LogoutHook  //清空 LogoutHook 的�
 #### 2019.12.19
 * 经过三天的测试后，上传第一版
 
+</details>
+
 ## 使用 EFI
 准备 [ProperTree](https://github.com/corpnewt/ProperTree) ([下载](https://github.com/GeQ1an/Personal/raw/master/Hackintosh/ProperTree.zip)) 或 [PlistEdit Pro](https://www.fatcatsoftware.com/plisteditpro/) 编辑配置文件，尽量避免使用其他编辑器。<br>
 OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配置好的基础版本，之后再通过 [xjn 博客](https://blog.xjn819.com/?p=543) 和 [黑果小兵博客](https://blog.daliansky.net/OpenCore-BootLoader.html) 学习更多内容进行修改。
 
 ### BIOS 设置
-*请先确定正在使用的 BIOS 版本，[迫击炮](https://cn.msi.com/Motherboard/support/B360M-MORTAR) 7B23v16 以上，[迫击炮钛金版](https://cn.msi.com/Motherboard/support/B360M-MORTAR-TITANIUM) 7B23vA6 以上，否则请参考官方文档升级 BIOS 至最新版本（v19 & vA9 版本可用）。*<br>
+*请先确定正在使用的 BIOS 版本，[迫击炮](https://cn.msi.com/Motherboard/support/B360M-MORTAR) 7B23v16 以上，[迫击炮钛金版](https://cn.msi.com/Motherboard/support/B360M-MORTAR-TITANIUM) 7B23vA6 以上，否则请参考官方文档升级 BIOS 至最新版本（v19 & vA9 版本测试可用）。*<br>
 <br>
-SETTINGS\高级\PCI子系统设置\Above 4G memory/Crypto Currency mining [允许]<br>
+SETTINGS\高级\PCI子系统设置\Above 4G memory/Crypto Currency mining [**允许**]<br>
 <br>
-SETTINGS\高级\内建显示配置\设置第一显卡 [PEG]*（仅同时拥有核显及独显需要手动设置）*<br>
-SETTINGS\高级\内建显示配置\集显共享内存 [64M]*（如果使用拥有核显的处理器）*<br>
-SETTINGS\高级\内建显示配置\集成显卡多显示器 [允许]*（如果使用拥有核显的处理器）*<br>
+SETTINGS\高级\内建显示配置\设置第一显卡 [**PEG**]*（仅同时拥有核显及独显需要手动设置）*<br>
+SETTINGS\高级\内建显示配置\集显共享内存 [**64M**]*（如果使用拥有核显的处理器）*<br>
+SETTINGS\高级\内建显示配置\集成显卡多显示器 [**允许**]*（如果使用拥有核显的处理器）*<br>
 <br>
-SETTINGS\高级\ACPI设置\电源 LED 灯 [双色]*（如果选择 [闪烁]，睡眠时电源灯将不断闪烁）*<br>
+SETTINGS\高级\ACPI设置\电源 LED 灯 [**双色**]*（如果选择 [闪烁]，睡眠时电源灯将不断闪烁）*<br>
 <br>
-SETTINGS\高级\整合周边设备\SATA设置\SATA模式 [AHCI模式]*（如果选择 Optane 模式将无法识别 SATA 硬盘）*<br>
+SETTINGS\高级\整合周边设备\SATA设置\SATA模式 [**AHCI模式**]*（如果选择 Optane 模式将无法识别 SATA 硬盘）*<br>
 <br>
-SETTINGS\高级\USB设置\XHCI Hand-off [允许]<br>
-SETTINGS\高级\USB设置\传统USB支持 [允许]<br>
+SETTINGS\高级\USB设置\XHCI Hand-off [**允许**]<br>
+SETTINGS\高级\USB设置\传统USB支持 [**允许**]<br>
 <br>
-SETTINGS\高级\电源管理设置\ErP Ready [允许]<br>
+SETTINGS\高级\电源管理设置\ErP Ready [**允许**]<br>
 <br>
-SETTINGS\高级\Windows操作系统的配置\Windows 10 WHQL支持 [允许]*（开启为「纯」UEFI 模式，否则为「兼容」UEFI 模式，推荐设置为允许）*<br>
-SETTINGS\高级\Windows操作系统的配置\MSI 快速开机 [禁止]<br>
-SETTINGS\高级\Windows操作系统的配置\快速开机 [禁止]<br>
+SETTINGS\高级\Windows操作系统的配置\Windows 10 WHQL支持 [**允许**]*（开启为「纯」UEFI 模式，否则为「兼容」UEFI 模式，推荐设置为允许）*<br>
+SETTINGS\高级\Windows操作系统的配置\MSI 快速开机 [**禁止**]<br>
+SETTINGS\高级\Windows操作系统的配置\快速开机 [**禁止**]<br>
 <br>
-SETTINGS\高级\唤醒事件设置\唤醒事件管理 [BIOS]<br>
-SETTINGS\高级\唤醒事件设置\USB设备从S3/S4/S5唤醒 [允许]<br>
+SETTINGS\高级\唤醒事件设置\唤醒事件管理 [**BIOS**]<br>
+SETTINGS\高级\唤醒事件设置\USB设备从S3/S4/S5唤醒 [**允许**]<br>
 <br>
-SETTINGS\启动\启动NumLock状态 [关]*（macOS 默认可使用数字键盘，只有 macOS 的话推荐关闭）*<br>
-SETTINGS\启动\启动模式选择 [UEFI]<br>
+SETTINGS\启动\启动NumLock状态 [**关**]*（macOS 默认可使用数字键盘，只有 macOS 的话推荐关闭）*<br>
+SETTINGS\启动\启动模式选择 [**UEFI**]<br>
 <br>
-OC(Overclocking)\CPU 特征\Intel 虚拟化技术 [允许]*（必须）*<br>
-OC(Overclocking)\CPU 特征\Intel VT-D 技术 [禁止]*（必须）*<br>
-OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
+OC(Overclocking)\CPU 特征\Intel 虚拟化技术 [**允许**]*（必须）*<br>
+OC(Overclocking)\CPU 特征\Intel VT-D 技术 [**禁止**]*（必须）*<br>
+OC(Overclocking)\CPU 特征\CFG锁定 [**禁止**]*（必须）*<br>
 
 ### 直接使用
-仅适合使用 9600K 处理器的用户！<br>
+适合使用拥有核显处理器的用户。<br>
 下载整包后，如果之前在 Clover 时就使用`iMac19,1`机型，可直接使用之前的三码，或使用 [Hackintool](https://github.com/headkaze/Hackintool/releases) （其他工具亦可）选择`iMac19,1`机型生成新的三码 + ROM，用 ProperTree 打开`/EFI/OC/config.plist`配置文件，填入到 PlatformInfo > Generic 位置中（如下图）。<br>
-![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_PlatformInfo.png)<br>
-保存后，先通过 USB 测试引导，无问题后将 EFI 文件夹放置到启动磁盘 EFI 分区，重启电脑。
-
-### 修改使用
-适合使用其他拥有核显处理器的用户。<br>
-1. 填入`iMac19,1`机型的三码 + ROM 信息到`/EFI/OC/config.plist`配置文件 PlatformInfo > Generic 处。
-2. 将`/EFI/OC/config.plist`配置文件 Kernel > Add > 10 和 11 中 Enabled 的`Ture`手动修改为`False`（如下图）。<br>
-*附带的是本人按照个人习惯定制的 9600K HWP 变频文件，不建议其他处理器启用。*<br>
-![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_CPU.png)
+![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_PlatformInfo.png)
 <br>
 保存后，先通过 USB 测试引导，无问题后将 EFI 文件夹放置到启动磁盘 EFI 分区，重启电脑。
 
 ### 无核显使用
 适合使用无核显处理器的用户。<br>
 1. 填入`iMacPro1,1`机型的三码 + ROM 信息到`/EFI/OC/config.plist`配置文件 PlatformInfo > Generic 处，并将机型修改为`iMacPro1,1`。
-2. 将`/EFI/OC/config.plist`配置文件 Kernel > Add > 10 和 11 中 Enabled 的`Ture`手动修改为`False`。<br>
-*因 iMacPro1,1 机型不支持 HWP 变频，也可直接删除这两个条目和相关 kext 文件。*
-3. 删除`/EFI/OC/config.plist`配置文件 DeviceProperties > Add > PciRoot(0x0)/Pci(0x2,0x0) 下 AAPL,ig-platform-id 这一行参数（如下图）。<br> 
+2. 删除`/EFI/OC/config.plist`配置文件 DeviceProperties > Add > PciRoot(0x0)/Pci(0x2,0x0) 这一行参数（如下图）。<br> 
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_DeviceProperties.png)
 <br>
 保存后，先通过 USB 测试引导，无问题后将 EFI 文件夹放置到启动磁盘 EFI 分区，重启电脑。
@@ -301,9 +305,7 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
 ### 无独显使用
 适合无独显、只使用核显的用户。<br>
 1. 填入`Macmini8,1`机型的三码 + ROM 信息到`/EFI/OC/config.plist`配置文件 PlatformInfo > Generic 处，并将机型修改为`Macmini8,1`。<br>
-2. 使用非 9600K 处理器，将`/EFI/OC/config.plist`配置文件 Kernel > Add > 10 和 11 中 Enabled 的`Ture`手动修改为`False`。<br>
-*Macmini8,1 机型支持 HWP 变频，对于非 9600K 处理器可稍后自行定制 HWP 变频文件。*
-3. 修改`/EFI/OC/config.plist`配置文件 DeviceProperties > Add > PciRoot(0x0)/Pci(0x2,0x0) 下 AAPL,ig-platform-id 参数为`07009b3e`，并新增 framebuffer-unifiedmem 参数为`00000080`（如下图）。<br> 
+2. 修改`/EFI/OC/config.plist`配置文件 DeviceProperties > Add > PciRoot(0x0)/Pci(0x2,0x0) 下 AAPL,ig-platform-id 参数为`07009b3e`，并新增 device-id 参数为`9B3E0000`，新增 framebuffer-unifiedmem 参数为`00000080`，新增 framebuffer-patch-enable 参数为`01000000`（如下图）。<br> 
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_DeviceProperties_I.png)
 <br>
 保存后，先通过 USB 测试引导，无问题后将 EFI 文件夹放置到启动磁盘 EFI 分区，重启电脑。
@@ -311,15 +313,33 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
 ### 对于 RX 5000 \ RX 6000 系列显卡
 目前 RX 5000 系列 Navi 10 核心显卡、RX 6000 系列 Navi 21 核心显卡和 RX 6000 系列 Navi 23 核心显卡均应该手动添加`agdpmod=pikera`启动参数来防止开机黑屏，目前暂无其他解决方法。
 
-### ~~模拟 NVRAM~~（不再需要）
-~~无论是直接使用还是修改使用，都建议参考 [xjn 博客](https://blog.xjn819.com/?p=543) 的完善部分「3.1 模拟 NVRAM」，进行模拟 NVRAM 的操作。~~
-
 ### 进阶使用
-1. 参考 [xjn 博客](https://blog.xjn819.com/?p=543) 的进阶部分「4.1 CPU 的变频优化」或 xjn 大佬发表于 PCbeta 的帖子 [FCPX 核显独显全程满速指南](http://bbs.pcbeta.com/viewthread-1836920-1-1.html) 中「HWP 变频」部分，根据个人需求定制`CPUFriendDataProvider.kext`HWP 变频文件，放入`/EFI/OC/Kexts/`替换同名文件，重新启用`/EFI/OC/config.plist`文件 Kernel > Add > 10 和 11。<br>
-*iMac19,2 和 iMacPro1,1 均不支持 HWP 变频，无需尝试。对于有核显的用户建议选择 iMac19,1 机型，对于只使用核显的用户推荐 Macmini8,1 机型。*
-2. 参考 [黑果小兵博客](https://blog.daliansky.net/Intel-FB-Patcher-USB-Custom-Video.html) 生成`USBPorts.kext`USB 定制文件，放入`/EFI/OC/Kexts/`替换同名文件，打开`/EFI/OC/config.plist`，关闭 Kernel > Add > 7，打开 8。<br>
-*目录内有我的 USB 定制文件，可在备份好 EFI 到启动 U 盘的情况下尝试使用。*<br>
-![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_USB.png)
+1. 参考 [黑果小兵博客](https://blog.daliansky.net/Intel-FB-Patcher-USB-Custom-Video.html) 生成`USBPorts.kext`USB 定制文件，放入`/EFI/OC/Kexts/`替换同名文件，打开`/EFI/OC/config.plist`，关闭 Kernel > Add > 7，打开 8。<br>
+   ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_USB.png)
+   *目录内有我的 USB 定制文件，可在备份好自己 EFI 的情况下尝试使用。具体端口定制情况如下：*<br>
+   <details><summary>展开查看</summary>
+   
+   ```
+   1.  HS01 - Internal - 主板 USB 2.0 接口 - 蓝牙
+   2.  HS03 - Internal - 背板顶部键鼠 USB 2.0 - 鼠标
+   3.  HS04 - Internal - 背板顶部键鼠 USB 2.0 - 键盘
+   4.  HS05 - USB 3 - 背板右下 USB 3.1 Type-A (对应 SS01)
+   5.  HS06 - TypeC+Sw - 背板左下 USB 3.1 Type-C (对应 SS02)
+   6.  HS07 - Internal - 背板左上 USB 2.0 - 摄像头
+   7.  HS08 - USB 2 - 背板右上 USB 2.0
+   8.  HS09 - USB 3 - 前置 USB 3.0 (对应 SS05)
+   9.  HS10 - USB 3 - 前置 USB 3.0 (对应 SS06)
+   10. SS01 - USB 3 - 背板右下 USB 3.1 Type-A
+   11. SS02 - TypeC+Sw - 背板左下 USB 3.1 Type-C
+   12. SS05 - USB 3 - 前置 USB 3.0
+   13. SS06 - USB 3 - 前置 USB 3.0
+   ```
+   
+   </details>
+
+2. 参考 [xjn 博客](https://blog.xjn819.com/?p=543) 的进阶部分「4.1 CPU 的变频优化」或 xjn 大佬发表于 PCbeta 的帖子 [FCPX 核显独显全程满速指南](http://bbs.pcbeta.com/viewthread-1836920-1-1.html) 中「HWP 变频」部分，根据个人需求定制`CPUFriendDataProvider.kext`HWP 变频文件，放入`/EFI/OC/Kexts/`替换同名文件，启用`/EFI/OC/config.plist`文件 Kernel > Add > 10 和 11。<br>
+   ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_CPU.png)
+   *iMac19,2 和 iMacPro1,1 均不支持 HWP 变频，无需尝试。对于有核显的用户建议选择 iMac19,1 机型，对于只使用核显的用户推荐 Macmini8,1 机型。目录内附带的是本人按照个人习惯定制的 9600K HWP 变频文件，不建议直接启用，更不建议其他处理器启用。*
 
 ## Q&A
 #### 1. 开机时苹果 logo 显示不正常怎么办？
@@ -329,8 +349,8 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
    两种方法选择其一即可，如果同时使用的话开机 logo 的显示依旧会不正常，原本更推荐方法二（会比方法一进入系统登陆界面略快一些），但反复测试后发现，如果在 BIOS 打开「Windows 10 WHQL支持」，使用方法二可能会导致**关机再开机时丢失苹果 logo**，请测试后选择~~适合~~自己喜欢的方法。<br>
    **P.S.** 目前 OC 已支持自动检测 HiDPI，如果你使用 2K 及以下分辨率无法开启 HiDPI 的显示器且开机时显示不正常，请尝试将配置文件 UEFI > Output > UIScale 设置为`01`。
 #### 2. 无法正常进入睡眠状态怎么办？
-   目前所知的情况是 ~~bugOS~~macOS 10.15.2 至 10.15.4（包括补充更新版本）都存在睡眠相关 bugs，如果使用了最新的 EFI 仍然无法正常进入睡眠，请尝试到「系统偏好设置——安全性与隐私——隐私——定位服务」关闭「Siri 与听写」，并尽量关闭「系统服务」中的定位权限。<br>
-   部分机器需要将`/EFI/OC/config.plist`文件 Config > Kernel > Quirks > PowerTimeoutKernelPanic 设置为`Ture/Yes`才可以正常睡眠，原因尚不明确（同型号主板、同版本 BIOS）。
+   目前所知的情况是 ~~bugOS~~macOS 10.15 至 10.15.7（包括补充更新版本）都存在睡眠相关 bugs，需要在节能中打开 “启用电能小憩” 选项才可正常进入睡眠。<br>
+   一般而言，系统更新到 macOS 11 Big Sur 和 macOS 12 Monterey 以后可在不打开 “启用电能小憩” 选项的情况下正常进入睡眠。
 #### 3. 为什么推荐拥有核显的 CPU？
    首先，macOS Catalina 原生支持 4K 双硬解的独显最低为 RX VEGA⁵⁶，而第七代及以后的酷睿处理器核显可以和低于 RX VEGA⁵⁶ 的独显协同工作，完成 4K 双硬解；<br>
    其次，因为黑果没有 T2 芯片，所以没有核显的黑果无法使用随航（Sidecar）功能。
@@ -343,29 +363,27 @@ OC(Overclocking)\CPU 特征\CFG锁定 [禁止]*（必须）*<br>
    得益于 WhateverGreen 的功能，添加 shikigva=80 启动参数后，拥有独立显卡的机器都可以直接使用 tv 应用，并观看 Apple TV+，也支持 Safari 硬解观看 Netflix / Amazon Prime 等流媒体。<br>
    macOS 10.15.4 之前版本，RX 4XX/5XX 大部分显卡不可使用 Safari 硬解 DRM（表现为冻屏），但这一问题在 10.15.4 中已经被修复，直接升级系统即可。<br>
    WhateverGreen 的 DRM 补丁目前不支持 Safari 14 和 macOS 11 及以后版本，但可以在`终端`中依次执行下列代码后正常使用 tv 应用观看 Apple TV+（Safari 仍然不可以正常解码 DRM）。
-````
-defaults write com.apple.AppleGVA gvaForceAMDKE -bool YES
-defaults write com.apple.AppleGVA gvaForceAMDAVCEncode -bool YES
-defaults write com.apple.AppleGVA gvaForceAMDAVCDecode -bool YES
-defaults write com.apple.AppleGVA gvaForceAMDHEVCDecode -bool YES
-````
+   ````
+   defaults write com.apple.AppleGVA gvaForceAMDKE -bool YES
+   defaults write com.apple.AppleGVA gvaForceAMDAVCEncode -bool YES
+   defaults write com.apple.AppleGVA gvaForceAMDAVCDecode -bool YES
+   defaults write com.apple.AppleGVA gvaForceAMDHEVCDecode -bool YES
+   ````
    *注意：因为缺少 Apple Firmware，导致 iGPU 无法硬解 DRM，所以没有独显的机器无法观看 DRM 媒体。*
-#### 7. 更新 OC 0.5.7 后睡眠唤醒不正常怎么办？
-   可参考这个 [Issue](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/35) 尝试解决。
-#### 8. 如何使用 OC 的启动项高优先级功能？
+#### 7. 如何使用 OC 的启动项高优先级功能？
    ~~开启该功能后可能会造成无法设置 “启动磁盘” 的问题，默认未启用。如需启用该功能，请自行修改配置文件 Misc > Security > BootProtect 参数为`Bootstrap`（填写`None`为关闭）。仅适用于 OC 0.5.9 至 0.6.5 版本。~~<br>
    自 OC 0.6.6 版本开始，可通过修改配置文件 Misc > Boot > LauncherOption 参数为`Full`置顶 OC 启动项，填写`Disabled`则为默认不做改动。
-#### 9. 如何使用 macOS Big Sur 11？
+#### 8. 如何使用 macOS Big Sur 11？
    请确认你的 OpenCore 已更新到 0.6.1 以上版本，且所有 Kexts 也已更新到最新版，将配置文件 Kernel > Quirks > DisableLinkeditJettison 设置为`Ture/Yes`即可。
-#### 10. 为什么要开启安全启动和 SIP？
+#### 9. 为什么要开启安全启动和 SIP？
    首先，从 Monterey 开始，不会向未启用安全启动的包含 T2 芯片的 Mac 提供更新，所以需要我们打开安全启动功能，修改 OC 的 SecureBootModel 和 DmgLoading 两个设置。*（注：如果你使用不包含 T2 芯片的 iMac19,1 或 iMac19,2 SMBIOS，也可以选择关闭安全启动，请同步修改配置文件 Misc > Security > SecureBootModel 为`Disabled`、DmgLoading 为`Any`。）*<br>
-   其次，从 Big Sur 开始，未开启 SIP 可能无法检测到更新，为了保证正常使用，需要修改 csr-active-config 设置开启 SIP ，开启 AllowToggleSip 选项后可在引导选择界面快速开关 SIP。如果更新此次 OC 后无法检测到更新可尝试到引导选择界面再次开启 SIP 解决问题（括号会标注状态，Enable 为开启，Disable 为关闭）。<br>
+   其次，从 Big Sur 开始，未开启 SIP 可能无法检测到更新，为了保证正常检测系统更新，需要修改 csr-active-config 设置开启 SIP ，开启 AllowToggleSip 选项后可在引导选择界面快速开关 SIP。如果更新此次 OC 后无法检测到更新可尝试到引导选择界面再次开启 SIP 解决问题（括号会标注状态，Enable 为开启，Disable 为关闭）。<br>
    详情参考 [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/extras/monterey.html#ota-updates) 中的说明。
-#### 11. 为什么使用 Catalina 需要额外修改配置？
+#### 10. 为什么使用 Catalina 需要额外修改配置？
    从 OpenCore 0.7.2 版本开始，早期的 APFS 驱动不会被加载（出于安全性考虑），这会导致低于 Big Sur 11.0 版本的系统无法启动，如果要启动 Catalina 或更早版本的系统，请修改配置文件 UEFI > APFS 下面的 MinDate 和 MinVersion 为`-1`，详情参考 [OC 0.7.2 版本](https://github.com/acidanthera/OpenCorePkg/releases/tag/0.7.2) 中的文档。
-#### 12. 为什么一定要定制 USB？
+#### 11. 为什么一定要定制 USB？
    从 macOS Big Sur 11.3.1 开始，macOS 会使 OC 解除 15 个 USB 端口的 XhciPortLimit Quirk 失效，导致即使加载 USBInjectAll Kext 也无法全部正确加载超过 15 个的 USB 端口，可自行搜索 USB 定制教程或参考 [进阶使用](#进阶使用) \ [OpenCore Post Install](https://dortania.github.io/OpenCore-Post-Install/usb/) \ [黑苹果星球](https://heipg.cn/tutorial/customize-usb-port-windows.html)（包含 Windows 版，需付费查看，无相关利益）中有关 USB 定制的教程。
-#### 13. 待更新
+#### 12. 待更新
 
 ## 结语
 完成以上步骤后，基本上已经有了一个完成度为 99% 的黑苹果设备，更多截图请查看 [截图预览](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/tree/master/Images/Preview.md) 。<br>

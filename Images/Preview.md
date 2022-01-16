@@ -1,5 +1,5 @@
 ## 截图预览
-系统版本：macOS Monterey 12.1，OpenCare 版本：0.7.7，EFI 更新日期：2022.01.11
+系统版本：macOS Monterey 12.1，OpenCare 版本：0.7.7，EFI 更新日期：2022.01.17
 
 ### 关于本机
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/About.png)
@@ -22,8 +22,11 @@
 <br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/System_Preferences_Energy_Saver.png)
 
-### 隔空投送
+### 隔空投送 (AirDrop)
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/AirDrop.png)
+
+### 随航 (Sidecar)
+![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/Sidecar.png)
 
 ### iMessage
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/iMessage.png)
