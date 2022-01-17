@@ -2,7 +2,7 @@
 
 ## EFI 介绍
 
-<img src="Images/Readme/Image.png" align="right" width="360" />
+<img src="Images/Readme/Image.jpg" align="right" width="360" />
 
 此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮 (钛金版) 的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，[OpenCore](https://github.com/acidanthera/OpenCorePkg) 版本：0.7.7
 
