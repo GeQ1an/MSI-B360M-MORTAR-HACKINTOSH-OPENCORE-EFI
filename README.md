@@ -1,10 +1,17 @@
 # 微星 B360M 迫击炮 (钛金版) 黑苹果 OpenCore EFI
 
+[![OpenCore](https://img.shields.io/badge/OpenCore-0.7.7-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+[![MacOS Big Sur](https://img.shields.io/badge/macOS-12.1-c62eb8)](https://www.apple.com/macos/monterey/)
+[![Last Commit](https://img.shields.io/github/last-commit/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI.svg?color=orange&label=%E6%9C%80%E8%BF%91%E6%8F%90%E4%BA%A4)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/commits/master/)
+[![Follow Me](https://img.shields.io/badge/%E5%85%B3%E6%B3%A8-Telegram-1da4de)](https://t.me/usestick/)
+
+For English? [Please click here](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/blob/master/README.en.md).
+
 ## EFI 介绍
 
 <img src="Images/Readme/Image.jpg" align="right" width="360" />
 
-此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮 (钛金版) 的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，[OpenCore](https://github.com/acidanthera/OpenCorePkg) 版本：0.7.7
+此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮 (钛金版) 的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，OpenCore 版本：0.7.7，最高支持 macOS Monterey 12.2 测试版。
 
 > 注意：此 EFI 只是个人的构建分享，并标注了简单的使用提示，不是标准的 OpenCore 黑苹果安装指南，如果你需要标准安装指南请跳转至 [Dortania's Getting Started](https://dortania.github.io/getting-started/) 查看。在首次安装或更新硬件后启动黑苹果可能会遇到一些问题，虽然大部分问题都可以解决，但事实上确实存在部分没办法解决的问题，甚至可以说有一定的运气成分在里面，如果你要应用此 EFI 建议使用接近我的配置，才能尽可能地拥有相同的使用体验。
 
@@ -18,42 +25,43 @@
 - [x] 隔空投送 / 接力 / 随航
 - [x] FaceTime / iMessage
 - [x] Apple Music / Apple TV Plus
-- [x] 睿频 / HWP 变频 / 原生电源管理
+- [x] 原生电源管理 / HWP 变频
 - [x] 睡眠 / 键盘、鼠标唤醒
 - [x] 其他白果功能 (99%)
 
 ### 我的配置
 
-|                 硬件 | 型号                                                  | 
-|--------------------:|:------------------------------------------------------|
-|                 主板 | 微星 B360M 迫击炮                                      |
-|               处理器 | 英特尔酷睿 i5-9600K                                     |
-|                 显卡 | 公版 RX 570 4GB (VBIOS 品牌为微星)                      |
-|                 硬盘 | 西部数据 SN750 500GB                                   |
-|                 内存 | 光威悍将 8GB DDR4 2666MHz x 2                          |
-|           无线 + 蓝牙 | 奋威 FV-T919 无线网卡 (BCM94360CD 双频 1750M + 蓝牙 4.0) |
-|    机箱 + 电源 + 散热 | 乔思伯 U3 + 台达 NX450 + 利民 AS120 + ARCTIC F12 PWM     |
-|               显示器 | 飞利浦 276E8VJSB (27 英寸 4K 分辨率)                     |
-|       摄像头 + 麦克风 | LOGITUBO 928 自动对焦带双降噪麦克风摄像头                   |
-|                 音箱 | 漫步者 R201T 北美版 2.1 桌面音箱                          |
-|                 键盘 | iQunix F96 珊瑚海 (有线茶轴 RGB 版)                      |
-|                 鼠标 | 罗技 MX Master 3 (使用优联连接，以方便在 BIOS 中使用)       |
+|            硬件 | 型号                                                   | 
+|---------------:|:-------------------------------------------------------|
+|            主板 | 微星 B360M 迫击炮                                       |
+|          处理器 | 英特尔酷睿 i5-9600K                                      |
+|            内存 | 光威悍将 8GB DDR4 2666MHz x 2                           |
+|            硬盘 | 西部数据 SN750 500GB                                    |
+|            显卡 | 公版 RX 570 4GB (VBIOS 品牌为微星)                       |
+|      无线 + 蓝牙 | 奋威 FV-T919 无线网卡 (BCM94360CD 双频 1750M + 蓝牙 4.0)  |
+|      机箱 + 电源 | 乔思伯 U3 + 台达 NX450                                  |
+|      散热 + 风扇 | 利民 AS120 + ARCTIC F12 PWM                            |
+|          显示器 | 飞利浦 276E8VJSB (27 英寸 4K 分辨率)                      |
+|  摄像头 + 麦克风 | LOGITUBO 928 自动对焦带双降噪麦克风摄像头                   |
+|            音箱 | 漫步者 R201T 北美版 2.1 桌面音箱                          |
+|            键盘 | iQunix F96 珊瑚海 (有线茶轴 RGB 版)                      |
+|            鼠标 | 罗技 MX Master 3 (使用优联连接，以方便在 BIOS 中使用)       |
 
 ### 兼容的配置
 
-|                 硬件 | 型号                                                                                                     | 
-|--------------------:|:--------------------------------------------------------------------------------------------------------|
-|                 主板 | 微星 B360M 迫击炮 (钛金版)                                                                                 |
-|               处理器 | 英特尔第 8 代、第 9 代酷睿处理器 (推荐拥有核显的版本)                                                            |
-|                 显卡 | RX 400 系列 / RX 500 系列 (560 以上) / RX VEGA 系列 / Radeon VII / RX 5000 系列 / RX 6000 系列 (除 6700 XT)  |
-|                 硬盘 | 除了几个特例 (如三星 PM981 / PM991)，基本都可以                                                               |
-|                 内存 | 除了非常差的，基本都可以                                                                                     |
-|           无线 + 蓝牙 | 黑苹果免驱版无线 + 蓝牙 PCI-E 网卡都可以                                                                      |
-|       摄像头 + 麦克风 | macOS 免驱版都可以                                                                                         |
-|    机箱 + 电源 + 风扇 | 根据个人喜好和 CPU、显卡的功率来决定                                                                           |
-|               显示器 | 根据个人喜好选择 (推荐 4K 及以上分辨率)                                                                        |
-|    键盘 + 鼠标 + 音箱 | 根据个人喜好选择                                                                                            |
-|             其它外设 | 根据个人喜好选配 (注意 macOS 兼容性)                                                                          |
+|            硬件 | 型号                                                                                       | 
+|---------------:|:-------------------------------------------------------------------------------------------|
+|            主板 | 微星 B360M 迫击炮 (钛金版)                                                                   |
+|          处理器 | 第 9 代、第 8 代英特尔酷睿处理器 (推荐拥有核显的版本)                                              |
+|           内存 | 除了非常差的，常用的内存基本都可以                                                                |
+|           硬盘 | 除了几个特例 (如三星 PM981 / PM991)，常用的硬盘基本都可以                                          |
+|           显卡 | RX 500 系列 (560 以上) / RX VEGA 系列 / Radeon VII / RX 5000 系列 / RX 6000 系列 (除 6700 XT)  |
+|     无线 + 蓝牙 | 推荐奋威 FV-T919 或白果拆机网卡 (BCM94360 / BCM943602)                                         |
+|     机箱 + 电源 | 根据个人喜好和 CPU、显卡的功率来决定                                                             |
+|     散热 + 风扇 | 根据个人喜好选择                                                                              |
+|          显示器 | 根据个人喜好选择 (推荐 4K 及以上分辨率)                                                          |
+|  摄像头 + 麦克风 | 根据个人喜好选择 (注意 macOS 兼容性)                                                            |
+|        其它外设 | 根据个人喜好选择 (注意 macOS 兼容性)                                                            |
 
 *Tips 1：如果选购 RX 500 系列显卡优先选择蓝宝石品牌，其次选择迪兰恒进、华硕和微星，尽量不选择盈通和讯景，一定避开 RX 580 2048SP 版本！*<br>
 *Tips 2：推荐选购 RX 5000 系列和 RX 6000 系列新显卡，蓝宝石在 RX 6000 系列比较缩水，不建议优先选择，一定避开 RX 6700 XT。使用 RX 6800 / RX 6800 XT / RX 6900 XT 显卡要求 macOS 最低系统版本为 Big Sur 11.4 beta 1，使用 RX 6600 / RX 6600 XT 显卡要求 macOS 最低系统版本为 Monterey 12.1 beta 1。*<br>
@@ -67,13 +75,13 @@
 
 #### 2022.01.12
 * 关闭 ACPI > Patch > 0 用于修改 GPRW 电源管理 S4 级为 S3 级的补丁
-* 关闭 Kernel > Add > 10 & 11 用于开启 CPUFriend 的 Kexts
+* 关闭 Kernel > Add > 10 & 11 用于开启 CPUFriend 的 kexts
 
 *秉承 “能免则免、能简则简” 的原则，经反复测试，现在不需要再将 GPRW 降级为 S3 即可正常睡眠，于是默认关闭这个补丁，如果更新后睡眠不正常 (表现为睡眠即醒) 请尝试重新打开这个补丁；默认关闭 CPUFriend，以方便基础用户使用，有需要自行定制后打开即可。*
 
 #### 2022.01.11
 * 更新 OpenCore 至 0.7.7 正式版
-* 更新 Lilu \ AppleALC \ WhateverGreen Kexts 至官方最新版，移除 USBPower Kext
+* 更新 Lilu \ AppleALC \ WhateverGreen kexts 至官方最新版，移除 USBPower kext
 * 更新 OpenRuntime \ OpenCanopy \ OpenHfsPlus 驱动
 * 整理 SSDT 为更主流的搭配，添加 SSDT-EC-USBX，更新 SSDT-PLUG，移除 SSDT-PM 合并至 SSDT-PLUG
 
@@ -83,14 +91,14 @@
 
 #### 2021.12.09
 * 更新 OpenCore 至 0.7.6 正式版
-* 更新 Lilu \ AppleALC \ VitualSMC Kexts 至官方最新版，更新 USBInjectAll Kext 为更新的修改版
+* 更新 Lilu \ AppleALC \ VitualSMC kexts 至官方最新版，更新 USBInjectAll kext 为更新的修改版
 * 更新 OpenRuntime \ OpenCanopy 驱动
 
-*OC 0.7.6 正式版的配置文件新增和调整了一些条目，建议按照使用习惯重新配置。此版本开始默认将自动检测 HiDPI，一般无需手动设置，但可能需要重置一次 NVRAM (如果更新后遇到开机苹果 logo 显示不正常的情况)；同步 OC 官方默认隐藏引导选择界面中的辅助工具，按空格键显示；支持 macOS 12.1，正式版发布后可直接升级。*
+*OC 0.7.6 正式版的配置文件新增和调整了一些条目，建议按照使用习惯重新配置。此版本开始默认将自动检测 HiDPI，一般无需手动设置，但可能需要重置一次 NVRAM (如果更新后遇到开机苹果 logo 显示不正常的情况)；同步 OC 官方默认隐藏引导选择界面中的辅助工具，按空格键显示。*
 
 #### 2021.11.10
 * 更新 OpenCore 至 0.7.5 正式版
-* 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC Kexts 至官方最新版
+* 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC kexts 至官方最新版
 * 更新 OpenRuntime \ OpenCanopy \ OpenHfsPlus 驱动
 * 修改配置文件 Misc > Security > DmgLoading 参数为`Signed`\ Misc > Security > SecureBootModel 参数为`Default` (详见 [Q&A 条目 9](#9-为什么要开启安全启动和-sip))；修改配置文件 NVRAM > Add > 7C436110-XXXX > csr-active-config 参数为`00000000`\ Misc > Security > AllowToggleSip 参数为 `True/Yes` (详见 [Q&A 条目 9](#9-为什么要开启安全启动和-sip))；修改配置文件 Misc > Boot > TakeoffDelay 参数为`5000` (单位：毫秒) 以提高兼容性
 
@@ -100,7 +108,7 @@
 
 #### ~~2021.07.12~~
 * ~~更新 OpenCore 至 0.7.1 正式版~~
-* ~~更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC \ IntelMausi \ CPUFriend Kexts 至官方最新版，添加 NVMeFix Kext 并启用~~
+* ~~更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC \ IntelMausi \ CPUFriend kexts 至官方最新版，添加 NVMeFix kext 并启用~~
 * ~~更新 OpenRuntime \ OpenCanopy 驱动，替换 HfsPlus 驱动为 OpenHfsPlus 驱动，移除 ExFatDxe 驱动~~
 * ~~替换 VerifyMsrE2 工具为 ControlMsrE2 工具~~
 * ~~更新`/EFI/OC/Resources`启动主题相关文件~~
@@ -109,7 +117,7 @@
 
 #### 2021.02.08
 * 更新 OpenCore 至 0.6.6 正式版
-* 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC Kexts 至官方最新版
+* 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC kexts 至官方最新版
 * 更新 OpenRuntime \ OpenCanopy 驱动
 * 更新`/EFI/OC/Resources`启动主题相关文件
 * 移除`/EFI/OC/Bootstrap/Bootstrap.efi`OC 引导稳定性帮助文件
@@ -118,7 +126,7 @@
 
 #### 2021.01.16
 * 更新 OpenCore 至 0.6.5 正式版
-* 更新 AppleALC \ WhateverGreen \ IntelMausi \ CPUFriend Kexts 至官方最新版
+* 更新 AppleALC \ WhateverGreen \ IntelMausi \ CPUFriend kexts 至官方最新版
 * 更新 OpenRuntime \ OpenCanopy 驱动
 * 更新`/EFI/OC/Resources`启动主题相关文件
 
@@ -130,7 +138,7 @@
 
 #### 2020.12.18
 * 更新 OpenCore 至 0.6.4 正式版
-* 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC Kexts 至官方最新版，更新 USBInjectAll Kext 为更新的修改版
+* 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC kexts 至官方最新版，更新 USBInjectAll kext 为更新的修改版
 * 更新 OpenRuntime \ OpenCanopy 驱动
 * 移除 SSDT-HCMC SSDT 文件
 
@@ -138,14 +146,14 @@
 
 #### 2020.11.12
 * 更新 OpenCore 至 0.6.3 正式版
-* 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC Kexts 至官方最新版
+* 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC kexts 至官方最新版
 * 更新 OpenRuntime \ OpenCanopy 驱动
 
 *OC 0.6.3 正式版的配置文件仅新增了 Kernel > Quirks > ForceSecureBootScheme、PlatformInfo > CustomMemory 和 UEFI > Output > ForceResolution 三个条目，建议直接手动添加。支持 ~~bugOS~~macOS Big Sur 11.0 RC 版，详见 [Q&A 条目 8](#8-如何使用-macos-big-sur-11)。*
 
 #### 2020.10.10
 * 更新 OpenCore 至 0.6.2 正式版
-* 更新 Lilu \ AppleALC \ WhateverGreen \ IntelMausi \ VitualSMC \ CPUFriend Kexts 至官方最新版
+* 更新 Lilu \ AppleALC \ WhateverGreen \ IntelMausi \ VitualSMC \ CPUFriend kexts 至官方最新版
 * 更新 OpenRuntime \ OpenCanopy 驱动
 * 添加`/EFI/OC/Bootstrap/Bootstrap.efi`OC 引导稳定性帮助文件
 
@@ -153,7 +161,7 @@
 
 #### 2020.09.16
 * 更新 OpenCore 至 0.6.1 正式版
-* 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC Kexts 至官方最新版
+* 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC kexts 至官方最新版
 * 更新 OpenRuntime \ OpenCanopy 驱动
 
 *OC 0.6.1 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。支持 ~~bugOS~~macOS Big Sur 11.0 测试版，详见 [Q&A 条目 8](#8-如何使用-macos-big-sur-11)。*
@@ -167,7 +175,7 @@
 
 #### 2020.06.16
 * 更新 OpenCore 至 0.5.9 正式版
-* 更新 Lilu \ AppleALC \ IntelMausi \ WhateverGreen \ VitualSMC Kexts 至官方最新版，更新 USBInjectAll kext 为更新的修改版
+* 更新 Lilu \ AppleALC \ IntelMausi \ WhateverGreen \ VitualSMC kexts 至官方最新版，更新 USBInjectAll kext 为更新的修改版
 * 更新 OpenRuntime \ OpenCanopy 驱动，移除 ApfsDriverLoader 驱动
 * 更新`/EFI/OC/Resources`启动主题相关文件
 
@@ -175,7 +183,7 @@
 
 #### 2020.04.12
 * 更新 OpenCore 至 0.5.7 正式版
-* 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC Kexts 至官方最新版
+* 更新 Lilu \ AppleALC \ WhateverGreen \ VitualSMC kexts 至官方最新版
 * 替换 FwRuntimeServices 驱动为 OpenRuntime 驱动，添加 OpenCanopy 驱动
 * 替换 Shell 工具为 OpenShell 工具
 * 添加`/EFI/OC/Resources`主题相关文件夹，其中 Font \ Image \ Label 目录包含文件
@@ -185,7 +193,7 @@
 
 #### 2020.03.03
 * 更新 OpenCore 至 0.5.6 正式版
-* 更新 Lilu \ AppleALC \ WhateverGreen Kexts 至官方最新版
+* 更新 Lilu \ AppleALC \ WhateverGreen kexts 至官方最新版
 * 更新 ApfsDriverLoader \ HfsPlus \ FwRuntimeServices 驱动至最新版
 * 添加 ExFatDxe 驱动，同步添加配置文件 EFI > Drivers > 2: ExFatDxe.efi
 * 更新 Shell \ VerifyMsrE2 工具至最新版
@@ -210,7 +218,7 @@
 
 #### 2020.02.04
 * 更新 OpenCore 至 0.5.5 正式版
-* 更新 AppleALC \ VitualSMC Kexts 至官方最新版
+* 更新 AppleALC \ VitualSMC kexts 至官方最新版
 * 添加 UEFI Shell 工具 (默认未启用)
 
 *OC 0.5.5 正式版的配置文件新增了若干条目，建议按照使用习惯重新配置。*
@@ -226,7 +234,7 @@ sudo defaults delete com.apple.loginwindow LogoutHook  //清空 LogoutHook 的�
 
 #### 2020.01.14
 * 更新 OpenCore 至 0.5.4 正式版
-* 更新 Lilu \ AppleALC \ CPUFriend \ VitualSMC \ WhateverGreen Kexts 至官方最新版
+* 更新 Lilu \ AppleALC \ CPUFriend \ VitualSMC \ WhateverGreen kexts 至官方最新版
 * 移除`/EFI/OC/Drivers/virtualsmc.efi`文件 (已被合并至 OC 中)
 
 *OC 0.5.4 正式版的配置文件新增了若干条目，建议按照使用习惯重新配置。*
@@ -242,11 +250,11 @@ sudo defaults delete com.apple.loginwindow LogoutHook  //清空 LogoutHook 的�
 <details><summary>2019 年更新记录</summary>
 
 #### 2019.12.29
-* 更新 WhateverGreen.kext 至 1.3.6 最新编译版
+* 更新 WhateverGreen kext 至 1.3.6 最新编译版
 * 修复「不开启小憩无法进入睡眠」的问题 (理论上不该存在问题)
 
 #### 2019.12.23
-* 更新 WhateverGreen.kext 至 1.3.6
+* 更新 WhateverGreen kext 至 1.3.6
 * 修改 shikigva 启动参数代码为 80 (支持 Safari 硬解 DRM 内容)
 
 #### 2019.12.20
@@ -333,26 +341,26 @@ OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配�
 目前 RX 5000 系列 Navi 10 核心显卡、RX 6000 系列 Navi 21 核心显卡和 RX 6000 系列 Navi 23 核心显卡均应该手动添加`agdpmod=pikera`启动参数来防止开机黑屏，暂无其他解决方法。
 
 ### 进阶使用
-1. 参考 [黑果小兵博客](https://blog.daliansky.net/Intel-FB-Patcher-USB-Custom-Video.html) 生成`USBPorts.kext`USB 定制文件，放入`/EFI/OC/Kexts/`替换同名文件，打开`/EFI/OC/config.plist`，关闭 Kernel > Add > 7，打开 8。<br>
+1. 参考 [OpenCore Post-Install](https://dortania.github.io/OpenCore-Post-Install/usb/intel-mapping/intel.html#intel-usb-mapping) 或 [黑苹果星球](https://heipg.cn/tutorial/customize-usb-port-windows.html)  生成 `USBMap.kext` 定制 USB 映射文件，放入`/EFI/OC/Kexts/`替换同名文件，打开 `/EFI/OC/config.plist`，关闭 Kernel > Add > 7，打开 8。<br>
    ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_USB.png)
-   *目录内有我的 USB 定制文件，可在备份好自己 EFI 的情况下尝试使用。SMBIOS 为 iMac19,1，若你使用其他机型需自行打开 USBPorts.kext/Contents/Info.plist 修改 IOKitPersonalities > iMac19,1-XHC 和 model 子参数中的 iMac19,1 为你的机型 (两个 iMac19,1 字符都需要修改)；若你需要取消 HS07 内建，打开 Info.plist 修改 IOKitPersonalities > iMac19,1-XHC > IOProviderMergeProperties > ports > HS07 > UsbConnector 参数为 0 即可。端口具体定制情况如下：*<br>
+   *目录内有我的 USB 定制文件，可在备份好自己 EFI 的情况下尝试使用。SMBIOS 为 iMac19,1，若你使用其他机型需自行打开 USBMap.kext/Contents/Info.plist 修改 IOKitPersonalities > XHC > model 参数中的 iMac19,1 为你的机型；若你需要取消 HS07 内建，打开 Info.plist 修改 IOKitPersonalities > XHC > IOProviderMergeProperties > ports > HS07 > UsbConnector 参数为 0 即可。端口具体定制情况如下：*<br>
    
    <details><summary>点击展开查看</summary>
    
    ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Readme/USB_Ports_Diagram.jpg)
    
    ```
-   1.  HS01 - Internal - 主板 USB 2.0 接口 - 蓝牙
-   2.  HS03 - Internal - 背板顶部 USB 2.0  - 鼠标
-   3.  HS04 - Internal - 背板顶部 USB 2.0  - 键盘
-   4.  HS05 - U S B  3 - 背板右下 USB 3.1 Type-A (对应 SS01)
-   5.  HS06 - TypeC+Sw - 背板左下 USB 3.1 Type-C (对应 SS02)
-   6.  HS07 - Internal - 背板左上 USB 2.0  - 摄像头
-   7.  HS08 - U S B  2 - 背板右上 USB 2.0
+   1.  HS01 - Internal - 主板 USB 2.0 - 蓝牙
+   2.  HS03 - Internal - 背板 USB 2.0 - 鼠标
+   3.  HS04 - Internal - 背板 USB 2.0 - 键盘
+   4.  HS05 - U S B  3 - 背板 USB 3.1 Type-A (对应 SS01)
+   5.  HS06 - TypeC+Sw - 背板 USB 3.1 Type-C (对应 SS02)
+   6.  HS07 - Internal - 背板 USB 2.0 - 摄像头
+   7.  HS08 - U S B  2 - 背板 USB 2.0
    8.  HS09 - U S B  3 - 前置 USB 3.0 (对应 SS05)
    9.  HS10 - U S B  3 - 前置 USB 3.0 (对应 SS06)
-   10. SS01 - U S B  3 - 背板右下 USB 3.1 Type-A
-   11. SS02 - TypeC+Sw - 背板左下 USB 3.1 Type-C
+   10. SS01 - U S B  3 - 背板 USB 3.1 Type-A
+   11. SS02 - TypeC+Sw - 背板 USB 3.1 Type-C
    12. SS05 - U S B  3 - 前置 USB 3.0
    13. SS06 - U S B  3 - 前置 USB 3.0
    ```
@@ -366,7 +374,7 @@ OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配�
 ## Q&A
 #### 1. 开机时苹果 logo 显示不正常怎么办？
    有两个方法可以解决这个问题。<br>
-   方法一：在`/EFI/OC/config.plist`配置文件 UEFI > Output > Resolution 处填写正确的显示器分辨率；<br>
+   方法一：在`/EFI/OC/Config.plist`配置文件 UEFI > Output > Resolution 处填写正确的显示器分辨率；<br>
    方法二：将 BIOS「STTINGS\启动\全荧幕商标」设置为 [允许]。<br>
    两种方法选择其一即可，如果同时使用的话开机 logo 的显示依旧会不正常，原本更推荐方法二 (会比方法一进入系统登陆界面略快一些)，但反复测试后发现，如果在 BIOS 打开「Windows 10 WHQL支持」，使用方法二可能会导致**关机再开机时丢失苹果 logo**，请测试后选择~~适合~~自己喜欢的方法。<br>
    **P.S.** 目前 OC 已支持自动检测 HiDPI，如果你使用 2K 及以下分辨率无法开启 HiDPI 的显示器且开机时显示不正常，请尝试将配置文件 UEFI > Output > UIScale 设置为`01`。
@@ -417,7 +425,7 @@ OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配�
 [cattyhouse](https://github.com/cattyhouse/oc-guide/)<br>
 [daliansky](https://github.com/daliansky) ([黑果小兵](https://blog.daliansky.net/))<br>
 [derbalkon](https://github.com/derbalkon/B360M-CoffeeLake-Hackintosh/)<br>
-[osx86zh](https://t.me/osx86zh/) ([Telegram](https://telegram.org/) 讨论组)<br>
+[osx86zh](https://t.me/osx86zh/) ([Telegram](https://telegram.org/) 群组)<br>
 [tonymoses](http://bbs.pcbeta.com/viewthread-1835637-1-1.html)<br>
 [xjn](https://blog.xjn819.com/)<br>
 [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/)<br>

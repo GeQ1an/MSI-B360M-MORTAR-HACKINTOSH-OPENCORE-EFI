@@ -16,7 +16,7 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>Load original power management</string>
+				<string>Allow XCPM to manage CPU's power management</string>
 				<key>Enabled</key>
 				<true/>
 				<key>Path</key>
@@ -24,7 +24,7 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>Fake EC controller</string>
+				<string>Fake EC device and fix USB power</string>
 				<key>Enabled</key>
 				<true/>
 				<key>Path</key>
