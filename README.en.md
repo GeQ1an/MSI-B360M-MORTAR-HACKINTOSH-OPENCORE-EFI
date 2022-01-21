@@ -11,7 +11,7 @@ My English is average, but I will try my best to translate, some content from Go
 
 <img src="Images/Readme/Image.jpg" align="right" width="360" />
 
-This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M Mortar (includes Titanium version) can use it through modification. The integrated graphics and discrete graphics participate in hardware decoding. By default, all USB ports are injected. OpenCore version: 0.7.7. The highest system supports macOS Monterey 12.2 beta.
+This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANIUM version) can use it through modification. The integrated graphics and discrete graphics participate in hardware decoding. By default, all USB ports are injected. OpenCore version: 0.7.7. The highest system supports macOS Monterey 12.2 beta.
 
 > Please note: This EFI is only a personal build sharing, and is marked with simple tips. It is not a standard OpenCore Hackintosh installation guide. If you need a standard installation guide, please jump to [Dortania's Getting Started](https://dortania.github.io/getting-started/). Starting hackintosh after installing or updating the hardware for the first time may encounter some problems. Although most of the problems can be solved, in fact, there are some problems that can not be solved. It can even be said that there is a certain element of luck. If you want to apply this EFI, it is recommended to use a configuration close to mine in order to have the same experience as much as possible.
 
@@ -68,6 +68,11 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M Mortar (includes Titani
 *Tips 3：Try to avoid Samsung when buying hard drives, especially macOS Monterey will cause longer boot time due to TRIM (almost all users have problems with the 970 EVO, and some users have problems with the 980 PRO). It is recommended to choose a relatively stable hard drive such as Western Digital SN850 / SN750 and Intel 760P.*<br>
 
 ## Changelog
+#### January 21, 2022
+Replace USBPorts kext with USBMap kext
+
+*Now because customizing USB on macOS has become very complicated, the default is changed to USBMap.kext which can be directly and easily customized on Windows. Go to [Advanced Used](#advanced-used) to see how to use my customized USB mapping.*
+
 #### January 17, 2022
 * Adjust some options in Config.plist
 
@@ -316,23 +321,23 @@ OpenCore is highly customizable. It is recommended to refer to the following ins
 
 ### Use Directly
 Suitable for users who **use both integrated graphics and discrete graphics**.<br>
-After downloading the whole package, if you used the `iMac19,1` SMBIOS in Clover before, you can use the previous three codes directly, or use [Hackintool](https://github.com/headkaze/Hackintool/releases) (other Tools are also available) Select the `iMac19,1` model to generate a new code + ROM, use ProperTree to open the `/EFI/OC/config.plist` configuration file, and fill in the PlatformInfo > Generic location (as shown below).<br>
+After downloading the whole package, if you used the `iMac19,1` SMBIOS in Clover before, you can use the previous three codes directly, or use [Hackintool](https://github.com/headkaze/Hackintool/releases) (other Tools are also available) Select the `iMac19,1` model to generate a new code + ROM, use ProperTree to open the `/EFI/OC/Config.plist`, and fill in the PlatformInfo > Generic location (as shown below).<br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_PlatformInfo.png)
 <br>
 After saving, pass the USB disk test first, and then put the EFI folder to the EFI partition of the boot disk and restart the computer.
 
 ### Use Without Integrated Graphics
 Suitable for users who **only use discrete graphics**.<br>
-1. Fill in the code + ROM information of the `iMacPro1,1` model to PlatformInfo > Generic in `/EFI/OC/config.plist`, and change the SystemProductName to `iMacPro1,1`<br>
-2. Delete DeviceProperties > Add > PciRoot(0x0)/Pci(0x2,0x0) in `/EFI/OC/config.plist` (as shown below).<br>
+1. Fill in the code + ROM information of the `iMacPro1,1` model to PlatformInfo > Generic in `/EFI/OC/Config.plist`, and change the SystemProductName to `iMacPro1,1`<br>
+2. Delete DeviceProperties > Add > PciRoot(0x0)/Pci(0x2,0x0) in `/EFI/OC/Config.plist` (as shown below).<br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_DeviceProperties.png)
 <br>
 After saving, pass the USB disk test first, and then put the EFI folder to the EFI partition of the boot disk and restart the computer.
 
 ### Use Without Dedicated Graphics
 Suitable for users who **only use integrated graphics**.<br>
-1. Fill in the code + ROM information of the `Macmini8,1` model to PlatformInfo > Generic in `/EFI/OC/config.plist`, and change the SystemProductName to `Macmini8,1`<br>
-2. Modify AAPL,ig-platform-id under DeviceProperties > Add > PciRoot(0x0)/Pci(0x2,0x0) in `/EFI/OC/config.plist` to `07009B3E`, and add device-id to `9B3E0000`, add framebuffer-unifiedmem to `00000080`, add framebuffer-patch-enable to `01000000` (as shown below).<br>
+1. Fill in the code + ROM information of the `Macmini8,1` model to PlatformInfo > Generic in `/EFI/OC/Config.plist`, and change the SystemProductName to `Macmini8,1`<br>
+2. Modify AAPL,ig-platform-id under DeviceProperties > Add > PciRoot(0x0)/Pci(0x2,0x0) in `/EFI/OC/Config.plist` to `07009B3E`, and add device-id to `9B3E0000`, add framebuffer-unifiedmem to `00000080`, add framebuffer-patch-enable to `01000000` (as shown below).<br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_DeviceProperties_I.png)
 <br>
 After saving, pass the USB disk test first, and then put the EFI folder to the EFI partition of the boot disk and restart the computer.
@@ -341,9 +346,9 @@ After saving, pass the USB disk test first, and then put the EFI folder to the E
 At present, RX 5000 series Navi 10 core graphics card, RX 6000 series Navi 21 core graphics card and RX 6000 series Navi 23 core graphics card should manually add the `agdpmod=pikera` boot-args to prevent black screen after startup, there is no other solution.
 
 ### Advanced Used
-1. Refer to [OpenCore Post-Install](https://dortania.github.io/OpenCore-Post-Install/usb/intel-mapping/intel.html#intel-usb-mapping) use [USBToolBox](https://github.com/USBToolBox/tool/releases/latest) in Windows environment to generate `USBMap.kext` customized USB mapping file, put `/EFI/OC/Kexts/` to replace the file with the same name, open `/EFI/OC/config.plist`, Turn off Kernel > Add > 7, Turn on 8.<br>
+1. Refer to [OpenCore Post-Install](https://dortania.github.io/OpenCore-Post-Install/usb/intel-mapping/intel.html#intel-usb-mapping) use [USBToolBox](https://github.com/USBToolBox/tool/releases/latest) in Windows environment to generate `USBMap.kext` customized USB mapping, put `/EFI/OC/Kexts/` to replace the file with the same name, open `/EFI/OC/Config.plist`, Turn off Kernel > Add > 7, Turn on 8.<br>
    ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_USB.png)
-   *There is my customized USB file in the directory, you can try it with your EFI backup. The SMBIOS is iMac19,1. If you use other SMBIOS, you need to open `USBMap.kext/Contents/Info.plist` and modify IOKitPersonalities > XHC > model: iMac19,1 to your SMBIOS; if you need to cancel the built-in HS07, open `USBMap.kext/Contents/Info.plist` and modify IOKitPersonalities > XHC > IOProviderMergeProperties > ports > HS07 > UsbConnector: 255 to 0. The specific USB mapping is shown below:*<br>
+   *There is my customized USB mapping in the directory, you can try it with your EFI backup. The SMBIOS is iMac19,1. If you use other SMBIOS, you need to open `USBMap.kext/Contents/Info.plist` and modify IOKitPersonalities > XHC > model: iMac19,1 to your SMBIOS; if you need to cancel the built-in HS07, open `USBMap.kext/Contents/Info.plist` and modify IOKitPersonalities > XHC > IOProviderMergeProperties > ports > HS07 > UsbConnector: 255 to 0. The specific USB mapping is shown below:*<br>
    
    <details><summary>Click to expand</summary>
    
@@ -355,7 +360,7 @@ At present, RX 5000 series Navi 10 core graphics card, RX 6000 series Navi 21 co
    3.  HS04 - Internal - Back. USB 2.0 - USB Keyboard
    4.  HS05 - U S B  3 - Back. USB 3.1 Type-A (Companion SS01)
    5.  HS06 - TypeC+Sw - Back. USB 3.1 Type-C (Companion SS02)
-   6.  HS07 - Internal - Back. USB 2.0  - USB Webcam
+   6.  HS07 - Internal - Back. USB 2.0 - USB Webcam
    7.  HS08 - U S B  2 - Back. USB 2.0
    8.  HS09 - U S B  3 - Front USB 3.0 (Companion SS05)
    9.  HS10 - U S B  3 - Front USB 3.0 (Companion SS06)
@@ -367,9 +372,9 @@ At present, RX 5000 series Navi 10 core graphics card, RX 6000 series Navi 21 co
    
    </details>
 
-2. Refer to [OpenCore Post-Install](https://dortania.github.io/OpenCore-Post-Install/universal/pm.html#using-cpu-friend) to customize the `CPUFriendDataProvider.kext` HWP parameter file according to personal needs, put Enter `/EFI/OC/Kexts/` to replace the file with the same name, enable `/EFI/OC/config.plist` file Kernel > Add > 10 and 11.<br>
+2. Refer to [OpenCore Post-Install](https://dortania.github.io/OpenCore-Post-Install/universal/pm.html#using-cpu-friend) to customize the `CPUFriendDataProvider.kext` HWP parameter file according to personal needs, put Enter `/EFI/OC/Kexts/` to replace the file with the same name, Turn on `/EFI/OC/Config.plist`  Kernel > Add > 10 and 11.<br>
    ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_CPU.png)
-   *Neither iMac19,2 nor iMacPro1,1 support HWP, no need to try. The iMac19,1 SMBIOS is recommended for users with integrated graphics, and the Macmini8,1 SMBIOS for users with only integrated graphics. Attached in the directory is the 9600K HWP parameter file that I customized according to my personal habits. It is not recommended to enable it directly, and it is not recommended for other processor users to enable it.*
+   *Neither iMac19,2 nor iMacPro1,1 support HWP, no need to try. The iMac19,1 SMBIOS is recommended for users with integrated graphics, and the Macmini8,1 SMBIOS for users with only integrated graphics. Attached in the directory is the 9600K HWP parameter file that I customized according to my personal habits. It is not recommended to enable it directly, and it is not recommended for other CPU users to enable it.*
 
 ## Q&A
 #### 1. What should I do if the Apple logo is displayed abnormally when booting?
@@ -412,7 +417,7 @@ At present, RX 5000 series Navi 10 core graphics card, RX 6000 series Navi 21 co
 #### 10. Why need to modify the configuration to use Catalina?
    Starting from OpenCore 0.7.2, earlier APFS drivers will not be loaded (for security reasons), which will cause systems lower than Big Sur 11.0 to fail to boot. If you want to boot Catalina or earlier systems, please Modify the MinDate and MinVersion under the configuration file UEFI > APFS to `-1`, please refer to the document in [OC 0.7.2 version](https://github.com/acidanthera/OpenCorePkg/releases/tag/0.7.2) for details.
 #### 11. Why have to customize the USB ports?
-   Starting from macOS Big Sur 11.3.1, the system will invalidate XhciPortLimit, so that even if the USBInjectAll Kext is loaded, more than 15 USB ports cannot be loaded correctly. You can search for the USB customization tutorial by yourself or refer to [OpenCore Post Install](https:// dortania.github.io/OpenCore-Post-Install/usb/) Tutorial for customizing USB. Or go to [Advanced Used](#advanced-used) to see how to use my custom.
+   Starting from macOS Big Sur 11.3.1, the system will invalidate XhciPortLimit, so that even if the USBInjectAll kext is loaded, more than 15 USB ports cannot be loaded correctly. You can search for the USB customization tutorial by yourself or refer to [OpenCore Post Install](https:// dortania.github.io/OpenCore-Post-Install/usb/) Tutorial for customizing USB mapping. Or go to [Advanced Used](#advanced-used) to see how to use my customized USB mapping.
 #### 12. Pending upgrade
 
 ## Conclusion
@@ -435,6 +440,8 @@ After all, Hackintosh is not a real Mac. There may be compatibility problems wit
 OpenCorePkg [Official Version](https://github.com/acidanthera/OpenCorePkg/releases) | [Automatic Compilation](https://github.com/hjp521/OpenCore-Factory/releases) / [Lilu](https://github.com/acidanthera/Lilu/releases) / [AppleALC](https://github.com/acidanthera/AppleALC/releases) / [WhateverGreen](https://github.com/acidanthera/WhateverGreen/releases) / [IntelMausi](https://github.com/acidanthera/IntelMausi/releases) / [VirtualSMC](https://github.com/acidanthera/VirtualSMC/releases) / [CPUFriend](https://github.com/acidanthera/CPUFriend/releases) / [NVMeFix](https://github.com/acidanthera/NVMeFix/releases) / [OcBinaryData](https://github.com/acidanthera/OcBinaryData) / [MaciASL](https://github.com/acidanthera/MaciASL/releases) / [ProperTree](https://github.com/corpnewt/ProperTree) / [Hackintool](https://github.com/headkaze/Hackintool/releases) / [HWMonitorSMC2](https://github.com/CloverHackyColor/HWMonitorSMC2/releases)
 
 ## In The End
+The later translation is relatively rushed, and there may be some problems, which will be revised in the future.<br>
+<br>
 If you have any questions, you can report them at [Issues](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues), or directly through [Telegram](https://t.me/GeQ1an ) Contact me, EFI will be fixed once the problem is identified, but no guarantee is given for the **timeliness** of the repair.<br>
 <br>
 In addition, if there are users who use Quantumult X on iOS, welcome to use my rules [Stick Rules](https://github.com/GeQ1an/Rules/tree/master), also welcome to [click here](https://t.me/usestick) Subscribe to my Telegram channel to keep up to date with rules and EFI related information.

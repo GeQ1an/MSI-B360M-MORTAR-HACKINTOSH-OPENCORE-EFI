@@ -68,6 +68,11 @@ For English? [Please click here](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACK
 *Tips 3：选购硬盘建议避开三星，特别是 macOS Monterey 会因为 TRIM 的原因导致开机时间变长 (970 EVO 几乎全军覆没，980 PRO 听天由命)。推荐选择西数 SN850 / SN750、英特尔 760P 等比较稳定的硬盘。*<br>
 
 ## 更新记录
+#### 2022.01.21
+* 替换 USBPorts kext 为 USBMap kext
+
+*因为现在在 macOS 进行定制 USB 变得十分复杂，所以默认更改为可在 Windows 直接、简单定制的 USBMap.kext。跳转到 [进阶使用](#进阶使用) 可查看如何直接使用我的定制。*
+
 #### 2022.01.17
 * 调整配置文件部分选项
 
@@ -316,23 +321,23 @@ OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配�
 
 ### 直接使用
 适合**同时使用核显 + 独显**的用户。<br>
-下载整包后，如果之前在 Clover 时就使用`iMac19,1`机型，可直接使用之前的三码，或使用 [Hackintool](https://github.com/headkaze/Hackintool/releases) (其他工具亦可) 选择`iMac19,1`机型生成新的三码 + ROM，用 ProperTree 打开`/EFI/OC/config.plist`配置文件，填入到 PlatformInfo > Generic 位置中 (如下图)。<br>
+下载整包后，如果之前在 Clover 时就使用`iMac19,1`机型，可直接使用之前的三码，或使用 [Hackintool](https://github.com/headkaze/Hackintool/releases) (其他工具亦可) 选择`iMac19,1`机型生成新的三码 + ROM，用 ProperTree 打开`/EFI/OC/Config.plist`配置文件，填入到 PlatformInfo > Generic 位置中 (如下图)。<br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_PlatformInfo.png)
 <br>
 保存后，先通过 USB 测试引导，无问题后再将 EFI 文件夹放置到启动磁盘 EFI 分区，重启电脑。
 
 ### 无核显使用
 适合**只使用独显**的用户。<br>
-1. 填入`iMacPro1,1`机型的三码 + ROM 信息到`/EFI/OC/config.plist`配置文件 PlatformInfo > Generic 处，并将机型修改为`iMacPro1,1`。<br>
-2. 删除`/EFI/OC/config.plist`配置文件 DeviceProperties > Add > PciRoot(0x0)/Pci(0x2,0x0) 这一行参数 (如下图)。<br>
+1. 填入`iMacPro1,1`机型的三码 + ROM 信息到`/EFI/OC/Config.plist`配置文件 PlatformInfo > Generic 处，并将机型修改为`iMacPro1,1`。<br>
+2. 删除`/EFI/OC/Config.plist`配置文件 DeviceProperties > Add > PciRoot(0x0)/Pci(0x2,0x0) 这一行参数 (如下图)。<br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_DeviceProperties.png)
 <br>
 保存后，先通过 USB 测试引导，无问题后再将 EFI 文件夹放置到启动磁盘 EFI 分区，重启电脑。
 
 ### 无独显使用
 适合**只使用核显**的用户。<br>
-1. 填入`Macmini8,1`机型的三码 + ROM 信息到`/EFI/OC/config.plist`配置文件 PlatformInfo > Generic 处，并将机型修改为`Macmini8,1`。<br>
-2. 修改`/EFI/OC/config.plist`配置文件 DeviceProperties > Add > PciRoot(0x0)/Pci(0x2,0x0) 下 AAPL,ig-platform-id 参数为`07009B3E`，并新增 device-id 参数为`9B3E0000`，新增 framebuffer-unifiedmem 参数为`00000080`，新增 framebuffer-patch-enable 参数为`01000000` (如下图)。<br>
+1. 填入`Macmini8,1`机型的三码 + ROM 信息到`/EFI/OC/Config.plist`配置文件 PlatformInfo > Generic 处，并将机型修改为`Macmini8,1`。<br>
+2. 修改`/EFI/OC/Config.plist`配置文件 DeviceProperties > Add > PciRoot(0x0)/Pci(0x2,0x0) 下 AAPL,ig-platform-id 参数为`07009B3E`，并新增 device-id 参数为`9B3E0000`，新增 framebuffer-unifiedmem 参数为`00000080`，新增 framebuffer-patch-enable 参数为`01000000` (如下图)。<br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_DeviceProperties_I.png)
 <br>
 保存后，先通过 USB 测试引导，无问题后再将 EFI 文件夹放置到启动磁盘 EFI 分区，重启电脑。
@@ -343,7 +348,7 @@ OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配�
 ### 进阶使用
 1. 参考 [OpenCore Post-Install](https://dortania.github.io/OpenCore-Post-Install/usb/intel-mapping/intel.html#intel-usb-mapping) 或 [黑苹果星球](https://heipg.cn/tutorial/customize-usb-port-windows.html)  生成 `USBMap.kext` 定制 USB 映射文件，放入`/EFI/OC/Kexts/`替换同名文件，打开 `/EFI/OC/config.plist`，关闭 Kernel > Add > 7，打开 8。<br>
    ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_USB.png)
-   *目录内有我的 USB 定制文件，可在备份好自己 EFI 的情况下尝试使用。SMBIOS 为 iMac19,1，若你使用其他机型需自行打开 USBMap.kext/Contents/Info.plist 修改 IOKitPersonalities > XHC > model 参数中的 iMac19,1 为你的机型；若你需要取消 HS07 内建，打开 Info.plist 修改 IOKitPersonalities > XHC > IOProviderMergeProperties > ports > HS07 > UsbConnector 参数为 0 即可。端口具体定制情况如下：*<br>
+   *目录内有我的 USB 定制文件，可在备份好自己 EFI 的情况下尝试使用。SMBIOS 为 iMac19,1，若你使用其他机型需自行打开 `USBMap.kext/Contents/Info.plist` 修改 IOKitPersonalities > XHC > model 参数中的 iMac19,1 为你的机型；若你需要取消 HS07 内建，打开 `USBMap.kext/Contents/Info.plist` 修改 IOKitPersonalities > XHC > IOProviderMergeProperties > ports > HS07 > UsbConnector 参数为 0 即可。端口具体定制情况如下：*<br>
    
    <details><summary>点击展开查看</summary>
    
@@ -367,7 +372,7 @@ OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配�
    
    </details>
 
-2. 参考 [xjn 博客](https://blog.xjn819.com/?p=543) 的进阶部分「4.1 CPU 的变频优化」或 xjn 大佬发表于 PCbeta 的帖子 [FCPX 核显独显全程满速指南](http://bbs.pcbeta.com/viewthread-1836920-1-1.html) 中「HWP 变频」部分，根据个人需求定制`CPUFriendDataProvider.kext`HWP 变频文件，放入`/EFI/OC/Kexts/`替换同名文件，启用`/EFI/OC/config.plist`文件 Kernel > Add > 10 和 11。<br>
+2. 参考 [xjn 博客](https://blog.xjn819.com/?p=543) 的进阶部分「4.1 CPU 的变频优化」或 xjn 大佬发表于 PCbeta 的帖子 [FCPX 核显独显全程满速指南](http://bbs.pcbeta.com/viewthread-1836920-1-1.html) 中「HWP 变频」部分，根据个人需求定制`CPUFriendDataProvider.kext`HWP 变频文件，放入`/EFI/OC/Kexts/`替换同名文件，启用`/EFI/OC/Config.plist`文件 Kernel > Add > 10 和 11。<br>
    ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_CPU.png)
    *iMac19,2 和 iMacPro1,1 均不支持 HWP 变频，无需尝试。对于有核显的用户建议选择 iMac19,1 机型，对于只使用核显的用户推荐 Macmini8,1 机型。目录内附带的是本人按照个人习惯定制的 9600K HWP 变频文件，不建议直接启用，更不建议其他处理器用户启用。*
 
@@ -375,7 +380,7 @@ OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配�
 #### 1. 开机时苹果 logo 显示不正常怎么办？
    有两个方法可以解决这个问题。<br>
    方法一：在`/EFI/OC/Config.plist`配置文件 UEFI > Output > Resolution 处填写正确的显示器分辨率；<br>
-   方法二：将 BIOS「STTINGS\启动\全荧幕商标」设置为 [允许]。<br>
+   方法二：将 BIOS「STTINGS\启动\全荧幕商标」设置为 [允许]，并确保配置文件 UEFI > Output > Resolution 的参数为 Max。 <br>
    两种方法选择其一即可，如果同时使用的话开机 logo 的显示依旧会不正常，原本更推荐方法二 (会比方法一进入系统登陆界面略快一些)，但反复测试后发现，如果在 BIOS 打开「Windows 10 WHQL支持」，使用方法二可能会导致**关机再开机时丢失苹果 logo**，请测试后选择~~适合~~自己喜欢的方法。<br>
    **P.S.** 目前 OC 已支持自动检测 HiDPI，如果你使用 2K 及以下分辨率无法开启 HiDPI 的显示器且开机时显示不正常，请尝试将配置文件 UEFI > Output > UIScale 设置为`01`。
 #### 2. 无法正常进入睡眠状态怎么办？
@@ -412,7 +417,7 @@ OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配�
 #### 10. 为什么使用 Catalina 需要额外修改配置？
    从 OpenCore 0.7.2 版本开始，早期的 APFS 驱动不会被加载 (出于安全性考虑)，这会导致低于 Big Sur 11.0 版本的系统无法启动，如果要启动 Catalina 或更早版本的系统，请修改配置文件 UEFI > APFS 下面的 MinDate 和 MinVersion 为`-1`，详情参考 [OC 0.7.2 版本](https://github.com/acidanthera/OpenCorePkg/releases/tag/0.7.2) 中的文档。
 #### 11. 为什么一定要定制 USB？
-   从 macOS Big Sur 11.3.1 开始，macOS 会使 OC 解除 15 个 USB 端口的 XhciPortLimit Quirk 失效，导致即使加载 USBInjectAll Kext 也无法全部正确加载超过 15 个的 USB 端口，可自行搜索 USB 定制教程或参考 [进阶使用](#进阶使用) \ [OpenCore Post Install](https://dortania.github.io/OpenCore-Post-Install/usb/) \ [黑苹果星球](https://heipg.cn/tutorial/customize-usb-port-windows.html) (包含 Windows 版，需付费查看，无相关利益) 中有关 USB 定制的教程。
+   从 macOS Big Sur 11.3.1 开始，macOS 会使 OC 解除 15 个 USB 端口的 XhciPortLimit Quirk 失效，导致即使加载 USBInjectAll kext 也无法全部正确加载超过 15 个的 USB 端口，可自行搜索 USB 定制教程或参考 [进阶使用](#进阶使用) \ [OpenCore Post Install](https://dortania.github.io/OpenCore-Post-Install/usb/) \ [黑苹果星球](https://heipg.cn/tutorial/customize-usb-port-windows.html) (包含 Windows 版，需付费查看，无相关利益) 中有关 USB 定制的教程。
 #### 12. 待更新
 
 ## 结语

@@ -16,7 +16,7 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>Allow XCPM to manage CPU's power management</string>
+				<string>Enable XCPM to manage CPU's power management XCPM to manage CPU's power management</string>
 				<key>Enabled</key>
 				<true/>
 				<key>Path</key>
@@ -335,9 +335,9 @@
 				<key>Arch</key>
 				<string>x86_64</string>
 				<key>BundlePath</key>
-				<string>USBPorts.kext</string>
+				<string>USBMap.kext</string>
 				<key>Comment</key>
-				<string>Customized USB ports</string>
+				<string>Customized USB mapping</string>
 				<key>Enabled</key>
 				<false/>
 				<key>ExecutablePath</key>
