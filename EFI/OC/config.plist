@@ -8,7 +8,7 @@
 		<array>
 			<dict>
 				<key>Comment</key>
-				<string>Disable AWAC</string>
+				<string>Re-enable old RTC clock compatible with macOS</string>
 				<key>Enabled</key>
 				<true/>
 				<key>Path</key>
@@ -16,7 +16,7 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>Enable XCPM to manage CPU's power management XCPM to manage CPU's power management</string>
+				<string>Enable XCPM to manage CPU's power management</string>
 				<key>Enabled</key>
 				<true/>
 				<key>Path</key>
@@ -32,7 +32,7 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>Intel 300-series PMC support</string>
+				<string>Fix NVRAM support for 300-series motherboard</string>
 				<key>Enabled</key>
 				<true/>
 				<key>Path</key>
@@ -178,6 +178,8 @@
 			<dict>
 				<key>AAPL,ig-platform-id</key>
 				<data>AwCYPg==</data>
+				<key>igfxfw</key>
+				<data>AgAAAA==</data>
 			</dict>
 		</dict>
 		<key>Delete</key>
@@ -862,7 +864,7 @@
 				<key>SystemAudioVolumeDB</key>
 				<data>4g==</data>
 				<key>boot-args</key>
-				<string>shikigva=80 igfxfw=2</string>
+				<string>shikigva=80</string>
 				<key>csr-active-config</key>
 				<data>AAAAAA==</data>
 				<key>prev-lang:kbd</key>

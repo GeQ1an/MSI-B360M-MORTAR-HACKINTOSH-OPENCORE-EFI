@@ -1,7 +1,7 @@
 # 微星 B360M 迫击炮 (钛金版) 黑苹果 OpenCore EFI
 
 [![OpenCore](https://img.shields.io/badge/OpenCore-0.7.7-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
-[![MacOS Big Sur](https://img.shields.io/badge/macOS-12.1-c62eb8)](https://www.apple.com/macos/monterey/)
+[![MacOS Big Sur](https://img.shields.io/badge/macOS-12.2-c62eb8)](https://www.apple.com/macos/monterey/)
 [![Last Commit](https://img.shields.io/github/last-commit/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI.svg?color=orange&label=%E6%9C%80%E8%BF%91%E6%8F%90%E4%BA%A4)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/commits/master/)
 [![Follow Me](https://img.shields.io/badge/%E5%85%B3%E6%B3%A8-Telegram-1da4de)](https://t.me/usestick/)
 
@@ -11,7 +11,7 @@ For English? [Please click here](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACK
 
 <img src="Images/Readme/Image.jpg" align="right" width="360" />
 
-此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮 (钛金版) 的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，OpenCore 版本：0.7.7，最高支持 macOS Monterey 12.2 测试版。
+此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮 (钛金版) 的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，OpenCore 版本：0.7.7，最高支持 macOS Monterey 12.2 正式版。
 
 > 注意：此 EFI 只是个人的构建分享，并标注了简单的使用提示，不是标准的 OpenCore 黑苹果安装指南，如果你需要标准安装指南请跳转至 [Dortania's Getting Started](https://dortania.github.io/getting-started/) 查看。在首次安装或更新硬件后启动黑苹果可能会遇到一些问题，虽然大部分问题都可以解决，但事实上确实存在部分没办法解决的问题，甚至可以说有一定的运气成分在里面，如果你要应用此 EFI 建议使用接近我的配置，才能尽可能地拥有相同的使用体验。
 
@@ -68,10 +68,11 @@ For English? [Please click here](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACK
 *Tips 3：选购硬盘建议避开三星，特别是 macOS Monterey 会因为 TRIM 的原因导致开机时间变长 (970 EVO 几乎全军覆没，980 PRO 听天由命)。推荐选择西数 SN850 / SN750、英特尔 760P 等比较稳定的硬盘。*<br>
 
 ## 更新记录
-#### 2022.01.21
+#### 2022.01.23
 * 替换 USBPorts kext 为 USBMap kext
+* 调整 igfxfw=2 参数到核显设备属性中
 
-*因为现在在 macOS 进行定制 USB 变得十分复杂，所以默认更改为可在 Windows 直接、简单定制的 USBMap.kext。跳转到 [进阶使用](#进阶使用) 可查看如何直接使用我的定制。*
+*因为现在在 macOS 定制 USB 变得十分复杂，所以默认更改为可在 Windows 环境直接、简单定制的 USBMap.kext。跳转到 [进阶使用](#进阶使用) 可查看如何直接使用我的 USB 定制。将 igfxfw=2 参数调整到设备属性后，没有核显的用户只需在 DeviceProperties 删除整个 PciRoot(0x0)/Pci(0x2,0x0) 即可，无需再删除 boot-args 中的启动参数。*
 
 #### 2022.01.17
 * 调整配置文件部分选项
@@ -271,7 +272,7 @@ sudo defaults delete com.apple.loginwindow LogoutHook  //清空 LogoutHook 的�
 </details>
 
 ## 使用 EFI
-准备 [ProperTree](https://github.com/corpnewt/ProperTree) ([下载](https://github.com/GeQ1an/Personal/raw/master/Hackintosh/ProperTree.zip)) 或 [PlistEdit Pro](https://www.fatcatsoftware.com/plisteditpro/) 编辑配置文件，尽量避免使用其他编辑器。<br>
+准备 [ProperTree](https://github.com/corpnewt/ProperTree) 或 [PlistEdit Pro](https://www.fatcatsoftware.com/plisteditpro/) 编辑配置文件，尽量避免使用其他编辑器。<br>
 OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配置好的基础版本，之后再通过 [xjn 博客](https://blog.xjn819.com/?p=543) 和 [黑果小兵博客](https://blog.daliansky.net/OpenCore-BootLoader.html) 学习更多内容进行修改。
 
 ### BIOS 设置
@@ -286,7 +287,7 @@ OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配�
       - 电源 LED 灯 [**双色**] *(如果选择 [闪烁]，睡眠时电源灯将不断闪烁)*
     - 整合周边设备
       - SATA设置
-        - SATA模式 [**AHCI模式**] *(如果选择 Optane 模式将无法识别 SATA 硬盘)*
+        - SATA模式 [**AHCI模式**] *(如果选择 [Optane模式] 将无法识别 SATA 硬盘)*
     - 内建显示配置
       - 设置第一显卡 [**PEG**] *(仅同时拥有核显及独显需要手动设置)*
       - 集显共享内存 [**64M**] *(如果使用拥有核显的处理器)*
@@ -337,18 +338,18 @@ OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配�
 ### 无独显使用
 适合**只使用核显**的用户。<br>
 1. 填入`Macmini8,1`机型的三码 + ROM 信息到`/EFI/OC/Config.plist`配置文件 PlatformInfo > Generic 处，并将机型修改为`Macmini8,1`。<br>
-2. 修改`/EFI/OC/Config.plist`配置文件 DeviceProperties > Add > PciRoot(0x0)/Pci(0x2,0x0) 下 AAPL,ig-platform-id 参数为`07009B3E`，并新增 device-id 参数为`9B3E0000`，新增 framebuffer-unifiedmem 参数为`00000080`，新增 framebuffer-patch-enable 参数为`01000000` (如下图)。<br>
+2. 修改`/EFI/OC/Config.plist`配置文件 DeviceProperties > Add > PciRoot(0x0)/Pci(0x2,0x0) 下 AAPL,ig-platform-id 参数为`07009b3e`，并新增 device-id 参数为`9b3e0000`，新增 framebuffer-patch-enable 参数为`01000000`，新增 framebuffer-unifiedmem 参数为`00000080` (如下图)。<br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_DeviceProperties_I.png)
 <br>
 保存后，先通过 USB 测试引导，无问题后再将 EFI 文件夹放置到启动磁盘 EFI 分区，重启电脑。
 
 ### 对于 RX 5000 \ RX 6000 系列显卡
-目前 RX 5000 系列 Navi 10 核心显卡、RX 6000 系列 Navi 21 核心显卡和 RX 6000 系列 Navi 23 核心显卡均应该手动添加`agdpmod=pikera`启动参数来防止开机黑屏，暂无其他解决方法。
+目前 RX 5000 系列 Navi 10 核心显卡、RX 6000 系列 Navi 21 核心显卡和 RX 6000 系列 Navi 23 核心显卡均应该手动添加 `agdpmod=pikera` 启动参数来防止开机黑屏，暂无其他解决方法。
 
 ### 进阶使用
-1. 参考 [OpenCore Post-Install](https://dortania.github.io/OpenCore-Post-Install/usb/intel-mapping/intel.html#intel-usb-mapping) 或 [黑苹果星球](https://heipg.cn/tutorial/customize-usb-port-windows.html)  生成 `USBMap.kext` 定制 USB 映射文件，放入`/EFI/OC/Kexts/`替换同名文件，打开 `/EFI/OC/config.plist`，关闭 Kernel > Add > 7，打开 8。<br>
+1. 参考 [OpenCore Post-Install](https://dortania.github.io/OpenCore-Post-Install/usb/intel-mapping/intel.html#intel-usb-mapping) 或 [黑苹果星球](https://heipg.cn/tutorial/customize-usb-port-windows.html) (包含 Windows 版 [推荐在 Windows 进行定制]，需付费查看，无相关利益) 使用 [USBToolBox](https://github.com/USBToolBox/tool/releases/latest) 生成 `USBMap.kext` 定制 USB 映射文件，放入 `/EFI/OC/Kexts/` 替换同名文件，打开 `/EFI/OC/Config.plist`，关闭 Kernel > Add > 7，打开 8。<br>
    ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_USB.png)
-   *目录内有我的 USB 定制文件，可在备份好自己 EFI 的情况下尝试使用。SMBIOS 为 iMac19,1，若你使用其他机型需自行打开 `USBMap.kext/Contents/Info.plist` 修改 IOKitPersonalities > XHC > model 参数中的 iMac19,1 为你的机型；若你需要取消 HS07 内建，打开 `USBMap.kext/Contents/Info.plist` 修改 IOKitPersonalities > XHC > IOProviderMergeProperties > ports > HS07 > UsbConnector 参数为 0 即可。端口具体定制情况如下：*<br>
+   *目录内有我的 USB 定制文件，可在备份好自己 EFI 的情况下尝试使用。SMBIOS 为 iMac19,1，若你使用其他机型需自行打开 `USBMap.kext/Contents/Info.plist` 修改 IOKitPersonalities > XHC > model 参数的 iMac19,1 为你的机型；若你需要取消 HS07 内建，打开 `USBMap.kext/Contents/Info.plist` 修改 IOKitPersonalities > XHC > IOProviderMergeProperties > ports > HS07 > UsbConnector 参数为 0 即可。端口具体定制情况如下：*<br>
    
    <details><summary>点击展开查看</summary>
    

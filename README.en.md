@@ -1,7 +1,7 @@
-# MSI B360M MORTAR (TITANIUM) HACKINTOSH OpenCore EFI
+# MSI B360M MORTAR (TITANIUM) Hackintosh OpenCore EFI
 
 [![OpenCore](https://img.shields.io/badge/OpenCore-0.7.7-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
-[![MacOS](https://img.shields.io/badge/macOS-12.1-c62eb8)](https://www.apple.com/macos/monterey/)
+[![MacOS](https://img.shields.io/badge/macOS-12.2-c62eb8)](https://www.apple.com/macos/monterey/)
 [![Last Commit](https://img.shields.io/github/last-commit/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI.svg?color=orange&label=Last%20Commit)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/commits/master/)
 [![Follow Me](https://img.shields.io/badge/Follow-Telegram-1da4de)](https://t.me/usestick/)
 
@@ -11,9 +11,9 @@ My English is average, but I will try my best to translate, some content from Go
 
 <img src="Images/Readme/Image.jpg" align="right" width="360" />
 
-This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANIUM version) can use it through modification. The integrated graphics and discrete graphics participate in hardware decoding. By default, all USB ports are injected. OpenCore version: 0.7.7. The highest system supports macOS Monterey 12.2 beta.
+This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANIUM version) can use it through modification. The integrated graphics and discrete graphics participate in hardware decoding. By default, all USB ports are injected. OpenCore version: 0.7.7. The highest system supports macOS Monterey 12.2.
 
-> Please note: This EFI is only a personal build sharing, and is marked with simple tips. It is not a standard OpenCore Hackintosh installation guide. If you need a standard installation guide, please jump to [Dortania's Getting Started](https://dortania.github.io/getting-started/). Starting hackintosh after installing or updating the hardware for the first time may encounter some problems. Although most of the problems can be solved, in fact, there are some problems that can not be solved. It can even be said that there is a certain element of luck. If you want to apply this EFI, it is recommended to use a configuration close to mine in order to have the same experience as much as possible.
+> Please note: This EFI is only a personal build sharing, and is marked with simple tips. It is not a standard OpenCore Hackintosh installation guide. If you need a standard installation guide, please jump to [Dortania's Getting Started](https://dortania.github.io/getting-started/). You may encounter some problems when starting Hackintosh after installing or updating hardware for the first time. Although most of the problems can be solved, there are actually some problems that cannot be solved. It can even be said that there is a certain element of luck in it. If you want to Applying this EFI recommends using hardware close to mine in order to have the same experience as possible.
 
 #### About Mac
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/About.en.png)
@@ -25,7 +25,7 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 - [x] AirDrop / Handoff / Sidecar
 - [x] FaceTime / iMessage
 - [x] Apple Music / Apple TV Plus
-- [x] XCPM / HWP
+- [x] XCPM (XNU's CPU Power Management) / HWP
 - [x] Sleep / Wake from Keyboard and Mouse
 - [x] Other Mac features (99% completed)
 
@@ -56,7 +56,7 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 |         Memory | Commonly used RAMs are generally compatible                                                                 |
 |            SSD | Except for some special (e.g. Samsung PM981 / PM991), the commonly used SSDs are generally compatible       |
 |  Graphics Card | RX 500 Series (Above 560) / RX VEGA Series / Radeon VII / RX 5000 Series / RX 6000 Series (Except 6700 XT)  |
-|  Wireless Card | Recommended Fenvi® FV-T919 or Mac disassembly network card (BCM94360 / BCM943602)                           |
+|  Wireless Card | Recommended Fenvi® FV-T919 or Mac disassembly wireless card (BCM94360 / BCM943602)                          |
 |   Case + Power | According to personal preferences and the power of CPU and graphics card                                    |
 |  Cooling + Fan | According to personal preferences                                                                           |
 |        Monitor | According to personal preferences (Recommended 4K or higher resolution)                                     |
@@ -64,76 +64,77 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 |         Others | According to personal preferences (Note device compatibility with macOS)                                    |
 
 *Tips 1：If you buy RX 500 series graphics cards, first choose Sapphire, then choose Dataland, Asus and MSI, try not to choose Yeston and XFX, and definitely avoid the RX 580 2048SP version!*<br>
-*Tips 2：It is recommended to buy new graphics cards of the RX 5000 series and RX 6000 series. Sapphire is relatively poor in the RX 6000 series. It is not recommended to choose it first, and definitely avoid the RX 6700 XT. The minimum macOS system version is Big Sur 11.4 beta 1 to use the RX 6800 / RX 6800 XT / RX 6900 XT graphics card, and the minimum system version of macOS to use the RX 6600 / RX 6600 XT graphics card is Monterey 12.1 beta 1.*<br>
-*Tips 3：Try to avoid Samsung when buying hard drives, especially macOS Monterey will cause longer boot time due to TRIM (almost all users have problems with the 970 EVO, and some users have problems with the 980 PRO). It is recommended to choose a relatively stable hard drive such as Western Digital SN850 / SN750 and Intel 760P.*<br>
+*Tips 2：It is recommended to buy new graphics cards of the RX 5000 series and RX 6000 series. Sapphire is relatively poor in the RX 6000 series. It is not recommended to choose it first, and definitely avoid the RX 6700 XT. The minimum macOS version required to use the RX 6800 / RX 6800 XT / RX 6900 XT graphics card is Big Sur 11.4 beta 1, and the minimum version of macOS to use the RX 6600 / RX 6600 XT graphics card is Monterey 12.1 beta 1.*<br>
+*Tips 3：Try to avoid Samsung when buying hard drives, especially macOS Monterey will cause longer boot time due to TRIM (Almost all users have problems with the 970 EVO, and some users have problems with the 980 PRO). It is recommended to choose a relatively stable hard drive such as Western Digital SN850 / SN750 and Intel 760P.*<br>
 
 ## Changelog
-#### January 21, 2022
-Replace USBPorts kext with USBMap kext
+#### January 23, 2022
+* Replaced USBPorts kext with USBMap kext
+* Adjusted igfxfw=2 parameter to integrated graphics DeviceProperties
 
-*Now because customizing USB on macOS has become very complicated, the default is changed to USBMap.kext which can be directly and easily customized on Windows. Go to [Advanced Used](#advanced-used) to see how to use my customized USB mapping.*
+*Now because customizing USB on macOS has become very complicated, the default is changed to USBMap.kext which can be directly and easily customized on Windows. Go to [Advanced Usage](#advanced-usage) to see how to use my customized USB mapping. After adjusting igfxfw=2 parameter to DeviceProperties, users without an integrated graphics card can simply delete PciRoot(0x0)/Pci(0x2,0x0) in DeviceProperties, and do not need to adjust boot-args.*
 
 #### January 17, 2022
-* Adjust some options in Config.plist
+* Adjusted some options in Config.plist
 
 *Specifically: Turn off Booter > Quirks > EnableWriteUnprotector & ProtectUefiServices, turn on RebuildAppleMemoryMap & SyncRuntimePermissions (theoretically, the compatibility is better, to avoid startup problems on some machines); Turn off Misc > Security > BlacklistAppleUpdate (deprecated as of OC 0.7.0); Turn off UEFI > Output > SanitiseClearScreen (this option does not take effect in BuiltinGraphics mode). This adjustment is to enhance compatibility and turn off unnecessary options. The previous settings do not affect the use. If there is no special requirement, you can wait until the next OC update.*
 
 #### January 12, 2022
-* Disable ACPI > Patch > 0 Patch in Config.plist for disabling modify GPRW power management S4 to S3
-* Disable Kernel > Add > 10 & 11 kexts in Config.plist for disabling CPUFriend
+* Disabled ACPI > Patch > 0 Patch in Config.plist for disabling modify GPRW power management S4 to S3
+* Disabled Kernel > Add > 10 & 11 kexts in Config.plist for disabling CPUFriend
 
 *Adhering to the principle of simplification, the test found that it is no longer necessary to downgrade GPRW to S3 to sleep normally, so this patch is turned off by default. If the sleep is not normal after the update (it appears to wake up from sleep), please try to reopen this patch. Disable CPUFriend by default for the convenience of basic users, and can be opened after customization if necessary.*
 
 #### January 11, 2022
-* Update OpenCore to 0.7.7 official version
-* Update Lilu \ AppleALC \ WhateverGreen kexts to latest official version, remove USBPower kext
-* Update OpenRuntime \ OpenCanopy \ OpenHfsPlus drivers
-* Organize SSDT into a more mainstream configuration, add SSDT-EC-USBX, update SSDT-PLUG, remove SSDT-PM and merge into SSDT-PLUG
+* Updated OpenCore to 0.7.7 official version
+* Updated Lilu \ AppleALC \ WhateverGreen kexts to latest official version, removed USBPower kext
+* Updated OpenRuntime \ OpenCanopy \ OpenHfsPlus drivers
+* Organized SSDT into a more mainstream configuration, added SSDT-EC-USBX, updated SSDT-PLUG, removed SSDT-PM and merge into SSDT-PLUG
 
 *OC 0.7.7's Config.plist adds and adjusts some entries, recommended to reconfigure according to usage habits. Support macOS 12.2 and can be updated in Software Update after the official version is released.*
 
 <details><summary>2021 History changes</summary>
 
 #### December 9, 2021
-* Update OpenCore to 0.7.6 official version
-* Update Lilu \ AppleALC \ VitualSMC kexts to latest official version, update USBInjectAll kext to newer modified version
-* Update OpenRuntime \ OpenCanopy drivers
+* Updated OpenCore to 0.7.6 official version
+* Updated Lilu \ AppleALC \ VitualSMC kexts to latest official version, updated USBInjectAll kext to newer modified version
+* Updated OpenRuntime \ OpenCanopy drivers
 
 *OC 0.7.6's Config.plist adds and adjusts some entries, recommended to reconfigure according to usage habits. This version will automatically detect HiDPI by default, generally no manual settings are required, but you may need to reset the NVRAM once (if the Apple logo is displayed abnormally during startup); Synchronized OC official hide the auxiliary tools in the guide selection interface, press the space bar to display.*
 
 #### November 10, 2021
-* Update OpenCore to 0.7.5 official version
-* Update Lilu \ AppleALC \ WhateverGreen \ VitualSMC kexts to latest official version
-* Update OpenRuntime \ OpenCanopy \ OpenHfsPlus drivers
-* Modify Misc > Security > DmgLoading to `Signed` \ Misc > Security > SecureBootModel to `Default` in Config.plist (See [Q&A 9](#9-why-enable-secure-boot-and-sip)); Modify NVRAM > Add > 7C436110-XXXX > csr-active-config to `00000000` \ Misc > Security > AllowToggleSip to `True/Yes` in Config.plist (See [Q&A 9](#9-why-enable-secure-boot-and-sip)); Modify Misc > Boot > TakeoffDelay to`5000` in Config.plist to improve compatibility
+* Updated OpenCore to 0.7.5 official version
+* Updated Lilu \ AppleALC \ WhateverGreen \ VitualSMC kexts to latest official version
+* Updated OpenRuntime \ OpenCanopy \ OpenHfsPlus drivers
+* Modified Misc > Security > DmgLoading to `Signed` \ Misc > Security > SecureBootModel to `Default` in Config.plist (See [Q&A 9](#9-why-enable-secure-boot-and-sip)); Modified NVRAM > Add > 7C436110-XXXX > csr-active-config to `00000000` \ Misc > Security > AllowToggleSip to `True/Yes` in Config.plist (See [Q&A 9](#9-why-enable-secure-boot-and-sip)); Modified Misc > Boot > TakeoffDelay to`5000` in Config.plist to improve compatibility
 
 **Notes**：1. If you are still using **macOS Catalina 10.15.x or older**, you need to **modify the UEFI > APFS > MinData and MinVersion parameters in Config.plist** to `-1` (See [Q&A 10](#10-why-need-to-modify-the-configuration-to-use-catalina)); 2. Update or install **macOS Big Sur 11.3.1 and later systems**, please **customize and enable the USB ports** in advance (See [Q&A Item 11](#11-why-have-to-customize-the-usb-ports)).<br>
 <br>
 *OC 0.7.5's Config.plist adds and deletes some entries, this change is relatively large, recommended to reconfigure according to usage habits. Support macOS 12.1 and can be updated in Software Update after the official version is released.*
 
 #### ~~July 12, 2021~~
-* ~~Update OpenCore to 0.7.1 official version~~
-* ~~Update Lilu \ AppleALC \ WhateverGreen \ VitualSMC \ IntelMausi \ CPUFriend kexts to latest official version, Add NVMeFix kext and enable~~
-* ~~Update OpenRuntime \ OpenCanopy drivers, Replace HfsPlus driver with OpenHfsPlus driver, Remove ExFatDxe driver~~
-* ~~Replace VerifyMsrE2 tool with ControlMsrE2 tool~~
-* ~~Update `/EFI/OC/Resources` boot theme files~~
+* ~~Updated OpenCore to 0.7.1 official version~~
+* ~~Updated Lilu \ AppleALC \ WhateverGreen \ VitualSMC \ IntelMausi \ CPUFriend kexts to latest official version, Added NVMeFix kext and enable~~
+* ~~Updated OpenRuntime \ OpenCanopy drivers, Replace HfsPlus driver with OpenHfsPlus driver, removed ExFatDxe driver~~
+* ~~Replaced VerifyMsrE2 tool with ControlMsrE2 tool~~
+* ~~Updated `/EFI/OC/Resources` boot theme files~~
 
 *~~OC 0.7.1's Config.plist adds and deletes some entries, recommended to reconfigure according to usage habits. In this version, the startup theme is enabled by default. If you need to turn it off, you can change the Misc > Boot > Picker: `External` to `Builtin` in Config.plist; Support macOS 11.5 and can be updated in Software Update after the official version is released.~~ This update has not been uploaded due to network issues.*
 
 #### February 8, 2021
-* Update OpenCore to 0.6.6 official version
-* Update Lilu \ AppleALC \ WhateverGreen \ VitualSMC kexts to latest official version
-* Update OpenRuntime \ OpenCanopy drivers
-* Update `/EFI/OC/Resources` boot theme files
-* Remove `/EFI/OC/Bootstrap/Bootstrap.efi`
+* Updated OpenCore to 0.6.6 official version
+* Updated Lilu \ AppleALC \ WhateverGreen \ VitualSMC kexts to latest official version
+* Updated OpenRuntime \ OpenCanopy drivers
+* Updated `/EFI/OC/Resources` boot theme files
+* Removed `/EFI/OC/Bootstrap/Bootstrap.efi`
 
 *OC 0.6.6's Config.plist adds and deletes some entries, recommended to reconfigure according to usage habits. Support macOS 11.2 and can be updated in Software Update. The usage of high priority for boot items has changed, see [Q&A 7](#7-how-to-use-oc-boot-item-high-priority).*
 
 #### January 16, 2021
-* Update OpenCore to 0.6.5 official version
-* Update AppleALC \ WhateverGreen \ IntelMausi \ CPUFriend kexts to latest official version
-* Update OpenRuntime \ OpenCanopy drivers
-* Update `/EFI/OC/Resources` boot theme files
+* Updated OpenCore to 0.6.5 official version
+* Updated AppleALC \ WhateverGreen \ IntelMausi \ CPUFriend kexts to latest official version
+* Updated OpenRuntime \ OpenCanopy drivers
+* Updated `/EFI/OC/Resources` boot theme files
 
 *OC 0.6.5's Config.plist only adds two new entries: Misc > Boot > PickerVariant and UEFI > Audio > SetupDelay, delete one entry: UEFI > Quirks > DeduplicateBootOrder. Recommended to add them manually.*
 
@@ -142,77 +143,77 @@ Replace USBPorts kext with USBMap kext
 <details><summary>2020 History changes</summary>
 
 #### December 18, 2020
-* Update OpenCore to 0.6.4 official version
-* Update Lilu \ AppleALC \ WhateverGreen \ VitualSMC kexts to latest official version, update USBInjectAll kext to newer modified version
-* Update OpenRuntime \ OpenCanopy drivers
-* Remove SSDT-HCMC SSDT file
+* Updated OpenCore to 0.6.4 official version
+* Updated Lilu \ AppleALC \ WhateverGreen \ VitualSMC kexts to latest official version, updated USBInjectAll kext to newer modified version
+* Updated OpenRuntime \ OpenCanopy drivers
+* Removed SSDT-HCMC SSDT file
 
 *OC 0.6.4's Config.plist adds and deletes some entries, recommended to reconfigure according to usage habits. Support macOS 11.1 and can be updated in Software Update.*
 
 #### November 12, 2020
-* Update OpenCore to 0.6.3 official version
-* Update Lilu \ AppleALC \ WhateverGreen \ VitualSMC kexts to latest official version
-* Update OpenRuntime \ OpenCanopy drivers
+* Updated OpenCore to 0.6.3 official version
+* Updated Lilu \ AppleALC \ WhateverGreen \ VitualSMC kexts to latest official version
+* Updated OpenRuntime \ OpenCanopy drivers
 
 *OC 0.6.3's Config.plist only adds three new entries: Kernel > Quirks > ForceSecureBootScheme, PlatformInfo > CustomMemory and UEFI > Output > ForceResolution. Recommended to add them manually. Support ~~bugOS~~macOS Big Sur 11.0 RC, see [Q&A 8](#8-how-to-use-macos-big-sur-11).*
 
 #### October 10, 2020
-* Update OpenCore to 0.6.2 official version
-* Update Lilu \ AppleALC \ WhateverGreen \ IntelMausi \ VitualSMC \ CPUFriend kexts to latest official version
-* Update OpenRuntime \ OpenCanopy drivers
-* Add `/EFI/OC/Bootstrap/Bootstrap.efi`
+* Updated OpenCore to 0.6.2 official version
+* Updated Lilu \ AppleALC \ WhateverGreen \ IntelMausi \ VitualSMC \ CPUFriend kexts to latest official version
+* Updated OpenRuntime \ OpenCanopy drivers
+* Added `/EFI/OC/Bootstrap/Bootstrap.efi`
 
 *OC 0.6.2's Config.plist adds and deletes some entries, recommended to reconfigure according to usage habits. Support macOS 10.15.6 and can be updated in Software Update; Support ~~bugOS~~macOS Big Sur 11.0 beta, see [Q&A 8](#8-how-to-use-macos-big-sur-11). For the Bootstrap, see [Q&A 7] (#7-how-to-use-oc-boot-item-high-priority).*
 
 #### September 16, 2020
-* Update OpenCore to 0.6.1 official version
-* Update Lilu \ AppleALC \ WhateverGreen \ VitualSMC kexts to latest official version
-* Update OpenRuntime \ OpenCanopy drivers
+* Updated OpenCore to 0.6.1 official version
+* Updated Lilu \ AppleALC \ WhateverGreen \ VitualSMC kexts to latest official version
+* Updated OpenRuntime \ OpenCanopy drivers
 
 *OC 0.6.1's Config.plist adds and deletes some entries, recommended to reconfigure according to usage habits. Support ~~bugOS~~macOS Big Sur 11.0 beta, see [Q&A 8](#8-how-to-use-macos-big-sur-11).*
 
 #### August 7, 2020
-* Update OpenCore to 0.6.0 official version
-* Update Lilu \ AppleALC \ WhateverGreen \ VitualSMC \ CPUFriend kexts to latest official version
-* Update OpenRuntime \ OpenCanopy drivers
+* Updated OpenCore to 0.6.0 official version
+* Updated Lilu \ AppleALC \ WhateverGreen \ VitualSMC \ CPUFriend kexts to latest official version
+* Updated OpenRuntime \ OpenCanopy drivers
 
 *OC 0.6.0's Config.plist adds and deletes some entries, recommended to reconfigure according to usage habits. Support macOS 10.15.6 and can be updated in Software Update; Support ~~bugOS~~macOS Big Sur 11.0 beta, see [Q&A 8](#8-how-to-use-macos-big-sur-11).*
 
 #### June 16, 2020
-* Update OpenCore to 0.5.9 official version
-* Update Lilu \ AppleALC \ IntelMausi \ WhateverGreen \ VitualSMC kexts to latest official version, update USBInjectAll kext to newer modified version
-* Update OpenRuntime \ OpenCanopy drivers, Remove the ApfsDriverLoader driver
-* Update `/EFI/OC/Resources` boot theme files
+* Updated OpenCore to 0.5.9 official version
+* Updated Lilu \ AppleALC \ IntelMausi \ WhateverGreen \ VitualSMC kexts to latest official version, updated USBInjectAll kext to newer modified version
+* Updated OpenRuntime \ OpenCanopy drivers, Removed the ApfsDriverLoader driver
+* Updated `/EFI/OC/Resources` boot theme files
 
 *OC 0.5.9's Config.plist adds and deletes some entries, recommended to reconfigure according to usage habits. Support macOS 10.15.5 and can be updated in Software Update.*
 
 #### April 12, 2020
-* Update OpenCore to 0.5.7 official version
-* Update Lilu \ AppleALC \ WhateverGreen \ VitualSMC kexts to latest official version
-* Replace the FwRuntimeServices driver with OpenRuntime driver, Add OpenCanopy driver
-* Replace Shell tools with OpenShell tools
-* Add the `/EFI/OC/Resources` theme related folder, where the Font\Image\Label directory contains files
-* Enable KASLR, add igfxfw=2 boot-args
+* Updated OpenCore to 0.5.7 official version
+* Updated Lilu \ AppleALC \ WhateverGreen \ VitualSMC kexts to latest official version
+* Replaced the FwRuntimeServices driver with OpenRuntime driver, Added OpenCanopy driver
+* Replaced Shell tools with OpenShell tools
+* Added the `/EFI/OC/Resources` theme related folder, where the Font\Image\Label directory contains files
+* Enabled KASLR, added igfxfw=2 boot-args
 
 *OC 0.5.7's Config.plist adds and deletes some entries, recommended to reconfigure according to usage habits. Added boot theme but not enabled by default. If you need to use it, you can change the Misc > Boot > Picker: `Builtin` to `External` in Config.plist; igfxfw=2 boot-args can use the integrated graphics at full frequency, if there is no integrated graphics, you can remove it.*
 
 #### March 3, 2020
-* Update OpenCore to 0.5.6 official version
-* Update Lilu \ AppleALC \ WhateverGreen kexts to latest official version
-* Update ApfsDriverLoader \ HfsPlus \ FwRuntimeServices drivers to latest version
-* Add ExFatDxe driver, add EFI > Drivers > 2: ExFatDxe.efi in Config.plist
-* Update Shell \ VerifyMsrE2 tools to latest version
-* Remove `/EFI/OC/Tools/memtest.efi`, remove Misc > Tools > 2 in Config.plist
+* Updated OpenCore to 0.5.6 official version
+* Updated Lilu \ AppleALC \ WhateverGreen kexts to latest official version
+* Updated ApfsDriverLoader \ HfsPlus \ FwRuntimeServices drivers to latest version
+* Added ExFatDxe driver, add EFI > Drivers > 2: ExFatDxe.efi in Config.plist
+* Updated Shell \ VerifyMsrE2 tools to latest version
+* Removed `/EFI/OC/Tools/memtest.efi`, removed Misc > Tools > 2 in Config.plist
 
 *OC 0.5.6's Config.plist adds and deletes some entries, recommended to reconfigure according to usage habits. Support ~~bugOS~~macOS 10.15.4 and can be updated in Software Update after the official version is released.*
 
 #### February 14, 2020
-* Remove Slide=129 boot-args（Related [Issue](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/7)）
-* Delete `/EFI/OC/Drivers/AppleUsbKbDxe.efi` (No effect, see the explanation of [vit9696 for details](https://applelife.ru/threads/opencore-obsuzhdenie-i-ustanovka.2944066/page-176#post-856653))
-* Modify `/EFI/OC/Drivers/HFSPlus.efi` name to `HfsPlus.efi`, modify UEFI > Drivers > 2 to HfsPlus.efi in Config.plist (Uniform name format)
+* Removed Slide=129 boot-args（Related [Issue](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/7)）
+* Deleted `/EFI/OC/Drivers/AppleUsbKbDxe.efi` (No effect, see the explanation of [vit9696 for details](https://applelife.ru/threads/opencore-obsuzhdenie-i-ustanovka.2944066/page-176#post-856653))
+* Modified `/EFI/OC/Drivers/HFSPlus.efi` name to `HfsPlus.efi`, modified UEFI > Drivers > 2 to HfsPlus.efi in Config.plist (Uniform name format)
 
 #### February 10, 2020
-* Fix OpenCore 0.5.5 renamed SupportCsm to AdviseWindows
+* Fixed OpenCore 0.5.5 renamed SupportCsm to AdviseWindows
 
 *Please manually change the name of this item (PlatformInfo > Generic) and suggest to adjust AdviseWindows to the top of Generic as per the official example.*
 
@@ -222,9 +223,9 @@ Replace USBPorts kext with USBMap kext
 *In the actual measurement, when TakeoffDelay is set to 150, the Native Shortcut Keys can be triggered, but the probability of success is small. 200 is a relatively balanced value, and it can be adjusted appropriately, such as between 300 and 500.*
 
 #### February 4, 2020
-* Update OpenCore to 0.5.5 official version
-* Update AppleALC \ VitualSMC kexts to latest official version
-* Add UEFI Shell tool (Not enabled)
+* Updated OpenCore to 0.5.5 official version
+* Updated AppleALC \ VitualSMC kexts to latest official version
+* Added UEFI Shell tool (Not enabled)
 
 *OC 0.5.5's Config.plist adds some new entries, recommended to reconfigure according to usage habits.*
 
@@ -238,14 +239,14 @@ sudo defaults delete com.apple.loginwindow LogoutHook  //Clear trigger settings 
 ```
 
 #### January 14, 2020
-* Update OpenCore to 0.5.4 official version
-* Update Lilu \ AppleALC \ CPUFriend \ VitualSMC \ WhateverGreen kexts to latest official version
-* Remove `/EFI/OC/Drivers/virtualsmc.efi` (already merged into OC)
+* Updated OpenCore to 0.5.4 official version
+* Updated Lilu \ AppleALC \ CPUFriend \ VitualSMC \ WhateverGreen kexts to latest official version
+* Removed `/EFI/OC/Drivers/virtualsmc.efi` (already merged into OC)
 
 *OC 0.5.4's Config.plist adds some new entries, recommended to reconfigure according to usage habits.*
 
 #### January 5, 2020
-* Use the official OpenCore patch to indirectly fix the "Can't sleep without Enable Power Nap" issue and remove SSDT-SBUS.aml
+* Used the official OpenCore patch to indirectly fix the "Can't sleep without Enable Power Nap" issue and remove SSDT-SBUS.aml
 
 *Disable Power Nap is to not be automatically woken up after sleep. After enabling the "Disable RTC wake scheduling" patch of OC, Enable Power Nap can go to sleep normally without being automatically woken up, and indirectly achieve "Disable Power Nap to go to sleep", such as The patch can be turned off manually without needing(Thanks to [ArchFeh](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/5) for the text suggestion).*<br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_Patch.png)
@@ -255,18 +256,18 @@ sudo defaults delete com.apple.loginwindow LogoutHook  //Clear trigger settings 
 <details><summary>2019 History changes</summary>
 
 #### December 29, 2019
-* Update WhateverGreen kext to the latest compiled version of 1.3.6
-* Fix "Can't sleep without Enable Power Nap" (In theory it should working)
+* Updated WhateverGreen kext to the latest compiled version of 1.3.6
+* Fixed "Can't sleep without Enable Power Nap" (In theory it should working)
 
 #### December 23, 2019
-* Update WhateverGreen kext to 1.3.6
-* Modify the shikigva boot-args code to 80 (Support Safari hard-decoding DRM content)
+* Updated WhateverGreen kext to 1.3.6
+* Modified the shikigva boot-args code to 80 (Support Safari hard-decoding DRM content)
 
 #### December 20, 2019
-* Upload the lost SSDT-SBUS.aml (Used to fix "Can't sleep without Enable Power Nap", the specific effect is to be tested)
+* Uploaded the lost SSDT-SBUS.aml (Used to fix "Can't sleep without Enable Power Nap", the specific effect is to be tested)
 
 #### December 19, 2019
-* After three days of testing, upload the first version
+* After three days of testing, uploaded the first version
 
 </details>
 
@@ -337,7 +338,7 @@ After saving, pass the USB disk test first, and then put the EFI folder to the E
 ### Use Without Dedicated Graphics
 Suitable for users who **only use integrated graphics**.<br>
 1. Fill in the code + ROM information of the `Macmini8,1` model to PlatformInfo > Generic in `/EFI/OC/Config.plist`, and change the SystemProductName to `Macmini8,1`<br>
-2. Modify AAPL,ig-platform-id under DeviceProperties > Add > PciRoot(0x0)/Pci(0x2,0x0) in `/EFI/OC/Config.plist` to `07009B3E`, and add device-id to `9B3E0000`, add framebuffer-unifiedmem to `00000080`, add framebuffer-patch-enable to `01000000` (as shown below).<br>
+2. Modify AAPL,ig-platform-id under DeviceProperties > Add > PciRoot(0x0)/Pci(0x2,0x0) in `/EFI/OC/Config.plist` to `07009b3e`, and add device-id to `9b3e0000`, add framebuffer-patch-enable to `01000000`, add framebuffer-unifiedmem to `00000080` (as shown below).<br>
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_DeviceProperties_I.png)
 <br>
 After saving, pass the USB disk test first, and then put the EFI folder to the EFI partition of the boot disk and restart the computer.
@@ -345,10 +346,10 @@ After saving, pass the USB disk test first, and then put the EFI folder to the E
 ### For RX 5000 \ RX 6000 Series Discrete Graphics
 At present, RX 5000 series Navi 10 core graphics card, RX 6000 series Navi 21 core graphics card and RX 6000 series Navi 23 core graphics card should manually add the `agdpmod=pikera` boot-args to prevent black screen after startup, there is no other solution.
 
-### Advanced Used
+### Advanced Usage
 1. Refer to [OpenCore Post-Install](https://dortania.github.io/OpenCore-Post-Install/usb/intel-mapping/intel.html#intel-usb-mapping) use [USBToolBox](https://github.com/USBToolBox/tool/releases/latest) in Windows environment to generate `USBMap.kext` customized USB mapping, put `/EFI/OC/Kexts/` to replace the file with the same name, open `/EFI/OC/Config.plist`, Turn off Kernel > Add > 7, Turn on 8.<br>
    ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_USB.png)
-   *There is my customized USB mapping in the directory, you can try it with your EFI backup. The SMBIOS is iMac19,1. If you use other SMBIOS, you need to open `USBMap.kext/Contents/Info.plist` and modify IOKitPersonalities > XHC > model: iMac19,1 to your SMBIOS; if you need to cancel the built-in HS07, open `USBMap.kext/Contents/Info.plist` and modify IOKitPersonalities > XHC > IOProviderMergeProperties > ports > HS07 > UsbConnector: 255 to 0. The specific USB mapping is shown below:*<br>
+   *There is my customized USB mapping in the directory, you can try it with your EFI backup. The SMBIOS is iMac19,1. If you use other SMBIOS, you need to open `USBMap.kext/Contents/Info.plist` and modify IOKitPersonalities > XHC > model: iMac19,1 to your SMBIOS. If you need to cancel the built-in HS07, open `USBMap.kext/Contents/Info.plist` and modify IOKitPersonalities > XHC > IOProviderMergeProperties > ports > HS07 > UsbConnector: 255 to 0. The specific USB mapping is shown below:*<br>
    
    <details><summary>Click to expand</summary>
    
@@ -417,7 +418,7 @@ At present, RX 5000 series Navi 10 core graphics card, RX 6000 series Navi 21 co
 #### 10. Why need to modify the configuration to use Catalina?
    Starting from OpenCore 0.7.2, earlier APFS drivers will not be loaded (for security reasons), which will cause systems lower than Big Sur 11.0 to fail to boot. If you want to boot Catalina or earlier systems, please Modify the MinDate and MinVersion under the configuration file UEFI > APFS to `-1`, please refer to the document in [OC 0.7.2 version](https://github.com/acidanthera/OpenCorePkg/releases/tag/0.7.2) for details.
 #### 11. Why have to customize the USB ports?
-   Starting from macOS Big Sur 11.3.1, the system will invalidate XhciPortLimit, so that even if the USBInjectAll kext is loaded, more than 15 USB ports cannot be loaded correctly. You can search for the USB customization tutorial by yourself or refer to [OpenCore Post Install](https:// dortania.github.io/OpenCore-Post-Install/usb/) Tutorial for customizing USB mapping. Or go to [Advanced Used](#advanced-used) to see how to use my customized USB mapping.
+   Starting from macOS Big Sur 11.3.1, the system will invalidate XhciPortLimit, so that even if the USBInjectAll kext is loaded, more than 15 USB ports cannot be loaded correctly. You can search for the USB customization tutorial by yourself or refer to [OpenCore Post Install](https:// dortania.github.io/OpenCore-Post-Install/usb/) Tutorial for customizing USB mapping. Or go to [Advanced Usage](#advanced-usage) to see how to use my customized USB mapping.
 #### 12. Pending upgrade
 
 ## Conclusion
