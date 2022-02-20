@@ -1,7 +1,7 @@
 # 微星 B360M 迫击炮 (钛金版) 黑苹果 OpenCore EFI
 
-[![OpenCore](https://img.shields.io/badge/OpenCore-0.7.7-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
-[![MacOS Big Sur](https://img.shields.io/badge/macOS-12.2-c62eb8)](https://www.apple.com/macos/monterey/)
+[![OpenCore](https://img.shields.io/badge/OpenCore-0.7.8-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+[![MacOS Big Sur](https://img.shields.io/badge/macOS-12.3-c62eb8)](https://www.apple.com/macos/monterey/)
 [![Last Commit](https://img.shields.io/github/last-commit/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI.svg?color=orange&label=%E6%9C%80%E8%BF%91%E6%8F%90%E4%BA%A4)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/commits/master/)
 [![Follow Me](https://img.shields.io/badge/%E5%85%B3%E6%B3%A8-Telegram-1da4de)](https://t.me/usestick/)
 
@@ -11,7 +11,7 @@ For English? [Please click here](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACK
 
 <img src="Images/Readme/Image.jpg" align="right" width="360" />
 
-此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮 (钛金版) 的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，OpenCore 版本：0.7.7，最高支持 macOS Monterey 12.2 正式版。
+此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮 (钛金版) 的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，OpenCore 版本：0.7.8，最高支持 macOS Monterey 12.3 测试版。
 
 > 注意：此 EFI 只是个人的构建分享，并标注了简单的使用提示，不是标准的 OpenCore 黑苹果安装指南，如果你需要标准安装指南请跳转至 [Dortania's Getting Started](https://dortania.github.io/getting-started/) 查看。在首次安装或更新硬件后启动黑苹果可能会遇到一些问题，虽然大部分问题都可以解决，但事实上确实存在部分没办法解决的问题，甚至可以说有一定的运气成分在里面，如果你要应用此 EFI 建议使用接近我的配置，才能尽可能地拥有相同的使用体验。
 
@@ -68,6 +68,13 @@ For English? [Please click here](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACK
 *Tips 3：选购硬盘建议避开三星，特别是 macOS Monterey 会因为 TRIM 的原因导致开机时间变长 (970 EVO 几乎全军覆没，980 PRO 听天由命)。推荐选择西数 SN850 / SN750、英特尔 760P 等比较稳定的硬盘。*<br>
 
 ## 更新记录
+#### 2022.02.21
+* 更新 OpenCore 至 0.7.8 正式版
+* 更新 Lilu \ AppleALC \ WhateverGreen kexts 至官方最新版
+* 更新 OpenRuntime \ OpenCanopy 驱动
+
+*OC 0.7.8 正式版的配置文件仅删除了 NVRAM > Add > 7C436110-XXXX > SystemAudioVolumeDB 条目，建议直接手动修改。支持 macOS 12.3，正式版发布后可直接升级。*
+
 #### 2022.01.23
 * 替换 USBPorts kext 为 USBMap kext
 * 调整 igfxfw=2 参数到核显设备属性中

@@ -1,7 +1,7 @@
 # MSI B360M MORTAR (TITANIUM) Hackintosh OpenCore EFI
 
-[![OpenCore](https://img.shields.io/badge/OpenCore-0.7.7-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
-[![MacOS](https://img.shields.io/badge/macOS-12.2-c62eb8)](https://www.apple.com/macos/monterey/)
+[![OpenCore](https://img.shields.io/badge/OpenCore-0.7.8-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+[![MacOS](https://img.shields.io/badge/macOS-12.3-c62eb8)](https://www.apple.com/macos/monterey/)
 [![Last Commit](https://img.shields.io/github/last-commit/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI.svg?color=orange&label=Last%20Commit)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/commits/master/)
 [![Follow Me](https://img.shields.io/badge/Follow-Telegram-1da4de)](https://t.me/usestick/)
 
@@ -11,7 +11,7 @@ My English is average, but I will try my best to translate, some content from Go
 
 <img src="Images/Readme/Image.jpg" align="right" width="360" />
 
-This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANIUM version) can use it through modification. The integrated graphics and discrete graphics participate in hardware decoding. By default, all USB ports are injected. OpenCore version: 0.7.7. The highest system supports macOS Monterey 12.2.
+This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANIUM version) can use it through modification. The integrated graphics and discrete graphics participate in hardware decoding. By default, all USB ports are injected. OpenCore version: 0.7.8. The highest system supports macOS Monterey 12.3 beta.
 
 > Please note: This EFI is only a personal build sharing, and is marked with simple tips. It is not a standard OpenCore Hackintosh installation guide. If you need a standard installation guide, please jump to [Dortania's Getting Started](https://dortania.github.io/getting-started/). You may encounter some problems when starting Hackintosh after installing or updating hardware for the first time. Although most of the problems can be solved, there are actually some problems that cannot be solved. It can even be said that there is a certain element of luck in it. If you want to Applying this EFI recommends using hardware close to mine in order to have the same experience as possible.
 
@@ -68,6 +68,13 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 *Tips 3：Try to avoid Samsung when buying hard drives, especially macOS Monterey will cause longer boot time due to TRIM (Almost all users have problems with the 970 EVO, and some users have problems with the 980 PRO). It is recommended to choose a relatively stable hard drive such as Western Digital SN850 / SN750 and Intel 760P.*<br>
 
 ## Changelog
+#### February 21, 2022
+* Updated OpenCore to 0.7.8 official version
+* Updated Lilu \ AppleALC \ WhateverGreen kexts to latest official version
+* Updated OpenRuntime \ OpenCanopy drivers
+
+*OC 0.7.8's Config.plist only delete one entry: NVRAM > Add > 7C436110-XXXX > SystemAudioVolumeDB. Recommended to modify it manually. Support macOS 12.3 and can be updated in Software Update after the official version is released.*
+
 #### January 23, 2022
 * Replaced USBPorts kext with USBMap kext
 * Adjusted igfxfw=2 parameter to integrated graphics DeviceProperties
@@ -418,7 +425,7 @@ At present, RX 5000 series Navi 10 core graphics card, RX 6000 series Navi 21 co
 #### 10. Why need to modify the configuration to use Catalina?
    Starting from OpenCore 0.7.2, earlier APFS drivers will not be loaded (for security reasons), which will cause systems lower than Big Sur 11.0 to fail to boot. If you want to boot Catalina or earlier systems, please Modify the MinDate and MinVersion under the configuration file UEFI > APFS to `-1`, please refer to the document in [OC 0.7.2 version](https://github.com/acidanthera/OpenCorePkg/releases/tag/0.7.2) for details.
 #### 11. Why have to customize the USB ports?
-   Starting from macOS Big Sur 11.3.1, the system will invalidate XhciPortLimit, so that even if the USBInjectAll kext is loaded, more than 15 USB ports cannot be loaded correctly. You can search for the USB customization tutorial by yourself or refer to [OpenCore Post Install](https:// dortania.github.io/OpenCore-Post-Install/usb/) Tutorial for customizing USB mapping. Or go to [Advanced Usage](#advanced-usage) to see how to use my customized USB mapping.
+   Starting from macOS Big Sur 11.3.1, the system will invalidate XhciPortLimit, so that even if the USBInjectAll kext is loaded, more than 15 USB ports cannot be loaded correctly. You can search for the USB customization tutorial by yourself or refer to [OpenCore Post Install](https://dortania.github.io/OpenCore-Post-Install/usb/) Tutorial for customizing USB mapping. Or go to [Advanced Usage](#advanced-usage) to see how to use my customized USB mapping.
 #### 12. Pending upgrade
 
 ## Conclusion
