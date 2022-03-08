@@ -1,11 +1,12 @@
 # MSI B360M MORTAR (TITANIUM) Hackintosh OpenCore EFI
 
 [![OpenCore](https://img.shields.io/badge/OpenCore-0.7.8-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
-[![MacOS](https://img.shields.io/badge/macOS-12.3-c62eb8)](https://www.apple.com/macos/monterey/)
+[![macOS](https://img.shields.io/badge/macOS-12.3-c62eb8)](https://www.apple.com/macos/monterey/)
 [![Last Commit](https://img.shields.io/github/last-commit/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI.svg?color=orange&label=Last%20Commit)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/commits/master/)
+[![License](https://img.shields.io/github/license/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/blob/master/LICENSE)
 [![Follow Me](https://img.shields.io/badge/Follow-Telegram-1da4de)](https://t.me/usestick/)
 
-My English is average, but I will try my best to translate, some content from Google Translate. 需要简体中文? [点此查看](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/blob/master/README.md)。
+Obviously, my English is not fantastic. But I will try my best to translate, some content from Google Translate. 需要简体中文? [点此查看](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/blob/master/README.md)。
 
 ## About
 
@@ -20,7 +21,7 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 
 ### Working
 - [x] Sound Card (Onboard) / Network Card (Onboard)
-- [x] Graphics Card (Integrated + Discrete) / Hardware Decoding 4K（HEVC + H.264)
+- [x] Graphics Card (Integrated + Discrete) / Hardware Decoding 4K (HEVC + H.264)
 - [x] WiFi (PCI-E devices) / Bluetooth (USB device over PCI-E)
 - [x] AirDrop / Handoff / Sidecar
 - [x] FaceTime / iMessage
@@ -44,7 +45,7 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 |        Monitor | PHILIPS® 276E8VJSB (4K 27-inch)                           |
 |   Webcam + Mic | LOGITUBO® 928 Autofocus with dual noise cancellation Mic  |
 |        Speaker | EDIFIER® R201T 2.1 Active Speaker                         |
-|       Keyboard | iQunix® F96 CORAL SEA with Cherry MX Blue Switch          |
+|       Keyboard | iQunix® F96 CORAL SEA with Cherry MX Brown Switch         |
 |          Mouse | Logitech® MX Master 3 (Using Unifying USB Receiver)       |
 
 ### Compatible Hardware List
@@ -65,9 +66,17 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 
 *Tips 1：If you buy RX 500 series graphics cards, first choose Sapphire, then choose Dataland, Asus and MSI, try not to choose Yeston and XFX, and definitely avoid the RX 580 2048SP version!*<br>
 *Tips 2：It is recommended to buy new graphics cards of the RX 5000 series and RX 6000 series. Sapphire is relatively poor in the RX 6000 series. It is not recommended to choose it first, and definitely avoid the RX 6700 XT. The minimum macOS version required to use the RX 6800 / RX 6800 XT / RX 6900 XT graphics card is Big Sur 11.4 beta 1, and the minimum version of macOS to use the RX 6600 / RX 6600 XT graphics card is Monterey 12.1 beta 1.*<br>
-*Tips 3：Try to avoid Samsung when buying hard drives, especially macOS Monterey will cause longer boot time due to TRIM (Almost all users have problems with the 970 EVO, and some users have problems with the 980 PRO). It is recommended to choose a relatively stable hard drive such as Western Digital SN850 / SN750 and Intel 760P.*<br>
+*Tips 3：Try to avoid Samsung when buying hard drives, especially macOS Monterey will cause longer boot time due to TRIM (Almost all users have problems with the 970 EVO, and some users have problems with the 980 PRO), see [Q&A 12](#12-why-does-the-boot-time-take-longer-after-the-monterey-upgrade). It is recommended to choose a relatively stable hard drive such as Western Digital SN850 / SN750 and Intel 760P.*<br>
 
 ## Changelog
+#### March 08, 2022
+* Updated OpenCore to 0.7.9 official version
+* Updated AppleALC \ WhateverGreen \ VitualSMC kexts to latest official version
+* Updated OpenRuntime \ OpenCanopy drivers
+* Updated OpenShell \ VerifyMsrE2 tools
+
+*OC 0.7.9's Config.plist only add one entry: Misc > Debug > LogModules. Recommended to modify it manually. Support macOS 12.3 and can be updated in Software Update after the official version is released.*
+
 #### February 21, 2022
 * Updated OpenCore to 0.7.8 official version
 * Updated Lilu \ AppleALC \ WhateverGreen kexts to latest official version
@@ -98,7 +107,7 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 * Updated OpenRuntime \ OpenCanopy \ OpenHfsPlus drivers
 * Organized SSDT into a more mainstream configuration, added SSDT-EC-USBX, updated SSDT-PLUG, removed SSDT-PM and merge into SSDT-PLUG
 
-*OC 0.7.7's Config.plist adds and adjusts some entries, recommended to reconfigure according to usage habits. Support macOS 12.2 and can be updated in Software Update after the official version is released.*
+*OC 0.7.7's Config.plist adds and adjusts some entries, recommended to reconfigure according to usage habits. Support macOS 12.2 and can be updated in Software Update.*
 
 <details><summary>2021 History changes</summary>
 
@@ -117,7 +126,7 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 
 **Notes**：1. If you are still using **macOS Catalina 10.15.x or older**, you need to **modify the UEFI > APFS > MinData and MinVersion parameters in Config.plist** to `-1` (See [Q&A 10](#10-why-need-to-modify-the-configuration-to-use-catalina)); 2. Update or install **macOS Big Sur 11.3.1 and later systems**, please **customize and enable the USB ports** in advance (See [Q&A Item 11](#11-why-have-to-customize-the-usb-ports)).<br>
 <br>
-*OC 0.7.5's Config.plist adds and deletes some entries, this change is relatively large, recommended to reconfigure according to usage habits. Support macOS 12.1 and can be updated in Software Update after the official version is released.*
+*OC 0.7.5's Config.plist adds and deletes some entries, this change is relatively large, recommended to reconfigure according to usage habits. Support macOS 12.1 and can be updated in Software Update.*
 
 #### ~~July 12, 2021~~
 * ~~Updated OpenCore to 0.7.1 official version~~
@@ -126,7 +135,7 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 * ~~Replaced VerifyMsrE2 tool with ControlMsrE2 tool~~
 * ~~Updated `/EFI/OC/Resources` boot theme files~~
 
-*~~OC 0.7.1's Config.plist adds and deletes some entries, recommended to reconfigure according to usage habits. In this version, the startup theme is enabled by default. If you need to turn it off, you can change the Misc > Boot > Picker: `External` to `Builtin` in Config.plist; Support macOS 11.5 and can be updated in Software Update after the official version is released.~~ This update has not been uploaded due to network issues.*
+*~~OC 0.7.1's Config.plist adds and deletes some entries, recommended to reconfigure according to usage habits. In this version, the startup theme is enabled by default. If you need to turn it off, you can change the Misc > Boot > Picker: `External` to `Builtin` in Config.plist; Support macOS 11.5 and can be updated in Software Update.~~ This update has not been uploaded due to network issues.*
 
 #### February 8, 2021
 * Updated OpenCore to 0.6.6 official version
@@ -212,7 +221,7 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 * Updated Shell \ VerifyMsrE2 tools to latest version
 * Removed `/EFI/OC/Tools/memtest.efi`, removed Misc > Tools > 2 in Config.plist
 
-*OC 0.5.6's Config.plist adds and deletes some entries, recommended to reconfigure according to usage habits. Support ~~bugOS~~macOS 10.15.4 and can be updated in Software Update after the official version is released.*
+*OC 0.5.6's Config.plist adds and deletes some entries, recommended to reconfigure according to usage habits. Support ~~bugOS~~macOS 10.15.4 and can be updated in Software Update.*
 
 #### February 14, 2020
 * Removed Slide=129 boot-args（Related [Issue](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/7)）
@@ -426,7 +435,13 @@ At present, RX 5000 series Navi 10 core graphics card, RX 6000 series Navi 21 co
    Starting from OpenCore 0.7.2, earlier APFS drivers will not be loaded (for security reasons), which will cause systems lower than Big Sur 11.0 to fail to boot. If you want to boot Catalina or earlier systems, please Modify the MinDate and MinVersion under the configuration file UEFI > APFS to `-1`, please refer to the document in [OC 0.7.2 version](https://github.com/acidanthera/OpenCorePkg/releases/tag/0.7.2) for details.
 #### 11. Why have to customize the USB ports?
    Starting from macOS Big Sur 11.3.1, the system will invalidate XhciPortLimit, so that even if the USBInjectAll kext is loaded, more than 15 USB ports cannot be loaded correctly. You can search for the USB customization tutorial by yourself or refer to [OpenCore Post Install](https://dortania.github.io/OpenCore-Post-Install/usb/) Tutorial for customizing USB mapping. Or go to [Advanced Usage](#advanced-usage) to see how to use my customized USB mapping.
-#### 12. Pending upgrade
+#### 12. Why does the boot time take longer after the Monterey upgrade?
+   Because the Monterey system is more picky about hard disks, some hard disks with poor compatibility will have the problem of long TRIM time. Please try to execute the following commands in `Terminal`:
+   ```
+   log show --last boot | grep "trims took"
+   ```
+   Check the trims took time in the returned result. If it exceeds 10 seconds, it will obviously feel that the boot time is too long. The current solution is to replace the hard disk.
+#### 13. Pending upgrade
 
 ## Conclusion
 After completing the above steps, you basically have a Hackintosh that is 99% complete. For more screenshots, please check [Screenshot Preview](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/tree/master/Images/Preview.en.md).<br>
@@ -441,8 +456,8 @@ After all, Hackintosh is not a real Mac. There may be compatibility problems wit
 [osx86zh](https://t.me/osx86zh/) ([Telegram](https://telegram.org/) Group)<br>
 [tonymoses](http://bbs.pcbeta.com/viewthread-1835637-1-1.html)<br>
 [xjn](https://blog.xjn819.com/)<br>
-[Hackintosh Planet](https://heipg.cn/)<br>
-[OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/)
+[OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/)<br>
+[heipg.cn](https://heipg.cn/)
 
 ## Link
 OpenCorePkg [Official Version](https://github.com/acidanthera/OpenCorePkg/releases) | [Automatic Compilation](https://github.com/hjp521/OpenCore-Factory/releases) / [Lilu](https://github.com/acidanthera/Lilu/releases) / [AppleALC](https://github.com/acidanthera/AppleALC/releases) / [WhateverGreen](https://github.com/acidanthera/WhateverGreen/releases) / [IntelMausi](https://github.com/acidanthera/IntelMausi/releases) / [VirtualSMC](https://github.com/acidanthera/VirtualSMC/releases) / [CPUFriend](https://github.com/acidanthera/CPUFriend/releases) / [NVMeFix](https://github.com/acidanthera/NVMeFix/releases) / [OcBinaryData](https://github.com/acidanthera/OcBinaryData) / [MaciASL](https://github.com/acidanthera/MaciASL/releases) / [ProperTree](https://github.com/corpnewt/ProperTree) / [Hackintool](https://github.com/headkaze/Hackintool/releases) / [HWMonitorSMC2](https://github.com/CloverHackyColor/HWMonitorSMC2/releases)

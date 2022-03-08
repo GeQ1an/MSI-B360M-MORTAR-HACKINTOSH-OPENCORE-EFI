@@ -1,8 +1,9 @@
 # 微星 B360M 迫击炮 (钛金版) 黑苹果 OpenCore EFI
 
 [![OpenCore](https://img.shields.io/badge/OpenCore-0.7.8-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
-[![MacOS Big Sur](https://img.shields.io/badge/macOS-12.3-c62eb8)](https://www.apple.com/macos/monterey/)
+[![macOS](https://img.shields.io/badge/macOS-12.3-c62eb8)](https://www.apple.com.cn/macos/monterey/)
 [![Last Commit](https://img.shields.io/github/last-commit/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI.svg?color=orange&label=%E6%9C%80%E8%BF%91%E6%8F%90%E4%BA%A4)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/commits/master/)
+[![License](https://img.shields.io/github/license/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/blob/master/LICENSE)
 [![Follow Me](https://img.shields.io/badge/%E5%85%B3%E6%B3%A8-Telegram-1da4de)](https://t.me/usestick/)
 
 For English? [Please click here](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/blob/master/README.en.md).
@@ -20,7 +21,7 @@ For English? [Please click here](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACK
 
 ### 可正常工作
 - [x] 声卡 (板载) / 网卡 (板载)
-- [x] 显卡 (核显 + 独显) / 硬解 4K（HEVC + H.264)
+- [x] 显卡 (核显 + 独显) / 硬解 4K (HEVC + H.264)
 - [x] WiFi (PCI-E 设备) / 蓝牙 (PEI-E 载 USB 设备)
 - [x] 隔空投送 / 接力 / 随航
 - [x] FaceTime / iMessage
@@ -65,9 +66,17 @@ For English? [Please click here](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACK
 
 *Tips 1：如果选购 RX 500 系列显卡优先选择蓝宝石品牌，其次选择迪兰恒进、华硕和微星，尽量不选择盈通和讯景，一定避开 RX 580 2048SP 版本！*<br>
 *Tips 2：推荐选购 RX 5000 系列和 RX 6000 系列新显卡，蓝宝石在 RX 6000 系列比较缩水，不建议优先选择，一定避开 RX 6700 XT。使用 RX 6800 / RX 6800 XT / RX 6900 XT 显卡要求 macOS 最低系统版本为 Big Sur 11.4 beta 1，使用 RX 6600 / RX 6600 XT 显卡要求 macOS 最低系统版本为 Monterey 12.1 beta 1。*<br>
-*Tips 3：选购硬盘建议避开三星，特别是 macOS Monterey 会因为 TRIM 的原因导致开机时间变长 (970 EVO 几乎全军覆没，980 PRO 听天由命)。推荐选择西数 SN850 / SN750、英特尔 760P 等比较稳定的硬盘。*<br>
+*Tips 3：选购硬盘建议避开三星，特别是 macOS Monterey 会因为 TRIM 的原因导致开机时间变长 (970 EVO 几乎全军覆没，980 PRO 听天由命)，详见 [Q&A 条目 12](#12-为什么升级-Monterey-后开机时间变长)。推荐选择西数 SN850 / SN750、英特尔 760P 等比较稳定的硬盘。*<br>
 
 ## 更新记录
+#### 2022.03.08
+* 更新 OpenCore 至 0.7.9 正式版
+* 更新 AppleALC \ WhateverGreen \ VitualSMC kexts 至官方最新版
+* 更新 OpenRuntime \ OpenCanopy 驱动
+* 更新 OpenShell \ VerifyMsrE2 工具
+
+*OC 0.7.9 正式版的配置文件仅新增了 Misc > Debug > LogModules 条目，建议直接手动修改。支持 macOS 12.3，正式版发布后可直接升级。*
+
 #### 2022.02.21
 * 更新 OpenCore 至 0.7.8 正式版
 * 更新 Lilu \ AppleALC \ WhateverGreen kexts 至官方最新版
@@ -84,13 +93,13 @@ For English? [Please click here](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACK
 #### 2022.01.17
 * 调整配置文件部分选项
 
-*具体为：关闭 Booter > Quirks > EnableWriteUnprotector & ProtectUefiServices，开启 RebuildAppleMemoryMap & SyncRuntimePermissions (理论上兼容性更好，避免部分机器出现启动问题)；关闭 Misc > Security > BlacklistAppleUpdate (OC 0.7.0 版本开始已作废)；关闭 UEFI > Output > SanitiseClearScreen (BuiltinGraphics 渲染方式下该选项不生效)。此次调整为增强兼容性、关闭不必要的选项，之前的设置不影响使用，如无特殊需求，可等到下次 OC 更新时再更新。*
+*具体为：禁用 Booter > Quirks > EnableWriteUnprotector & ProtectUefiServices，启用 RebuildAppleMemoryMap & SyncRuntimePermissions (理论上兼容性更好，避免部分机器出现启动问题)；禁用 Misc > Security > BlacklistAppleUpdate (OC 0.7.0 版本开始已作废)；禁用 UEFI > Output > SanitiseClearScreen (BuiltinGraphics 渲染方式下该选项不生效)。此次调整为增强兼容性、禁用不必要的选项，之前的设置不影响使用，如无特殊需求，可等到下次 OC 更新时再更新。*
 
 #### 2022.01.12
-* 关闭 ACPI > Patch > 0 用于修改 GPRW 电源管理 S4 级为 S3 级的补丁
-* 关闭 Kernel > Add > 10 & 11 用于开启 CPUFriend 的 kexts
+* 禁用 ACPI > Patch > 0 用于修改 GPRW 电源管理 S4 级为 S3 级的补丁
+* 禁用 Kernel > Add > 10 & 11 用于开启 CPUFriend 的 kexts
 
-*秉承 “能免则免、能简则简” 的原则，经反复测试，现在不需要再将 GPRW 降级为 S3 即可正常睡眠，于是默认关闭这个补丁，如果更新后睡眠不正常 (表现为睡眠即醒) 请尝试重新打开这个补丁；默认关闭 CPUFriend，以方便基础用户使用，有需要自行定制后打开即可。*
+*秉承 “能免则免、能简则简” 的原则，经反复测试，现在不需要再将 GPRW 降级为 S3 即可正常睡眠，于是默认禁用这个补丁，如果更新后睡眠不正常 (表现为睡眠即醒) 请尝试重新启用这个补丁；默认禁用 CPUFriend，以方便基础用户使用，有需要自行定制后启用即可。*
 
 #### 2022.01.11
 * 更新 OpenCore 至 0.7.7 正式版
@@ -98,7 +107,7 @@ For English? [Please click here](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACK
 * 更新 OpenRuntime \ OpenCanopy \ OpenHfsPlus 驱动
 * 整理 SSDT 为更主流的搭配，添加 SSDT-EC-USBX，更新 SSDT-PLUG，移除 SSDT-PM 合并至 SSDT-PLUG
 
-*OC 0.7.7 正式版的配置文件新增和调整了一些条目，建议按照使用习惯重新配置。支持 macOS 12.2，正式版发布后可直接升级。*
+*OC 0.7.7 正式版的配置文件新增和调整了一些条目，建议按照使用习惯重新配置。支持 macOS 12.2，可直接升级。*
 
 <details><summary>2021 年更新记录</summary>
 
@@ -117,7 +126,7 @@ For English? [Please click here](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACK
 
 **注意事项**：1. 如果你仍在使用 **macOS Catalina 10.15.x 或更早版本**系统，需要**修改 OC 配置文件** UEFI > APFS 下的 **MinData** 和 **MinVersion** 参数为`-1` (详见 [Q&A 条目 10](#10-为什么使用-catalina-需要额外修改配置))；2. 更新或安装 **macOS Big Sur 11.3.1 及以后版本**，请提前**定制 USB 并启用** (详见 [Q&A 条目 11](#11-为什么一定要定制-usb))。<br>
 <br>
-*OC 0.7.5 正式版的配置文件新增和删除了若干条目，此次配置文件改动较大，建议按照使用习惯重新配置。支持 macOS 12.1，正式版发布后可直接升级 (因近几个月事务繁多，直到今天才得以更新，向所有用户道一声抱歉)。*
+*OC 0.7.5 正式版的配置文件新增和删除了若干条目，此次配置文件改动较大，建议按照使用习惯重新配置。支持 macOS 12.1，可直接升级 (因近几个月事务繁多，直到今天才得以更新，向所有用户道一声抱歉)。*
 
 #### ~~2021.07.12~~
 * ~~更新 OpenCore 至 0.7.1 正式版~~
@@ -126,7 +135,7 @@ For English? [Please click here](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACK
 * ~~替换 VerifyMsrE2 工具为 ControlMsrE2 工具~~
 * ~~更新`/EFI/OC/Resources`启动主题相关文件~~
 
-*~~OC 0.7.1 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。此版本开始默认启用启动主题，如需关闭可将 OC 配置文件 Misc > Boot > PickerMode 的`External`修改为`Builtin`；支持 macOS 11.5，正式版发布后可直接升级 (因近几个月事务繁多，直到今天才得以更新，向所有用户道一声抱歉)。~~ 因网络问题，此更新一直未得以上传。*
+*~~OC 0.7.1 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。此版本开始默认启用启动主题，如需关闭可将 OC 配置文件 Misc > Boot > PickerMode 的`External`修改为`Builtin`；支持 macOS 11.5，可直接升级 (因近几个月事务繁多，直到今天才得以更新，向所有用户道一声抱歉)。~~ 因网络问题，此更新一直未得以上传。*
 
 #### 2021.02.08
 * 更新 OpenCore 至 0.6.6 正式版
@@ -212,7 +221,7 @@ For English? [Please click here](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACK
 * 更新 Shell \ VerifyMsrE2 工具至最新版
 * 移除`/EFI/OC/Tools/memtest.efi`文件，同步移除配置文件 Misc > Tools > 2 条目
 
-*OC 0.5.6 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。目前已支持 ~~bugOS~~macOS 10.15.4，正式版发布后可直接升级。*
+*OC 0.5.6 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。目前已支持 ~~bugOS~~macOS 10.15.4，可直接升级。*
 
 #### 2020.02.14
 * 移除 Slide=129 启动参数（相关 [Issue](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/issues/7)）
@@ -426,7 +435,13 @@ OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配�
    从 OpenCore 0.7.2 版本开始，早期的 APFS 驱动不会被加载 (出于安全性考虑)，这会导致低于 Big Sur 11.0 版本的系统无法启动，如果要启动 Catalina 或更早版本的系统，请修改配置文件 UEFI > APFS 下面的 MinDate 和 MinVersion 为`-1`，详情参考 [OC 0.7.2 版本](https://github.com/acidanthera/OpenCorePkg/releases/tag/0.7.2) 中的文档。
 #### 11. 为什么一定要定制 USB？
    从 macOS Big Sur 11.3.1 开始，macOS 会使 OC 解除 15 个 USB 端口的 XhciPortLimit Quirk 失效，导致即使加载 USBInjectAll kext 也无法全部正确加载超过 15 个的 USB 端口，可自行搜索 USB 定制教程或参考 [进阶使用](#进阶使用) \ [OpenCore Post Install](https://dortania.github.io/OpenCore-Post-Install/usb/) \ [黑苹果星球](https://heipg.cn/tutorial/customize-usb-port-windows.html) (包含 Windows 版，需付费查看，无相关利益) 中有关 USB 定制的教程。
-#### 12. 待更新
+#### 12. 为什么升级 Monterey 后开机时间变长？
+   因 Monterey 系统对硬盘更加挑剔，导致部分兼容性差的硬盘会存在 TRIM 时间过长的问题，请尝试在`终端`中执行如下命令进行检查：
+   ```
+   log show --last boot | grep "trims took"
+   ```
+   查看返回结果中的 trims took 时间，如果超过 10 秒，则会明显感知到开机时间过长，目前的解决办法只有更换硬盘。
+#### 13. 待更新
 
 ## 结语
 完成以上步骤后，基本上已经有了一个完成度为 99% 的黑苹果设备，更多截图请查看 [截图预览](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/tree/master/Images/Preview.md) 。<br>
