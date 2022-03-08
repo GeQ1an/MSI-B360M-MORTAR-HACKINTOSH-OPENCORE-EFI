@@ -1,6 +1,6 @@
 # MSI B360M MORTAR (TITANIUM) Hackintosh OpenCore EFI
 
-[![OpenCore](https://img.shields.io/badge/OpenCore-0.7.8-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+[![OpenCore](https://img.shields.io/badge/OpenCore-0.7.9-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
 [![macOS](https://img.shields.io/badge/macOS-12.3-c62eb8)](https://www.apple.com/macos/monterey/)
 [![Last Commit](https://img.shields.io/github/last-commit/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI.svg?color=orange&label=Last%20Commit)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/commits/master/)
 [![License](https://img.shields.io/github/license/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/blob/master/LICENSE)
@@ -12,7 +12,7 @@ Obviously, my English is not fantastic. But I will try my best to translate, som
 
 <img src="Images/Readme/Image.jpg" align="right" width="360" />
 
-This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANIUM version) can use it through modification. The integrated graphics and discrete graphics participate in hardware decoding. By default, all USB ports are injected. OpenCore version: 0.7.8. The highest system supports macOS Monterey 12.3 beta.
+This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANIUM version) can use it through modification. The integrated graphics and discrete graphics participate in hardware decoding. By default, all USB ports are injected. OpenCore version: 0.7.9. The highest system supports macOS Monterey 12.3.
 
 > Please note: This EFI is only a personal build sharing, and is marked with simple tips. It is not a standard OpenCore Hackintosh installation guide. If you need a standard installation guide, please jump to [Dortania's Getting Started](https://dortania.github.io/getting-started/). You may encounter some problems when starting Hackintosh after installing or updating hardware for the first time. Although most of the problems can be solved, there are actually some problems that cannot be solved. It can even be said that there is a certain element of luck in it. If you want to Applying this EFI recommends using hardware close to mine in order to have the same experience as possible.
 

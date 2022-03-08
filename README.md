@@ -1,6 +1,6 @@
 # 微星 B360M 迫击炮 (钛金版) 黑苹果 OpenCore EFI
 
-[![OpenCore](https://img.shields.io/badge/OpenCore-0.7.8-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+[![OpenCore](https://img.shields.io/badge/OpenCore-0.7.9-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
 [![macOS](https://img.shields.io/badge/macOS-12.3-c62eb8)](https://www.apple.com.cn/macos/monterey/)
 [![Last Commit](https://img.shields.io/github/last-commit/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI.svg?color=orange&label=%E6%9C%80%E8%BF%91%E6%8F%90%E4%BA%A4)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/commits/master/)
 [![License](https://img.shields.io/github/license/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/blob/master/LICENSE)
@@ -12,7 +12,7 @@ For English? [Please click here](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACK
 
 <img src="Images/Readme/Image.jpg" align="right" width="360" />
 
-此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮 (钛金版) 的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，OpenCore 版本：0.7.8，最高支持 macOS Monterey 12.3 测试版。
+此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮 (钛金版) 的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，OpenCore 版本：0.7.9，最高支持 macOS Monterey 12.3 正式版。
 
 > 注意：此 EFI 只是个人的构建分享，并标注了简单的使用提示，不是标准的 OpenCore 黑苹果安装指南，如果你需要标准安装指南请跳转至 [Dortania's Getting Started](https://dortania.github.io/getting-started/) 查看。在首次安装或更新硬件后启动黑苹果可能会遇到一些问题，虽然大部分问题都可以解决，但事实上确实存在部分没办法解决的问题，甚至可以说有一定的运气成分在里面，如果你要应用此 EFI 建议使用接近我的配置，才能尽可能地拥有相同的使用体验。
 

@@ -213,7 +213,7 @@
 				<key>BundlePath</key>
 				<string>VirtualSMC.kext</string>
 				<key>Comment</key>
-				<string>SMC emulator / v1.2.8</string>
+				<string>SMC emulator / v1.2.9</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -231,7 +231,7 @@
 				<key>BundlePath</key>
 				<string>SMCProcessor.kext</string>
 				<key>Comment</key>
-				<string>SMC emulator accessory / v1.2.8</string>
+				<string>SMC emulator accessory / v1.2.9</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -249,7 +249,7 @@
 				<key>BundlePath</key>
 				<string>SMCSuperIO.kext</string>
 				<key>Comment</key>
-				<string>SMC emulator accessory / v1.2.8</string>
+				<string>SMC emulator accessory / v1.2.9</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -267,7 +267,7 @@
 				<key>BundlePath</key>
 				<string>WhateverGreen.kext</string>
 				<key>Comment</key>
-				<string>Video patches / v1.5.7</string>
+				<string>Video patches / v1.5.8</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -285,7 +285,7 @@
 				<key>BundlePath</key>
 				<string>AppleALC.kext</string>
 				<key>Comment</key>
-				<string>Audio patches / v1.6.9</string>
+				<string>Audio patches / v1.7.0</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
