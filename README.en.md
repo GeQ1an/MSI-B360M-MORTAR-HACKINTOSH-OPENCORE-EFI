@@ -12,7 +12,7 @@ Actually, my English is not fantastic. But I will try my best to translate, some
 
 <img src="Images/Readme/Image.jpg" align="right" width="360" />
 
-This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANIUM version) can use it through modification. The integrated graphics and discrete graphics participate in hardware decoding. By default, all USB ports are injected. OpenCore version: 0.8.0. The highest system supports macOS Monterey 12.4 beta.
+This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANIUM version) can use it through modification. The integrated graphics and discrete graphics participate in hardware decoding. By default, all USB ports are injected. OpenCore version: 0.8.0. The highest supported system is macOS Monterey 12.4 beta.
 
 > Please note: This EFI is only a personal build sharing, and is marked with simple tips. It is not a standard OpenCore Hackintosh installation guide. If you need a standard installation guide, please jump to [Dortania's Getting Started](https://dortania.github.io/getting-started/). You may encounter some problems when starting Hackintosh after installing or updating hardware for the first time. Although most of the problems can be solved, there are actually some problems that cannot be solved. It can even be said that there is a certain element of luck in it. If you want to Applying this EFI recommends using hardware close to mine in order to have the same experience as possible.
 
@@ -69,7 +69,7 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 *Tips 3：Try to avoid Samsung when buying hard drives, especially macOS Monterey will cause longer boot time due to TRIM (Almost all users have problems with the 970 EVO, and some users have problems with the 980 PRO), see [Q&A 12](#12-why-does-the-boot-time-take-longer-after-the-monterey-upgrade). It is recommended to choose a relatively stable hard drive such as Western Digital SN850 / SN750 and Intel 760P.*<br>
 
 ## Changelog
-#### April 08, 2022
+#### April 19, 2022
 * Updated OpenCore to 0.8.0 official version
 * Updated AppleALC \ CPUFriend kexts to latest official version
 * Updated OpenCanopy driver

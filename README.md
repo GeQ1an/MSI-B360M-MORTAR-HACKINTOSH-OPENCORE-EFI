@@ -69,7 +69,7 @@
 *Tips 3：选购硬盘建议避开三星，特别是 macOS Monterey 会因为 TRIM 的原因导致开机时间变长 (970 EVO 几乎全军覆没，980 PRO 听天由命)，详见 [Q&A 条目 12](#12-为什么升级-Monterey-后开机时间变长)。推荐选择西数 SN850 / SN750、英特尔 760P 等比较稳定的硬盘。*<br>
 
 ## 更新记录
-#### 2022.04.08
+#### 2022.04.19
 * 更新 OpenCore 至 0.8.0 正式版
 * 更新 AppleALC \ CPUFriend kexts 至官方最新版
 * 更新 OpenCanopy 驱动
