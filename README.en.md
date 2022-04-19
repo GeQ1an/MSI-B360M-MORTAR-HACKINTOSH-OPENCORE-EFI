@@ -1,18 +1,18 @@
 # MSI B360M MORTAR (TITANIUM) Hackintosh OpenCore EFI
 
-[![OpenCore](https://img.shields.io/badge/OpenCore-0.7.9-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
-[![macOS](https://img.shields.io/badge/macOS-12.3-c62eb8)](https://www.apple.com/macos/monterey/)
+[![OpenCore](https://img.shields.io/badge/OpenCore-0.8.0-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+[![macOS](https://img.shields.io/badge/macOS-12.4-c62eb8)](https://www.apple.com/macos/monterey/)
 [![Last Commit](https://img.shields.io/github/last-commit/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI.svg?color=orange&label=Last%20Commit)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/commits/master/)
 [![License](https://img.shields.io/github/license/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/blob/master/LICENSE)
 [![Follow Me](https://img.shields.io/badge/Follow-Telegram-1da4de)](https://t.me/usestick/)
 
-Obviously, my English is not fantastic. But I will try my best to translate, some content from Google Translate. 需要简体中文? [点此查看](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/blob/master/README.md)。
+Actually, my English is not fantastic. But I will try my best to translate, some content from Google Translate. 需要简体中文? [点此查看](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/blob/master/README.md)。
 
 ## About
 
 <img src="Images/Readme/Image.jpg" align="right" width="360" />
 
-This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANIUM version) can use it through modification. The integrated graphics and discrete graphics participate in hardware decoding. By default, all USB ports are injected. OpenCore version: 0.7.9. The highest system supports macOS Monterey 12.3.
+This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANIUM version) can use it through modification. The integrated graphics and discrete graphics participate in hardware decoding. By default, all USB ports are injected. OpenCore version: 0.8.0. The highest system supports macOS Monterey 12.4 beta.
 
 > Please note: This EFI is only a personal build sharing, and is marked with simple tips. It is not a standard OpenCore Hackintosh installation guide. If you need a standard installation guide, please jump to [Dortania's Getting Started](https://dortania.github.io/getting-started/). You may encounter some problems when starting Hackintosh after installing or updating hardware for the first time. Although most of the problems can be solved, there are actually some problems that cannot be solved. It can even be said that there is a certain element of luck in it. If you want to Applying this EFI recommends using hardware close to mine in order to have the same experience as possible.
 
@@ -69,20 +69,27 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 *Tips 3：Try to avoid Samsung when buying hard drives, especially macOS Monterey will cause longer boot time due to TRIM (Almost all users have problems with the 970 EVO, and some users have problems with the 980 PRO), see [Q&A 12](#12-why-does-the-boot-time-take-longer-after-the-monterey-upgrade). It is recommended to choose a relatively stable hard drive such as Western Digital SN850 / SN750 and Intel 760P.*<br>
 
 ## Changelog
+#### April 08, 2022
+* Updated OpenCore to 0.8.0 official version
+* Updated AppleALC \ CPUFriend kexts to latest official version
+* Updated OpenCanopy driver
+
+*OC 0.8.0's Config.plist adds and adjusts some entries, recommended to reconfigure according to usage habits. Support macOS 12.4 and can be updated in Software Update after the official version is released.*
+
 #### March 08, 2022
 * Updated OpenCore to 0.7.9 official version
 * Updated AppleALC \ WhateverGreen \ VitualSMC kexts to latest official version
 * Updated OpenRuntime \ OpenCanopy drivers
 * Updated OpenShell \ VerifyMsrE2 tools
 
-*OC 0.7.9's Config.plist only add one entry: Misc > Debug > LogModules. Recommended to modify it manually. Support macOS 12.3 and can be updated in Software Update after the official version is released.*
+*OC 0.7.9's Config.plist only add one entry: Misc > Debug > LogModules. Recommended to modify it manually.*
 
 #### February 21, 2022
 * Updated OpenCore to 0.7.8 official version
 * Updated Lilu \ AppleALC \ WhateverGreen kexts to latest official version
 * Updated OpenRuntime \ OpenCanopy drivers
 
-*OC 0.7.8's Config.plist only delete one entry: NVRAM > Add > 7C436110-XXXX > SystemAudioVolumeDB. Recommended to modify it manually. Support macOS 12.3 and can be updated in Software Update after the official version is released.*
+*OC 0.7.8's Config.plist only delete one entry: NVRAM > Add > 7C436110-XXXX > SystemAudioVolumeDB. Recommended to modify it manually. Support macOS 12.3 and can be updated in Software Update.*
 
 #### January 23, 2022
 * Replaced USBPorts kext with USBMap kext
@@ -93,7 +100,7 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 #### January 17, 2022
 * Adjusted some options in Config.plist
 
-*Specifically: Turn off Booter > Quirks > EnableWriteUnprotector & ProtectUefiServices, turn on RebuildAppleMemoryMap & SyncRuntimePermissions (theoretically, the compatibility is better, to avoid startup problems on some machines); Turn off Misc > Security > BlacklistAppleUpdate (deprecated as of OC 0.7.0); Turn off UEFI > Output > SanitiseClearScreen (this option does not take effect in BuiltinGraphics mode). This adjustment is to enhance compatibility and turn off unnecessary options. The previous settings do not affect the use. If there is no special requirement, you can wait until the next OC update.*
+*Specifically: Disable Booter > Quirks > EnableWriteUnprotector & ProtectUefiServices, enabled RebuildAppleMemoryMap & SyncRuntimePermissions (theoretically, the compatibility is better, to avoid startup problems on some machines); Disable Misc > Security > BlacklistAppleUpdate (deprecated as of OC 0.7.0); Disable UEFI > Output > SanitiseClearScreen (this option does not take effect in BuiltinGraphics mode). This adjustment is to enhance compatibility and turn off unnecessary options. The previous settings do not affect the use. If there is no special requirement, you can wait until the next OC update.*
 
 #### January 12, 2022
 * Disabled ACPI > Patch > 0 Patch in Config.plist for disabling modify GPRW power management S4 to S3
@@ -396,10 +403,10 @@ At present, RX 5000 series Navi 10 core graphics card, RX 6000 series Navi 21 co
 ## Q&A
 #### 1. What should I do if the Apple logo is displayed abnormally when booting?
    There are two ways to solve this problem.<br>
-   Method 1: Fill in the correct display resolution at UEFI > Output > Resolution in `/EFI/OC/Config.plist`;<br>
-   Method 2: Set BIOS "STTINGS\Startup\Full Screen Logo" to [Enable], and confirm that UEFI > Output > Resolution in Config.plist is Max.<br>
+   Method 1: Fill in the correct display resolution at UEFI > Output > Resolution in the Config.plist;<br>
+   Method 2: Set BIOS "STTINGS\Startup\Full Screen Logo" to [Enable], and confirm that UEFI > Output > Resolution in the Config.plist is Max.<br>
    You can choose one of the two methods. If you use them at the same time, the display of the boot logo will still be abnormal. Originally, the second method is recommended, but after repeated testing, if enabled "Windows 10 WHQL Support" in the BIOS, the second method may The Apple logo is lost when booting, please test and choose your favorite method.<br>
-   **P.S.** At present, OC already supports automatic detection of HiDPI. If you use a 2K and below display that cannot turn on HiDPI and the display does not appear normally when powering on, please try setting the configuration file UEFI > Output > UIScale to `01`。
+   **P.S.** At present, OC already supports automatic detection of HiDPI. If you use a 2K and below display that cannot turn on HiDPI and the display does not appear normally when powering on, please try setting UEFI > Output > UIScale to `01` in the Config.plist.
 #### 2. What should I do if the computer cannot sleep normally?
    The known situation is that ~~bugOS~~macOS 10.15 to 10.15.7 (including supplementary updates) have sleep-related bugs, and you need to turn on the "Enable Power Nap" option in Energy Saver to enter sleep normally.<br>
    In general, systems updated to macOS 11 Big Sur and macOS 12 Monterey can go to sleep normally with the "Enable Power Nap" option turned off.
@@ -412,7 +419,7 @@ At present, RX 5000 series Navi 10 core graphics card, RX 6000 series Navi 21 co
    Generally speaking, the faster the read and write speed, the higher the temperature of the hard disk, so there is no need to worry too much, but if the temperature exceeds 50℃ in standby or you think the temperature of the hard disk is abnormal, you can try to load [NVMeFix](https://github.com/acidanthera/NVMeFix/releases) resolved. <br>
    Put NVMeFix.kext into the `/EFI/OC/Kexts/` directory, open the Config.plist and add NVMeFix.kext at Kernel > Add (refer to how to add other kexts). It is currently added and enabled by default.
 #### 6. Can I watch DRM media like Apple TV+ / Netflix? `Update!`
-   Benefiting from the function of WhateverGreen, after adding the shikigva=80 startup parameter, machines with discrete graphics cards can directly use the tv application and watch Apple TV+, and also support Safari hard solution to watch streaming media such as Netflix / Disney Plus / Amazon Prime.<br>
+   Benefiting from the function of WhateverGreen, after adding the shikigva=80 boot-args, machines with discrete graphics cards can directly use the tv application and watch Apple TV+, and also support Safari hard solution to watch streaming media such as Netflix / Disney Plus / Amazon Prime.<br>
    Before macOS 10.15.4, most graphics cards of RX 400/500 cannot use Safari to hard-decode DRM (frozen screen), but this problem has been fixed in 10.15.4, just upgrade the system directly.<br>
    WhateverGreen's DRM patch currently does not support Safari 14 and macOS 11 and later, but you can use the tv app to watch Apple TV+ normally after executing the following codes in `Terminal` (Safari still cannot decode DRM normally).
    ```
@@ -428,11 +435,11 @@ At present, RX 5000 series Navi 10 core graphics card, RX 6000 series Navi 21 co
 #### 8. How to use macOS Big Sur 11?
    Please make sure that your OpenCore has been updated to version 0.6.1 or above, and all kexts have been updated to the latest version. Set Kernel > Quirks > DisableLinkeditJettison in Config.plist to `Ture/Yes`.
 #### 9. Why enable Secure Boot and SIP?
-   First, starting from Monterey, no updates will be provided to Macs with T2 chips that do not have secure boot enabled, so we need to turn on the secure boot feature and modify the OC's SecureBootModel and DmgLoading two settings.*(Note: If you use an iMac19,1 or iMac19,2 SMBIOS that does not contain a T2 chip, you can also choose to disable Secure Boot, please synchronously modify the configuration file Misc > Security > SecureBootModel to `Disabled`, DmgLoading to `Any`.)*<br>
+   First, starting from Monterey, no updates will be provided to Macs with T2 chips that do not have secure boot enabled, so we need to turn on the secure boot feature and modify the OC's SecureBootModel and DmgLoading two settings.*(Note: If you use an iMac19,1 or iMac19,2 SMBIOS that does not contain a T2 chip, you can also choose to disable Secure Boot, please modify Misc > Security > SecureBootModel to `Disabled` in the Config.plist.)*<br>
    Second, starting from Big Sur, updates may not be detected if SIP is not enabled. In order to ensure normal detection of system updates, it is necessary to modify the csr-active-config setting to enable SIP. After enabling the AllowToggleSip option, you can quickly switch SIP on the boot selection interface. If the update cannot be detected after updating this OC, you can try to open SIP again in the boot selection interface to solve the problem (the brackets will mark the status, Enable is on, and Disable is off).<br>
    For details, refer to the instructions in the [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/extras/monterey.html#ota-updates).
 #### 10. Why need to modify the configuration to use Catalina?
-   Starting from OpenCore 0.7.2, earlier APFS drivers will not be loaded (for security reasons), which will cause systems lower than Big Sur 11.0 to fail to boot. If you want to boot Catalina or earlier systems, please Modify the MinDate and MinVersion under the configuration file UEFI > APFS to `-1`, please refer to the document in [OC 0.7.2 version](https://github.com/acidanthera/OpenCorePkg/releases/tag/0.7.2) for details.
+   Starting from OpenCore 0.7.2, earlier APFS drivers will not be loaded (for security reasons), which will cause systems lower than Big Sur 11.0 to fail to boot. If you want to boot Catalina or earlier systems, please Modify the MinDate and MinVersion under UEFI > APFS to `-1` in the Config.plist, please refer to the document in [OC 0.7.2 version](https://github.com/acidanthera/OpenCorePkg/releases/tag/0.7.2) for details.
 #### 11. Why have to customize the USB ports?
    Starting from macOS Big Sur 11.3.1, the system will invalidate XhciPortLimit, so that even if the USBInjectAll kext is loaded, more than 15 USB ports cannot be loaded correctly. You can search for the USB customization tutorial by yourself or refer to [OpenCore Post Install](https://dortania.github.io/OpenCore-Post-Install/usb/) Tutorial for customizing USB mapping. Or go to [Advanced Usage](#advanced-usage) to see how to use my customized USB mapping.
 #### 12. Why does the boot time take longer after the Monterey upgrade?
@@ -440,7 +447,7 @@ At present, RX 5000 series Navi 10 core graphics card, RX 6000 series Navi 21 co
    ```
    log show --last boot | grep "trims took"
    ```
-   Check the trims took time in the returned result. If it exceeds 10 seconds, it will obviously feel that the boot time is too long. The current solution is to replace the hard disk.
+   Check the trims took time in the returned result. If it exceeds 10 seconds, it will obviously feel that the boot time is too long. Since OC version 0.7.9, you can set Kernel > Quirks > SetApfsTrimTimeout to 0, turn off TRIM to improve the boot time. But turn off TRIM will seriously shorten the service life of SSD, so it is not recommended. The best solution is to replace the hard disk.
 #### 13. Pending upgrade
 
 ## Conclusion

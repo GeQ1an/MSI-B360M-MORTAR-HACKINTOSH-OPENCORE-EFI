@@ -1,5 +1,5 @@
 ## 截图预览
-系统版本：macOS Monterey 12.2.1，OpenCare 版本：0.7.9，EFI 更新日期：2022.03.08
+系统版本：macOS Monterey 12.3.1，OpenCare 版本：0.8.0，EFI 更新日期：2022.04.08
 
 ### 关于本机
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/About.png)
