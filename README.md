@@ -1,7 +1,7 @@
 # 微星 B360M 迫击炮 (钛金版) 黑苹果 OpenCore EFI
 
-[![OpenCore](https://img.shields.io/badge/OpenCore-0.8.0-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
-[![macOS](https://img.shields.io/badge/macOS-12.4-c62eb8)](https://www.apple.com.cn/macos/monterey/)
+[![OpenCore](https://img.shields.io/badge/OpenCore-0.8.1-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+[![macOS](https://img.shields.io/badge/macOS-12.5-c62eb8)](https://www.apple.com.cn/macos/monterey/)
 [![Last Commit](https://img.shields.io/github/last-commit/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI.svg?color=orange&label=%E6%9C%80%E8%BF%91%E6%8F%90%E4%BA%A4)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/commits/master/)
 [![License](https://img.shields.io/github/license/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/blob/master/LICENSE)
 [![Follow Me](https://img.shields.io/badge/%E5%85%B3%E6%B3%A8-Telegram-1da4de)](https://t.me/usestick/)
@@ -12,7 +12,7 @@
 
 <img src="Images/Readme/Image.jpg" align="right" width="360" />
 
-此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮 (钛金版) 的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，OpenCore 版本：0.8.0，最高支持 macOS Monterey 12.4 测试版。
+此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮 (钛金版) 的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，OpenCore 版本：0.8.1，最高支持 macOS Monterey 12.5 测试版。
 
 > 注意：此 EFI 只是个人的构建分享，并标注了简单的使用提示，不是标准的 OpenCore 黑苹果安装指南，如果你需要标准安装指南请跳转至 [Dortania's Getting Started](https://dortania.github.io/getting-started/) 查看。在首次安装或更新硬件后启动黑苹果可能会遇到一些问题，虽然大部分问题都可以解决，但事实上确实存在部分没办法解决的问题，甚至可以说有一定的运气成分在里面，如果你要应用此 EFI 建议使用接近我的配置，才能尽可能地拥有相同的使用体验。
 
@@ -69,12 +69,21 @@
 *Tips 3：选购硬盘建议避开三星，特别是 macOS Monterey 会因为 TRIM 的原因导致开机时间变长 (970 EVO 几乎全军覆没，980 PRO 听天由命)，详见 [Q&A 条目 12](#12-为什么升级-Monterey-后开机时间变长)。推荐选择西数 SN850 / SN750、英特尔 760P 等比较稳定的硬盘。*<br>
 
 ## 更新记录
+#### 2022.06.07
+* 更新 OpenCore 至 0.8.1 正式版
+* 更新 AppleALC \ WhateverGreen kexts 至官方最新版
+* 更新 OpenRuntime \ OpenCanopy 驱动，添加 ResetNvramEntry \ ToggleSipEntry 驱动
+* 更新 OpenShell \ VerifyMsrE2 工具
+* 修改配置文件 Misc > Security > SecureBootModel 参数为`Disabled`
+
+*OC 0.8.1 正式版的配置文件新增和调整了一些条目，建议按照使用习惯重新配置。支持 macOS 12.5，正式版发布后可直接升级。*
+
 #### 2022.04.19
 * 更新 OpenCore 至 0.8.0 正式版
 * 更新 AppleALC \ CPUFriend kexts 至官方最新版
 * 更新 OpenCanopy 驱动
 
-*OC 0.8.0 正式版的配置文件新增和调整了一些条目，建议按照使用习惯重新配置。支持 macOS 12.4，正式版发布后可直接升级。*
+*OC 0.8.0 正式版的配置文件新增和调整了一些条目，建议按照使用习惯重新配置。支持 macOS 12.4，可直接升级。*
 
 #### 2022.03.08
 * 更新 OpenCore 至 0.7.9 正式版

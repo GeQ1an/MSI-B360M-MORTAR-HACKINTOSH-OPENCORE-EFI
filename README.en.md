@@ -1,7 +1,7 @@
 # MSI B360M MORTAR (TITANIUM) Hackintosh OpenCore EFI
 
-[![OpenCore](https://img.shields.io/badge/OpenCore-0.8.0-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
-[![macOS](https://img.shields.io/badge/macOS-12.4-c62eb8)](https://www.apple.com/macos/monterey/)
+[![OpenCore](https://img.shields.io/badge/OpenCore-0.8.1-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+[![macOS](https://img.shields.io/badge/macOS-12.5-c62eb8)](https://www.apple.com/macos/monterey/)
 [![Last Commit](https://img.shields.io/github/last-commit/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI.svg?color=orange&label=Last%20Commit)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/commits/master/)
 [![License](https://img.shields.io/github/license/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/blob/master/LICENSE)
 [![Follow Me](https://img.shields.io/badge/Follow-Telegram-1da4de)](https://t.me/usestick/)
@@ -12,7 +12,7 @@ Actually, my English is not fantastic. But I will try my best to translate, some
 
 <img src="Images/Readme/Image.jpg" align="right" width="360" />
 
-This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANIUM version) can use it through modification. The integrated graphics and discrete graphics participate in hardware decoding. By default, all USB ports are injected. OpenCore version: 0.8.0. The highest supported system is macOS Monterey 12.4 beta.
+This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANIUM version) can use it through modification. The integrated graphics and discrete graphics participate in hardware decoding. By default, all USB ports are injected. OpenCore version: 0.8.1. The highest supported system is macOS Monterey 12.5 beta.
 
 > Please note: This EFI is only a personal build sharing, and is marked with simple tips. It is not a standard OpenCore Hackintosh installation guide. If you need a standard installation guide, please jump to [Dortania's Getting Started](https://dortania.github.io/getting-started/). You may encounter some problems when starting Hackintosh after installing or updating hardware for the first time. Although most of the problems can be solved, there are actually some problems that cannot be solved. It can even be said that there is a certain element of luck in it. If you want to Applying this EFI recommends using hardware close to mine in order to have the same experience as possible.
 
@@ -69,14 +69,23 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 *Tips 3：Try to avoid Samsung when buying hard drives, especially macOS Monterey will cause longer boot time due to TRIM (Almost all users have problems with the 970 EVO, and some users have problems with the 980 PRO), see [Q&A 12](#12-why-does-the-boot-time-take-longer-after-the-monterey-upgrade). It is recommended to choose a relatively stable hard drive such as Western Digital SN850 / SN750 and Intel 760P.*<br>
 
 ## Changelog
+#### June 7, 2022
+* Updated OpenCore to 0.8.1 official version
+* Updated AppleALC \ WhateverGreen kexts to latest official version
+* Updated OpenRuntime \ OpenCanopy drivers, added ResetNvramEntry \ ToggleSipEntry drivers
+* Updated OpenShell \ VerifyMsrE2 tools
+* Modified Misc > Security > SecureBootModel to `Disabled` in Config.plist
+
+*OC 0.8.1's Config.plist adds and adjusts some entries, recommended to reconfigure according to usage habits. Support macOS 12.5 and can be updated in Software Update after the official version is released.*
+
 #### April 19, 2022
 * Updated OpenCore to 0.8.0 official version
 * Updated AppleALC \ CPUFriend kexts to latest official version
 * Updated OpenCanopy driver
 
-*OC 0.8.0's Config.plist adds and adjusts some entries, recommended to reconfigure according to usage habits. Support macOS 12.4 and can be updated in Software Update after the official version is released.*
+*OC 0.8.0's Config.plist adds and adjusts some entries, recommended to reconfigure according to usage habits. Support macOS 12.4 and can be updated in Software Update.*
 
-#### March 08, 2022
+#### March 8, 2022
 * Updated OpenCore to 0.7.9 official version
 * Updated AppleALC \ WhateverGreen \ VitualSMC kexts to latest official version
 * Updated OpenRuntime \ OpenCanopy drivers
