@@ -1,7 +1,8 @@
 # MSI B360M MORTAR (TITANIUM) Hackintosh OpenCore EFI
 
-[![OpenCore](https://img.shields.io/badge/OpenCore-0.8.1-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+[![OpenCore](https://img.shields.io/badge/OpenCore-0.8.3-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
 [![macOS](https://img.shields.io/badge/macOS-12.5-c62eb8)](https://www.apple.com/macos/monterey/)
+[![macOS](https://img.shields.io/badge/macOS-13-ffb84a)](https://www.apple.com/macos/macos-ventura-preview/)
 [![Last Commit](https://img.shields.io/github/last-commit/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI.svg?color=orange&label=Last%20Commit)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/commits/master/)
 [![License](https://img.shields.io/github/license/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/blob/master/LICENSE)
 [![Follow Me](https://img.shields.io/badge/Follow-Telegram-1da4de)](https://t.me/usestick/)
@@ -12,7 +13,7 @@ Actually, my English is not fantastic. But I will try my best to translate, some
 
 <img src="Images/Readme/Image.jpg" align="right" width="360" />
 
-This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANIUM version) can use it through modification. The integrated graphics and discrete graphics participate in hardware decoding. By default, all USB ports are injected. OpenCore version: 0.8.1. The highest supported system is macOS Monterey 12.5 beta.
+This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANIUM version) can use it through modification. The integrated graphics and discrete graphics participate in hardware decoding. By default, all USB ports are injected. OpenCore version: 0.8.3. The highest supported system is macOS Ventura 13 beta.
 
 > Please note: This EFI is only a personal build sharing, and is marked with simple tips. It is not a standard OpenCore Hackintosh installation guide. If you need a standard installation guide, please jump to [Dortania's Getting Started](https://dortania.github.io/getting-started/). You may encounter some problems when starting Hackintosh after installing or updating hardware for the first time. Although most of the problems can be solved, there are actually some problems that cannot be solved. It can even be said that there is a certain element of luck in it. If you want to Applying this EFI recommends using hardware close to mine in order to have the same experience as possible.
 
@@ -69,6 +70,14 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 *Tips 3：Try to avoid Samsung when buying hard drives, especially macOS Monterey will cause longer boot time due to TRIM (Almost all users have problems with the 970 EVO, and some users have problems with the 980 PRO), see [Q&A 12](#12-why-does-the-boot-time-take-longer-after-the-monterey-upgrade). It is recommended to choose a relatively stable hard drive such as Western Digital SN850 / SN750 and Intel 760P.*<br>
 
 ## Changelog
+#### August 3, 2022
+* Updated OpenCore to 0.8.3 official version
+* Updated Lilu \ AppleALC \ WhateverGreen \ VitualSMC \ CPUFriend \ NVMeFix kexts to latest official version
+* Updated OpenRuntime \ OpenCanopy \ ResetNvramEntry \ ToggleSipEntry drivers
+* Updated OpenShell \ VerifyMsrE2 tools
+
+*OC 0.8.3's Config.plist adds and adjusts some entries, recommended to reconfigure according to usage habits. Support macOS 13 beta, is recommended to follow the instructions in [Q&A 13](#13-how-to-use-macos-ventura-beta).*
+
 #### June 7, 2022
 * Updated OpenCore to 0.8.1 official version
 * Updated AppleALC \ WhateverGreen kexts to latest official version
@@ -76,7 +85,7 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 * Updated OpenShell \ VerifyMsrE2 tools
 * Modified Misc > Security > SecureBootModel to `Disabled` in Config.plist
 
-*OC 0.8.1's Config.plist adds and adjusts some entries, recommended to reconfigure according to usage habits. Support macOS 12.5 and can be updated in Software Update after the official version is released.*
+*OC 0.8.1's Config.plist adds and adjusts some entries, recommended to reconfigure according to usage habits. Support macOS 12.5 and can be updated in Software Update.*
 
 #### April 19, 2022
 * Updated OpenCore to 0.8.0 official version
@@ -457,7 +466,9 @@ At present, RX 5000 series Navi 10 core graphics card, RX 6000 series Navi 21 co
    log show --last boot | grep "trims took"
    ```
    Check the trims took time in the returned result. If it exceeds 10 seconds, it will obviously feel that the boot time is too long. Since OC version 0.7.9, you can set Kernel > Quirks > SetApfsTrimTimeout to 0, turn off TRIM to improve the boot time. But turn off TRIM will seriously shorten the service life of SSD, so it is not recommended. The best solution is to replace the hard disk.
-#### 13. Pending upgrade
+#### 13. How to use macOS Ventura beta?
+   After updating OC 0.8.3 and the kexts released at the same time, the Ventura system can generally be used without additional settings, but the large version of the beta system is prone to unpredictable errors, so it is recommended to use the Ventura beta version by creating a new APFS volume. Please refer to [Apple official support document: Use more than one version of macOS on a Mac](https://support.apple.com/en-us/HT208891).
+#### 14. Pending upgrade
 
 ## Conclusion
 After completing the above steps, you basically have a Hackintosh that is 99% complete. For more screenshots, please check [Screenshot Preview](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/tree/master/Images/Preview.en.md).<br>
