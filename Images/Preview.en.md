@@ -1,5 +1,5 @@
 ## Screenshot Preview
-System version: macOS Monterey 12.5, OpenCare version: 0.8.3, EFI update date: August 3, 2022
+System version: macOS Monterey 12.5.1, OpenCare version: 0.8.4, EFI update date: September 6, 2022
 
 ### About Mac
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/About.en.png)
