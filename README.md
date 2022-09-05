@@ -76,7 +76,7 @@
 * 更新 OpenRuntime \ OpenCanopy \ ResetNvramEntry \ ToggleSipEntry 驱动
 * 更新 OpenShell \ VerifyMsrE2 工具
 
-*OC 0.8.4 正式版的配置文件仅为 Misc > Tools 中两个工具新增了 FullNvramAccess 条目，建议直接手动修改。
+*OC 0.8.4 正式版的配置文件仅为 Misc > Tools 中两个工具新增了 FullNvramAccess 条目，建议直接手动修改。*
 
 #### 2022.08.03
 * 更新 OpenCore 至 0.8.3 正式版

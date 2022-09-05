@@ -76,7 +76,7 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 * Updated OpenRuntime \ OpenCanopy \ ResetNvramEntry \ ToggleSipEntry drivers
 * Updated OpenShell \ VerifyMsrE2 tools
 
-*OC 0.8.4's Config.plist only add FullNvramAccess entry for two tools in Misc > Tools. Recommended to modify it manually.
+*OC 0.8.4's Config.plist only add FullNvramAccess entry for two tools in Misc > Tools. Recommended to modify it manually.*
 
 #### August 3, 2022
 * Updated OpenCore to 0.8.3 official version
