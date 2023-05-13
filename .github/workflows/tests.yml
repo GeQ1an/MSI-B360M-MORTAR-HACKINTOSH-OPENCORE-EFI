@@ -1,0 +1,22 @@
+name: tests
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - EFI/**
+  pull_request:
+    paths:
+      - EFI/**
+jobs:
+  ocvalidate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: brokeyourbike/ocvalidate-action@v0.3
+        with:
+          opencore-version: '0.8.9'
+          release: true
+
+      - run: ocvalidate EFI/OC/config.plist
