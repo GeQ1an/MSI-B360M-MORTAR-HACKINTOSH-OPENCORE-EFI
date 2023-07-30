@@ -1,22 +1,26 @@
 # MSI B360M MORTAR (TITANIUM) Hackintosh OpenCore EFI
 
-[![OpenCore](https://img.shields.io/badge/OpenCore-0.8.9-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+[![OpenCore](https://img.shields.io/badge/OpenCore-0.9.3-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
 [![macOS](https://img.shields.io/badge/macOS-13-ffb84a)](https://www.apple.com/macos/ventura/)
+[![macOS](https://img.shields.io/badge/macOS-14-6ca024)](https://www.apple.com/macos/sonoma-preview/)
 [![Last Commit](https://img.shields.io/github/last-commit/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI.svg?color=orange&label=Last%20Commit)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/commits/master/)
 [![License](https://img.shields.io/github/license/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/blob/master/LICENSE)
 [![Follow Me](https://img.shields.io/badge/Follow-Telegram-1da4de)](https://t.me/usestick/)
 
 Actually, my English is not fantastic. But I will try my best to translate, some content from Google Translate. 需要简体中文? [点此查看](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/blob/master/README.md)。
 
+## Important
+Unknowingly, this project has been updated for more than 3 years, but with the release of the Mac Pro equipped with Apple Silicon, all Mac products have stopped using the x86 platform. Sonoma may be the last macOS that supports the x86 platform, and I also used it at home before. The computer is replaced by Mac Studio, so this project will stop updating within one month after Sonoma releases the official version. Thank you for your use.
+
 ## About
 
 <img src="Images/Readme/Image.jpg" align="right" width="360" />
 
-This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANIUM version) can use it through modification. The integrated graphics and discrete graphics participate in hardware decoding. By default, all USB ports are injected. OpenCore version: 0.8.9. The highest supported system is macOS Ventura 13.2.1.
+This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANIUM version) can use it through modification. The integrated graphics and discrete graphics participate in hardware decoding. By default, all USB ports are injected. OpenCore version: 0.9.3. The highest supported system is macOS Sonoma 14 beta.
 
 > Please note: This EFI is only a personal build sharing, and is marked with simple tips. It is not a standard OpenCore Hackintosh installation guide. If you need a standard installation guide, please jump to [Dortania's Getting Started](https://dortania.github.io/getting-started/). You may encounter some problems when starting Hackintosh after installing or updating hardware for the first time. Although most of the problems can be solved, there are actually some problems that cannot be solved. It can even be said that there is a certain element of luck in it. If you want to Applying this EFI recommends using hardware close to mine in order to have the same experience as possible.
 
-#### About Mac
+#### About Hackintosh
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/About.en.png)
 
 ### Working
@@ -69,6 +73,15 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 *Tips 3：Try to avoid Samsung when buying hard drives, especially macOS Monterey will cause longer boot time due to TRIM (Almost all users have problems with the 970 EVO, and some users have problems with the 980 PRO), see [Q&A 12](#12-why-does-the-boot-time-take-longer-after-the-monterey-upgrade). It is recommended to choose a relatively stable hard drive such as Western Digital SN850 / SN750 and Intel 760P.*<br>
 
 ## Changelog
+#### July 30, 2023
+* Updated OpenCore to 0.9.3 official version
+* Updated Lilu \ AppleALC \ WhateverGreen \ VitualSMC \ CPUFriend kexts to latest official version
+* Updated OpenCanopy \ ResetNvramEntry \ ToggleSipEntry drivers
+* Updated OpenShell \ ControlMsrE2 tools
+* Updated `/EFI/OC/Resources/Font` boot theme files
+
+*OC 0.9.3's Config.plist adds and adjusts some entries, recommended to reconfigure according to usage habits. Support macOS 14 beta, is recommended to follow the instructions in [Q&A 13](#13-how-to-use-macos-ventura-beta).*
+
 #### February 15, 2023
 * Updated OpenCore to 0.8.9 official version
 * Updated Lilu \ AppleALC \ WhateverGreen kexts to latest official version
@@ -76,6 +89,8 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 * Updated OpenShell \ ControlMsrE2 tools
 
 *OC 0.8.9's Config.plist adds and adjusts some entries, recommended to reconfigure according to usage habits. Support macOS 13.2.1 and can be updated in Software Update.*
+
+<details><summary>2022 History changes</summary>
 
 #### October 22, 2022
 * Updated OpenCore to 0.8.4 official version
@@ -154,6 +169,8 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 * Organized SSDT into a more mainstream configuration, added SSDT-EC-USBX, updated SSDT-PLUG, removed SSDT-PM and merge into SSDT-PLUG
 
 *OC 0.7.7's Config.plist adds and adjusts some entries, recommended to reconfigure according to usage habits. Support macOS 12.2 and can be updated in Software Update.*
+
+</details>
 
 <details><summary>2021 History changes</summary>
 
