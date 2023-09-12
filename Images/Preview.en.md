@@ -1,5 +1,5 @@
 ## Screenshot Preview
-System version: macOS Ventura 13.5, OpenCare version: 0.9.3, EFI update date: July 30, 2023
+System version: macOS Ventura 13.5.2, OpenCare version: 0.9.5, EFI update date: September 13, 2023
 
 ### About Mac
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/About.en.png)
