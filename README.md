@@ -1,8 +1,7 @@
 # 微星 B360M 迫击炮 (钛金版) 黑苹果 OpenCore EFI
 
-[![OpenCore](https://img.shields.io/badge/OpenCore-0.9.5-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
-[![macOS](https://img.shields.io/badge/macOS-13-ffb84a)](https://www.apple.com.cn/macos/ventura/)
-[![macOS](https://img.shields.io/badge/macOS-14-6ca024)](https://www.apple.com.cn/macos/sonoma-preview/)
+[![OpenCore](https://img.shields.io/badge/OpenCore-0.9.6-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+[![macOS](https://img.shields.io/badge/macOS-14-6ca024)](https://www.apple.com.cn/macos/sonoma/)
 [![Last Commit](https://img.shields.io/github/last-commit/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI.svg?color=orange&label=%E6%9C%80%E8%BF%91%E6%8F%90%E4%BA%A4)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/commits/master/)
 [![License](https://img.shields.io/github/license/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/blob/master/LICENSE)
 [![Follow Me](https://img.shields.io/badge/%E5%85%B3%E6%B3%A8-Telegram-1da4de)](https://t.me/usestick/)
@@ -10,13 +9,13 @@
 此文档的语言为简体中文，仅针对中文用户。For English? [Please click here](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/blob/master/README.en.md).
 
 ## 重要说明
-不知不觉已经更新此项目超过 3 年，但随着搭载 Apple Silicon 的 Mac Pro 发布，Mac 全线产品都已停止使用 x86 平台，Sonoma 或为最后一个支持 x86 平台的 macOS，且我也在此前将家用电脑更换为 Mac Studio，所以，此项目将在 Sonoma 发布正式版后一个月内停止更新，谢谢大家的使用。
+不知不觉已经更新此项目超过 3 年，但随着搭载 Apple Silicon 的 Mac Pro 发布，Mac 全线产品都已停止使用 x86 平台，Sonoma 或为最后一个支持 x86 平台的 macOS，OpenCore 也越来越稳定，此项目应该能够支持大家使用 Sonoma 的所有版本，今后将停止更新，谢谢大家的使用。
 
 ## EFI 介绍
 
 <img src="Images/Readme/Image.jpg" align="right" width="360" />
 
-此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮 (钛金版) 的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，OpenCore 版本：0.9.5，最高支持 macOS Sonoma 14 测试版。
+此 EFI 使用`iMac19,1`机型，微星 B360M 迫击炮 (钛金版) 的绝大部分用户可通过修改使用，核显 + 独显共同硬解，默认启用全部 USB 端口，OpenCore 版本：0.9.6，最高支持 macOS Sonoma 14。
 
 > 注意：此 EFI 只是个人的构建分享，并标注了简单的使用提示，不是标准的 OpenCore 黑苹果安装指南，如果你需要标准安装指南请跳转至 [Dortania's Getting Started](https://dortania.github.io/getting-started/) 查看。在首次安装或更新硬件后启动黑苹果可能会遇到一些问题，虽然大部分问题都可以解决，但事实上确实存在部分没办法解决的问题，甚至可以说有一定的运气成分在里面，如果你要应用此 EFI 建议使用接近我的配置，才能尽可能地拥有相同的使用体验。
 
@@ -73,13 +72,21 @@
 *Tips 3：选购硬盘建议避开三星，特别是 macOS Monterey 会因为 TRIM 的原因导致开机时间变长 (970 EVO 几乎全军覆没，980 PRO 听天由命)，详见 [Q&A 条目 12](#12-为什么升级-Monterey-后开机时间变长)。推荐选择西数 SN850 / SN750、英特尔 760P 等比较稳定的硬盘。*<br>
 
 ## 更新记录
+#### 2023.11.12
+* 更新 OpenCore 至 0.9.6 正式版
+* 更新 AppleALC kext 至官方最新版
+* 添加 AMFIPass \ IOSkywalkFamily \ IO80211FamilyLegacy kexts，禁用`com.apple.iokit.IOSkywalkFamily`系统内置 kext（仅在 Sonoma 上生效）
+* 修改配置文件 NVRAM > Add > 7C436110-XXXX > csr-active-config 参数为`7F0A0000`，添加`ipc_control_port_options=0`启动参数
+
+*OC 0.9.6 正式版的配置文件新增和调整了一些条目，建议按照使用习惯重新配置。添加 macOS 14 博通~~免驱~~无线网卡有关内容，可快速修复使用，详情参考 [Q&A 条目 14](#14-在-macos-sonoma-上使用博通无线网卡) 使用。理论能够支持 macOS 14 所有版本，如 OpenCore 和 kexts 无重大更新，此版本为最终版本。*
+
 #### 2023.09.13
 * 更新 OpenCore 至 0.9.5 正式版
-* 更新 Lilu \ AppleALC \ WhateverGreen \ NVMeFix  kexts 至官方最新版
+* 更新 Lilu \ AppleALC \ WhateverGreen \ NVMeFix kexts 至官方最新版
 * 更新 OpenRuntime \ OpenCanopy \ ResetNvramEntry \ ToggleSipEntry 驱动
 * 更新 OpenShell \ ControlMsrE2 工具
 
-*OC 0.9.5 正式版的配置文件新增和调整了一些条目，建议按照使用习惯重新配置。支持 macOS 14 测试版，建议参考 [Q&A 条目 13](#13-如何使用-macos-ventura-测试版系统) 的说明使用。**重要提示**：macOS 14 不再支持 BCM94360 / BCM943602 系列免驱无线网卡，暂时可参考 [OpenCore-Legacy-Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/pull/1077) 使用。*
+*OC 0.9.5 正式版的配置文件新增和调整了一些条目，建议按照使用习惯重新配置。*
 
 #### 2023.07.30
 * 更新 OpenCore 至 0.9.3 正式版
@@ -88,7 +95,7 @@
 * 更新 OpenShell \ ControlMsrE2 工具
 * 更新`/EFI/OC/Resources/Font`启动主题相关文件
 
-*OC 0.9.3 正式版的配置文件新增和调整了一些条目，建议按照使用习惯重新配置。支持 macOS 14 测试版，建议参考 [Q&A 条目 13](#13-如何使用-macos-ventura-测试版系统) 的说明使用。**重要提示**：macOS 14 不再支持 BCM94360 / BCM943602 系列免驱无线网卡，暂时可参考 [OpenCore-Legacy-Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/pull/1077) 使用。*
+*OC 0.9.3 正式版的配置文件新增和调整了一些条目，建议按照使用习惯重新配置。支持 macOS 14 测试版，建议参考 [Q&A 条目 13](#13-如何使用-macos-ventura-测试版系统) 的说明使用。**重要提示**：macOS 14 不再支持博通 BCM94360 / BCM943602 系列~~免驱~~无线网卡，暂时可参考 [OpenCore-Legacy-Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/pull/1077#issuecomment-1646934494) 使用。*
 
 #### 2023.02.15
 * 更新 OpenCore 至 0.8.9 正式版
@@ -280,7 +287,7 @@
 * 替换 FwRuntimeServices 驱动为 OpenRuntime 驱动，添加 OpenCanopy 驱动
 * 替换 Shell 工具为 OpenShell 工具
 * 添加`/EFI/OC/Resources`主题相关文件夹，其中 Font \ Image \ Label 目录包含文件
-* 开启 KASLR 内存注入，添加 igfxfw=2 启动参数
+* 开启 KASLR 内存注入，添加`igfxfw=2`启动参数
 
 *OC 0.5.7 正式版的配置文件新增和删除了若干条目，建议按照使用习惯重新配置。添加启动主题但默认未启用，如需使用可将配置文件 Misc > Boot > Picker 的 Builtin 修改为 External；igfxfw=2 启动参数可以满频使用核显，如果没有核显可将其移除 (因近期事务繁多，拖到今天才得以更新，为等待的用户道一声抱歉)。*
 
@@ -462,7 +469,7 @@ OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配�
 
 2. 参考 [xjn 博客](https://blog.xjn819.com/?p=543) 的进阶部分「4.1 CPU 的变频优化」或 xjn 大佬发表于 PCbeta 的帖子 [FCPX 核显独显全程满速指南](http://bbs.pcbeta.com/viewthread-1836920-1-1.html) 中「HWP 变频」部分，根据个人需求定制`CPUFriendDataProvider.kext`HWP 变频文件，放入`/EFI/OC/Kexts/`替换同名文件，启用`/EFI/OC/Config.plist`文件 Kernel > Add > 10 和 11。<br>
    ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_CPU.png)
-   *iMac19,2 和 iMacPro1,1 均不支持 HWP 变频，无需尝试。对于有核显的用户建议选择 iMac19,1 机型，对于只使用核显的用户推荐 Macmini8,1 机型。目录内附带的是本人按照个人习惯定制的 9600K HWP 变频文件，不建议直接启用，更不建议其他处理器用户启用。*
+   *目录内附带的是本人按照个人习惯针对 9600K 定制的 HWP 变频文件，不建议直接启用，更不建议其他处理器用户启用。*
 
 ## Q&A
 #### 1. 开机时苹果 logo 显示不正常怎么办？
@@ -514,7 +521,12 @@ OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配�
    查看返回结果中的 trims took 时间，如果超过 10 秒，则会明显感知到开机时间过长。自 OC 0.7.9 版本开始，可将 Kernel > Quirks > SetApfsTrimTimeout 设置为 0 完全关闭 TRIM 以提升开机速度，但关闭 TRIM 会严重缩短固态硬盘使用寿命，因此不建议使用 (OC 未对 IONVMeFamily 指标进行修补，即使完全关闭 TRIM 在用户层/应用层可能依旧显示为开启状态)。目前最好的解决办法只有更换硬盘。
 #### 13. 如何使用 macOS Ventura 测试版系统？
    更新 OC 0.8.3 及同期发布的 kexts 后，一般无需额外设置便可使用 Ventura 系统，但大版本的测试版系统容易出现不可预知的错误，因此建议通过新建 APFS 宗卷的方式来使用 Ventura 测试版系统，详情参考 [苹果官方支持文档：在一台 Mac 上使用多个 macOS 版本](https://support.apple.com/zh-cn/HT208891)。
-#### 14. 待更新
+#### 14. 在 macOS Sonoma 上使用博通无线网卡？
+   已在 2023 年 11 月 12 日更新的 EFI 中添加所需内容，使用此 EFI 重启后，下载 [OpenCore-Legacy-Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) 放入到应用程序内，打开后应用 Post-Install-Root-Patch 根据提示操作，重启系统即可使用博通~~免驱~~无线网卡。使用 OCLP Patch 会导致系统更新时无法进行增量更新，只能下载完整包进行更新。
+   若使用 Intel 无线网卡，可移除下图中博通网卡相关内容，和`ipc_control_port_options=0`启动参数，再根据相关说明修改使用。
+   ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_Add.png)
+   ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_Block.png)
+#### 15. 待更新
 
 ## 结语
 完成以上步骤后，基本上已经有了一个完成度为 99% 的黑苹果设备，更多截图请查看 [截图预览](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/tree/master/Images/Preview.md) 。<br>

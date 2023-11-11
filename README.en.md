@@ -1,8 +1,7 @@
 # MSI B360M MORTAR (TITANIUM) Hackintosh OpenCore EFI
 
-[![OpenCore](https://img.shields.io/badge/OpenCore-0.9.5-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
-[![macOS](https://img.shields.io/badge/macOS-13-ffb84a)](https://www.apple.com.cn/macos/ventura/)
-[![macOS](https://img.shields.io/badge/macOS-14-6ca024)](https://www.apple.com/macos/sonoma-preview/)
+[![OpenCore](https://img.shields.io/badge/OpenCore-0.9.6-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+[![macOS](https://img.shields.io/badge/macOS-14-6ca024)](https://www.apple.com/macos/sonoma/)
 [![Last Commit](https://img.shields.io/github/last-commit/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI.svg?color=orange&label=Last%20Commit)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/commits/master/)
 [![License](https://img.shields.io/github/license/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/blob/master/LICENSE)
 [![Follow Me](https://img.shields.io/badge/Follow-Telegram-1da4de)](https://t.me/usestick/)
@@ -10,13 +9,13 @@
 Actually, my English is not fantastic. But I will try my best to translate, some content from Google Translate. 需要简体中文? [点此查看](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/blob/master/README.md)。
 
 ## Important
-Unknowingly, this project has been updated for more than 3 years, but with the release of the Mac Pro equipped with Apple Silicon, all Mac products have stopped using the x86 platform. Sonoma may be the last macOS that supports the x86 platform, and I also used it at home before. The computer is replaced by Mac Studio, so this project will stop updating within one month after Sonoma releases the official version. Thank you for your use.
+Unknowingly, this project has been updated for more than 3 years, but with the release of the Mac Pro equipped with Apple Silicon, all Mac products have stopped using the x86 platform. Sonoma may be the last macOS to support the x86 platform, and OpenCore is becoming increasingly stable. This project should be able to support everyone using all versions of Sonoma. It will stop updating in the future. Thank you for your use.
 
 ## About
 
 <img src="Images/Readme/Image.jpg" align="right" width="360" />
 
-This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANIUM version) can use it through modification. The integrated graphics and discrete graphics participate in hardware decoding. By default, all USB ports are injected. OpenCore version: 0.9.5. The highest supported system is macOS Sonoma 14 beta.
+This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANIUM version) can use it through modification. The integrated graphics and discrete graphics participate in hardware decoding. By default, all USB ports are injected. OpenCore version: 0.9.6. The highest supported system is macOS Sonoma 14.
 
 > Please note: This EFI is only a personal build sharing, and is marked with simple tips. It is not a standard OpenCore Hackintosh installation guide. If you need a standard installation guide, please jump to [Dortania's Getting Started](https://dortania.github.io/getting-started/). You may encounter some problems when starting Hackintosh after installing or updating hardware for the first time. Although most of the problems can be solved, there are actually some problems that cannot be solved. It can even be said that there is a certain element of luck in it. If you want to Applying this EFI recommends using hardware close to mine in order to have the same experience as possible.
 
@@ -73,13 +72,21 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 *Tips 3：Try to avoid Samsung when buying hard drives, especially macOS Monterey will cause longer boot time due to TRIM (Almost all users have problems with the 970 EVO, and some users have problems with the 980 PRO), see [Q&A 12](#12-why-does-the-boot-time-take-longer-after-the-monterey-upgrade). It is recommended to choose a relatively stable hard drive such as Western Digital SN850 / SN750 and Intel 760P.*<br>
 
 ## Changelog
+#### November 12, 2023
+* Updated OpenCore to 0.9.6 official version
+* Updated AppleALC kext to latest official version
+* Added AMFIPass \ IOSkywalkFamily \ IO80211FamilyLegacy kexts, Disable `com.apple.iokit.IOSkywalkFamily` system built-in kext (only effective on Sonoma)
+* Modified NVRAM > Add > 7C436110-XXXX > csr-active-config to `7F0A0000`, added `ipc_control_port_options=0` boot-args in Config.plist
+
+*OC 0.9.6's Config.plist adds and adjusts some entries, recommended to reconfigure according to usage habits. Added content about macOS 14 Broadcom wireless network card, which can be quickly repaired and used, for details, please refer to [Q&A 14](#14-using-broadcom-wireless-card-on-macos-sonoma). Theoretically, it can support all versions of macOS 14. If there are no major subsequent updates to OpenCore and kexts, this version will be the final version.
+
 #### September 13, 2023
 * Updated OpenCore to 0.9.5 official version
 * Updated Lilu \ AppleALC \ WhateverGreen \ NVMeFix kexts to latest official version
 * Updated OpenRuntime \ OpenCanopy \ ResetNvramEntry \ ToggleSipEntry drivers
 * Updated OpenShell \ ControlMsrE2 tools
 
-*OC 0.9.5's Config.plist adds and adjusts some entries, recommended to reconfigure according to usage habits. Support macOS 14 beta, is recommended to follow the instructions in [Q&A 13](#13-how-to-use-macos-ventura-beta). **Important note**: macOS 14 does not supports the BCM94360 / BCM943602 series of driver-free wireless network cards. For the time being, please refer to [OpenCore-Legacy-Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/pull/1077) use.
+*OC 0.9.5's Config.plist adds and adjusts some entries, recommended to reconfigure according to usage habits.
 
 #### July 30, 2023
 * Updated OpenCore to 0.9.3 official version
@@ -88,7 +95,7 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 * Updated OpenShell \ ControlMsrE2 tools
 * Updated `/EFI/OC/Resources/Font` boot theme files
 
-*OC 0.9.3's Config.plist adds and adjusts some entries, recommended to reconfigure according to usage habits. Support macOS 14 beta, is recommended to follow the instructions in [Q&A 13](#13-how-to-use-macos-ventura-beta). **Important note**: macOS 14 does not supports the BCM94360 / BCM943602 series of driver-free wireless network cards. For the time being, please refer to [OpenCore-Legacy-Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/pull/1077) use.*
+*OC 0.9.3's Config.plist adds and adjusts some entries, recommended to reconfigure according to usage habits. Support macOS 14 beta, is recommended to follow the instructions in [Q&A 13](#13-how-to-use-macos-ventura-beta). **Important note**: macOS 14 does not supports the BCM94360 / BCM943602 series of ~~driver-free~~ wireless network cards. For the time being, please refer to [OpenCore-Legacy-Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/pull/1077#issuecomment-1646934494) use.*
 
 #### February 15, 2023
 * Updated OpenCore to 0.8.9 official version
@@ -280,7 +287,7 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 * Replaced the FwRuntimeServices driver with OpenRuntime driver, Added OpenCanopy driver
 * Replaced Shell tools with OpenShell tools
 * Added the `/EFI/OC/Resources` theme related folder, where the Font\Image\Label directory contains files
-* Enabled KASLR, added igfxfw=2 boot-args
+* Enabled KASLR, added `igfxfw=2` boot-args
 
 *OC 0.5.7's Config.plist adds and deletes some entries, recommended to reconfigure according to usage habits. Added boot theme but not enabled by default. If you need to use it, you can change the Misc > Boot > Picker: `Builtin` to `External` in Config.plist; igfxfw=2 boot-args can use the integrated graphics at full frequency, if there is no integrated graphics, you can remove it.*
 
@@ -462,7 +469,7 @@ At present, RX 5000 series Navi 10 core graphics card, RX 6000 series Navi 21 co
 
 2. Refer to [OpenCore Post-Install](https://dortania.github.io/OpenCore-Post-Install/universal/pm.html#using-cpu-friend) to customize the `CPUFriendDataProvider.kext` HWP parameter file according to personal needs, put Enter `/EFI/OC/Kexts/` to replace the file with the same name, Turn on `/EFI/OC/Config.plist`  Kernel > Add > 10 and 11.<br>
    ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_CPU.png)
-   *Neither iMac19,2 nor iMacPro1,1 support HWP, no need to try. The iMac19,1 SMBIOS is recommended for users with integrated graphics, and the Macmini8,1 SMBIOS for users with only integrated graphics. Attached in the directory is the 9600K HWP parameter file that I customized according to my personal habits. It is not recommended to enable it directly, and it is not recommended for other CPU users to enable it.*
+   *The contents in the directory are HWP parameters customized for 9600K based on my personal habits. It is not recommended to enable it directly, and it is not recommended for other CPU users to enable it.*
 
 ## Q&A
 #### 1. What should I do if the Apple logo is displayed abnormally when booting?
@@ -514,7 +521,12 @@ At present, RX 5000 series Navi 10 core graphics card, RX 6000 series Navi 21 co
    Check the trims took time in the returned result. If it exceeds 10 seconds, it will obviously feel that the boot time is too long. Since OC version 0.7.9, you can set Kernel > Quirks > SetApfsTrimTimeout to 0, turn off TRIM to improve the boot time. But turn off TRIM will seriously shorten the service life of SSD, so it is not recommended. The best solution is to replace the hard disk.
 #### 13. How to use macOS Ventura beta?
    After updating OC 0.8.3 and the kexts released at the same time, the Ventura system can generally be used without additional settings, but the large version of the beta system is prone to unpredictable errors, so it is recommended to use the Ventura beta version by creating a new APFS volume. Please refer to [Apple official support document: Use more than one version of macOS on a Mac](https://support.apple.com/en-us/HT208891).
-#### 14. Pending upgrade
+#### 14. Using Broadcom wireless card on macOS Sonoma?
+   The required content has been added to the EFI updated on November 12, 2023. After restarting with this EFI, download [OpenCore-Legacy-Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) Put it into the Applications, open it and apply Post-Install-Root-Patch. Follow the prompts and restart the system to use the Broadcom wireless network card. Using OCLP Patch will result in the inability to perform incremental updates during system updates, and can only download the complete package for updates.
+   If you use an Intel wireless network card, you can remove the content related to the Broadcom network card in the picture below and the `ipc_control_port_options=0` boot-args, and then modify it according to the relevant instructions.
+   ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_Add.png)
+   ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_Block.png)
+#### 15. Pending upgrade
 
 ## Conclusion
 After completing the above steps, you basically have a Hackintosh that is 99% complete. For more screenshots, please check [Screenshot Preview](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/tree/master/Images/Preview.en.md).<br>
