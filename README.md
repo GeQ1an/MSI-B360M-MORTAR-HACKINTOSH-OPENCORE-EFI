@@ -506,7 +506,7 @@ OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配�
 #### 8. 如何使用 macOS Big Sur 11？
    请确认你的 OpenCore 已更新到 0.6.1 以上版本，且所有 Kexts 也已更新到最新版，将配置文件 Kernel > Quirks > DisableLinkeditJettison 设置为`Ture/Yes`即可。
 #### 9. 为什么要开启安全启动和 SIP？
-   首先，从 Monterey 开始，不会向未启用安全启动的包含 T2 芯片的 Mac 提供更新，所以需要我们打开安全启动功能，修改 OC 的 SecureBootModel 和 DmgLoading 两个设置。*(注：如果你使用不包含 T2 芯片的 iMac19,1 或 iMac19,2 SMBIOS，也可以选择关闭安全启动，请修改配置文件 Misc > Security > SecureBootModel 为`Disabled`，部分机器开启时会遇到启动问题。)*<br>
+   首先，从 Monterey 开始，不会向未启用安全启动的包含 T2 芯片的 Mac 提供更新，所以需要我们打开安全启动功能，修改 OC 的 SecureBootModel 和 DmgLoading 两个设置。*(注：如果使用不包含 T2 芯片的 iMac19,1 或 iMac19,2 SMBIOS，也可以选择关闭安全启动，请修改配置文件 Misc > Security > SecureBootModel 为`Disabled`，部分机器开启时会遇到启动问题。)*<br>
    其次，从 Big Sur 开始，未开启 SIP 可能无法检测到更新，为了保证正常检测系统更新，需要修改 csr-active-config 设置开启 SIP ，开启 AllowToggleSip 选项后可在引导选择界面快速开关 SIP。如果更新此次 OC 后无法检测到更新可尝试到引导选择界面再次开启 SIP 解决问题 (括号会标注状态，Enable 为开启，Disable 为关闭)。<br>
    详情参考 [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/extras/monterey.html#ota-updates) 中的说明。
 #### 10. 为什么使用 Catalina 需要额外修改配置？
@@ -523,7 +523,7 @@ OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配�
    更新 OC 0.8.3 及同期发布的 kexts 后，一般无需额外设置便可使用 Ventura 系统，但大版本的测试版系统容易出现不可预知的错误，因此建议通过新建 APFS 宗卷的方式来使用 Ventura 测试版系统，详情参考 [苹果官方支持文档：在一台 Mac 上使用多个 macOS 版本](https://support.apple.com/zh-cn/HT208891)。
 #### 14. 在 macOS Sonoma 上使用博通无线网卡？
    已在 2023 年 11 月 12 日更新的 EFI 中添加所需内容，使用此 EFI 重启后，下载 [OpenCore-Legacy-Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) 放入到应用程序内，打开后应用 Post-Install-Root-Patch 根据提示操作，重启系统即可使用博通~~免驱~~无线网卡。使用 OCLP Patch 会导致系统更新时无法进行增量更新，只能下载完整包进行更新。
-   若使用 Intel 无线网卡，可移除下图中博通网卡相关内容，和`ipc_control_port_options=0`启动参数，再根据相关说明修改使用。
+   若使用 Intel 无线网卡，可移除下图中博通网卡相关内容，修改配置文件 NVRAM > Add > 7C436110-XXXX > csr-active-config 参数为`00000000`并移除`ipc_control_port_options=0`启动参数，再根据相关说明修改使用。
    ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_Add.png)
    ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_Block.png)
 #### 15. 待更新

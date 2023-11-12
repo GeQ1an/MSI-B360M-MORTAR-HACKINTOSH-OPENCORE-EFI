@@ -78,7 +78,7 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 * Added AMFIPass \ IOSkywalkFamily \ IO80211FamilyLegacy kexts, Disable `com.apple.iokit.IOSkywalkFamily` system built-in kext (only effective on Sonoma)
 * Modified NVRAM > Add > 7C436110-XXXX > csr-active-config to `7F0A0000`, added `ipc_control_port_options=0` boot-args in Config.plist
 
-*OC 0.9.6's Config.plist adds and adjusts some entries, recommended to reconfigure according to usage habits. Added content about macOS 14 Broadcom wireless network card, which can be quickly repaired and used, for details, please refer to [Q&A 14](#14-using-broadcom-wireless-card-on-macos-sonoma). Theoretically, it can support all versions of macOS 14. If there are no major subsequent updates to OpenCore and kexts, this version will be the final version.
+*OC 0.9.6's Config.plist adds and adjusts some entries, recommended to reconfigure according to usage habits. Added content about macOS 14 Broadcom wireless network card, which can be quickly repaired and used, for details, please refer to [Q&A 14](#14-using-broadcom-wireless-card-on-macos-sonoma). Theoretically, it can support all versions of macOS 14. If there are no major subsequent updates to OpenCore and kexts, this version will be the final version.*
 
 #### September 13, 2023
 * Updated OpenCore to 0.9.5 official version
@@ -86,7 +86,7 @@ This EFI uses `iMac19,1` SMBIOS. Most users of MSI B360M MORTAR (includes TITANI
 * Updated OpenRuntime \ OpenCanopy \ ResetNvramEntry \ ToggleSipEntry drivers
 * Updated OpenShell \ ControlMsrE2 tools
 
-*OC 0.9.5's Config.plist adds and adjusts some entries, recommended to reconfigure according to usage habits.
+*OC 0.9.5's Config.plist adds and adjusts some entries, recommended to reconfigure according to usage habits.*
 
 #### July 30, 2023
 * Updated OpenCore to 0.9.3 official version
@@ -522,8 +522,8 @@ At present, RX 5000 series Navi 10 core graphics card, RX 6000 series Navi 21 co
 #### 13. How to use macOS Ventura beta?
    After updating OC 0.8.3 and the kexts released at the same time, the Ventura system can generally be used without additional settings, but the large version of the beta system is prone to unpredictable errors, so it is recommended to use the Ventura beta version by creating a new APFS volume. Please refer to [Apple official support document: Use more than one version of macOS on a Mac](https://support.apple.com/en-us/HT208891).
 #### 14. Using Broadcom wireless card on macOS Sonoma?
-   The required content has been added to the EFI updated on November 12, 2023. After restarting with this EFI, download [OpenCore-Legacy-Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) Put it into the Applications, open it and apply Post-Install-Root-Patch. Follow the prompts and restart the system to use the Broadcom wireless network card. Using OCLP Patch will result in the inability to perform incremental updates during system updates, and can only download the complete package for updates.
-   If you use an Intel wireless network card, you can remove the content related to the Broadcom network card in the picture below and the `ipc_control_port_options=0` boot-args, and then modify it according to the relevant instructions.
+   The required content has been added to the EFI updated on November 12, 2023. After restarting with this EFI, download [OpenCore-Legacy-Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) Put it into the Applications, open it and apply Post-Install-Root-Patch. Follow the prompts and restart the system to use the Broadcom wireless network card. Using OCLP Patch will result in the inability to perform incremental updates during system updates, and can only download the complete package for updates.<br>
+   If you use an Intel wireless network card, you can remove the content related to the Broadcom network card in the picture below. Modified NVRAM > Add > 7C436110-XXXX > csr-active-config to `00000000`, and removed `ipc_control_port_options=0` boot-args in Config.plist, and then modify it according to the relevant instructions.
    ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_Add.png)
    ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_Block.png)
 #### 15. Pending upgrade
