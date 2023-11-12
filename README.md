@@ -522,7 +522,7 @@ OpenCore 拥有高度的可定制化，建议先参考下面的说明使用配�
 #### 13. 如何使用 macOS Ventura 测试版系统？
    更新 OC 0.8.3 及同期发布的 kexts 后，一般无需额外设置便可使用 Ventura 系统，但大版本的测试版系统容易出现不可预知的错误，因此建议通过新建 APFS 宗卷的方式来使用 Ventura 测试版系统，详情参考 [苹果官方支持文档：在一台 Mac 上使用多个 macOS 版本](https://support.apple.com/zh-cn/HT208891)。
 #### 14. 在 macOS Sonoma 上使用博通无线网卡？
-   已在 2023 年 11 月 12 日更新的 EFI 中添加所需内容，使用此 EFI 重启后，下载 [OpenCore-Legacy-Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) 放入到应用程序内，打开后应用 Post-Install-Root-Patch 根据提示操作，重启系统即可使用博通~~免驱~~无线网卡。使用 OCLP Patch 会导致系统更新时无法进行增量更新，只能下载完整包进行更新。
+   已在 2023 年 11 月 12 日更新的 EFI 中添加所需内容，使用此 EFI 重启后，下载 [OpenCore-Legacy-Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) 放入到应用程序内，打开后应用 Post-Install-Root-Patch 根据提示操作，重启系统即可使用博通~~免驱~~无线网卡。使用 OCLP Patch 会导致系统更新时无法进行增量更新，只能下载完整包进行更新。<br>
    若使用 Intel 无线网卡，可移除下图中博通网卡相关内容，修改配置文件 NVRAM > Add > 7C436110-XXXX > csr-active-config 参数为`00000000`并移除`ipc_control_port_options=0`启动参数，再根据相关说明修改使用。
    ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_Add.png)
    ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Explain/ProperTree_Kernel_Block.png)
