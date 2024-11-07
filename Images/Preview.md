@@ -1,5 +1,5 @@
 ## 截图预览
-系统版本：macOS Sonoma 14.1.1，OpenCare 版本：0.9.6，EFI 更新日期：2023.11.12
+系统版本：macOS Sequoia 15.1，OpenCare 版本：1.0.2，EFI 更新日期：2024.11.07
 
 ### 关于本机
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/About.png)

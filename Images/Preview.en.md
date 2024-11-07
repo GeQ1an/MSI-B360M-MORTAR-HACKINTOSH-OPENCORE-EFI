@@ -1,5 +1,5 @@
 ## Screenshot Preview
-System version: macOS Sonoma 14.1.1, OpenCare version: 0.9.6, EFI update date: November 12, 2023
+System version: macOS Sequoia 15.1, OpenCare version: 1.0.2, EFI update date: November 7, 2024
 
 ### About Mac
 ![](https://raw.githubusercontent.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/master/Images/Screenshots/About.en.png)
