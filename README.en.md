@@ -1,7 +1,7 @@
 # MSI B360M MORTAR (TITANIUM) Hackintosh OpenCore EFI
 
 [![OpenCore](https://img.shields.io/badge/OpenCore-1.0.2-1ac3d4)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
-[![macOS](https://img.shields.io/badge/macOS-15-fcd297)](https://www.apple.com/macos/sequoia/)
+[![macOS](https://img.shields.io/badge/macOS-15-fcd297)](https://www.apple.com/macos/macos-sequoia/)
 [![Last Commit](https://img.shields.io/github/last-commit/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI.svg?color=orange&label=Last%20Commit)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/commits/master/)
 [![License](https://img.shields.io/github/license/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI)](https://github.com/GeQ1an/MSI-B360M-MORTAR-HACKINTOSH-OPENCORE-EFI/blob/master/LICENSE)
 [![Follow Me](https://img.shields.io/badge/Follow-Telegram-1da4de)](https://t.me/usestick/)
